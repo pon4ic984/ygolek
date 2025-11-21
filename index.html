@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уголёк - Доставка еды</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --primary-bg: #0D0D0D;
+            --secondary-bg: #1A1A1A;
+            --accent-dark: #5A2A2A;
+            --accent-warm: #B26900;
+            --text-light: #E0E0E0;
+            --text-white: #FFFFFF;
+            --gold: #D4AF37;
+            --success: #2E7D32;
+            --warning: #FF9800;
+            --danger: #F44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #2A1A1A 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235a2a2a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(13, 13, 13, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+            .logo:hover {
+                transform: scale(1.05);
+            }
+
+            .logo i {
+                color: var(--accent-warm);
+                margin-right: 10px;
+                text-shadow: 0 0 10px rgba(178, 105, 0, 0.5);
+                animation: fire-flicker 3s infinite alternate;
+            }
+
+        @keyframes fire-flicker {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            25% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(0.95);
+                opacity: 1;
+            }
+
+            75% {
+                transform: scale(1.02);
+                opacity: 0.95;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+            nav ul li {
+                margin-left: 30px;
+                position: relative;
+            }
+
+                nav ul li a {
+                    color: var(--text-light);
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: color 0.3s;
+                    position: relative;
+                    padding: 5px 0;
+                }
+
+                    nav ul li a:hover {
+                        color: var(--accent-warm);
+                    }
+
+                    nav ul li a::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -5px;
+                        left: 0;
+                        width: 0;
+                        height: 2px;
+                        background-color: var(--accent-warm);
+                        transition: width 0.3s ease;
+                    }
+
+                    nav ul li a:hover::after {
+                        width: 100%;
+                    }
+
+                    nav ul li a.active {
+                        color: var(--accent-warm);
+                    }
+
+                        nav ul li a.active::after {
+                            width: 100%;
+                        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+            .cart-icon:hover {
+                transform: scale(1.1);
+            }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-warm);
+            color: var(--text-white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .hero {
+            height: 100vh;
+            background: radial-gradient(ellipse at 20% 50%, rgba(178, 105, 0, 0.2) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(90, 42, 42, 0.15) 0%, transparent 50%), linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--text-white);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: titleGlow 3s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+
+            to {
+                text-shadow: 0 5px 25px rgba(178, 105, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            color: var(--text-white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(178, 105, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn:hover::before {
+                left: 100%;
+            }
+
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(178, 105, 0, 0.4);
+            }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--accent-warm);
+            margin-left: 15px;
+            box-shadow: 0 4px 15px rgba(178, 105, 0, 0.2);
+        }
+
+        .hero-buttons {
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+            .section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text-white);
+            position: relative;
+        }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                position: relative;
+                display: inline-block;
+            }
+
+                .section-title h2::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80px;
+                    height: 3px;
+                    background: linear-gradient(to right, var(--accent-dark), var(--accent-warm));
+                    border-radius: 2px;
+                }
+
+            .section-title p {
+                max-width: 600px;
+                margin: 0 auto;
+                color: var(--text-light);
+            }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--accent-dark);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+            .category-btn.active {
+                background-color: var(--accent-dark);
+                color: var(--text-white);
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(90, 42, 42, 0.3);
+            }
+
+            .category-btn:hover:not(.active) {
+                border-color: var(--accent-warm);
+                color: var(--accent-warm);
+            }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-item {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+            .menu-item.animate-in {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.5s ease;
+            }
+
+            .menu-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+
+        .menu-item-img {
+            height: 200px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover .menu-item-img {
+            transform: scale(1.05);
+        }
+
+        .menu-item-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(13, 13, 13, 0.8));
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .menu-item h3 {
+            font-size: 1.3rem;
+            color: var(--text-white);
+            margin-right: 10px;
+        }
+
+        .menu-item-price {
+            color: var(--accent-warm);
+            font-weight: 600;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+
+        .menu-item-desc {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .menu-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .menu-item-weight {
+            font-size: 0.85rem;
+        }
+
+        .add-to-cart-btn {
+            background: var(--accent-dark);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .add-to-cart-btn::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 5px;
+                height: 5px;
+                background: rgba(255, 255, 255, 0.5);
+                opacity: 0;
+                border-radius: 100%;
+                transform: scale(1, 1) translate(-50%);
+                transform-origin: 50% 50%;
+            }
+
+            .add-to-cart-btn:focus:not(:active)::after {
+                animation: ripple 1s ease-out;
+            }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--accent-warm);
+            transform: translateY(-2px);
+        }
+
+        .age-restricted {
+            position: relative;
+        }
+
+        .age-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-dark);
+            color: var(--text-white);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 1;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px var(--accent-dark);
+            }
+
+            to {
+                box-shadow: 0 0 15px var(--accent-warm);
+            }
+        }
+
+        .special-offer {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 40px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .special-offer::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: repeating-linear-gradient( 45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px );
+                animation: slide 10s linear infinite;
+            }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            100% {
+                transform: translateX(-10px) translateY(-10px);
+            }
+        }
+
+        .special-offer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .combos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .combo-item {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+            .combo-item.animate-in {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.5s ease;
+            }
+
+            .combo-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+
+        .combo-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .combo-header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+                transform: translateX(-100%);
+            }
+
+        .combo-item:hover .combo-header::before {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .combo-header h3 {
+            color: var(--text-white);
+            font-size: 1.5rem;
+        }
+
+        .combo-content {
+            padding: 20px;
+        }
+
+        .combo-includes {
+            margin-bottom: 20px;
+        }
+
+            .combo-includes h4 {
+                margin-bottom: 10px;
+                color: var(--text-white);
+                font-size: 1.1rem;
+            }
+
+            .combo-includes ul {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .combo-includes li {
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                font-size: 0.95rem;
+            }
+
+                .combo-includes li i {
+                    color: var(--accent-warm);
+                    margin-right: 10px;
+                    font-size: 0.8rem;
+                }
+
+        .combo-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .combo-savings {
+            color: var(--success);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+
+            .about-image:hover {
+                transform: perspective(1000px) rotateY(0);
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        footer {
+            background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--text-white);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+            .footer-column ul li {
+                margin-bottom: 10px;
+            }
+
+                .footer-column ul li a {
+                    color: var(--text-light);
+                    text-decoration: none;
+                    transition: color 0.3s;
+                }
+
+                    .footer-column ul li a:hover {
+                        color: var(--accent-warm);
+                    }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+            .social-links a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background-color: rgba(255, 255, 255, 0.05);
+                border-radius: 50%;
+                color: var(--text-light);
+                transition: all 0.3s;
+            }
+
+                .social-links a:hover {
+                    background-color: var(--accent-warm);
+                    color: var(--text-white);
+                    transform: translateY(-2px);
+                }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+            .modal.show {
+                display: flex;
+                opacity: 1;
+            }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(42, 26, 26, 0.98) 100%);
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(90, 42, 42, 0.5);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .modal-header h3 {
+                color: var(--text-white);
+                font-size: 1.3rem;
+            }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+            .close-modal:hover {
+                color: var(--accent-warm);
+            }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .age-verification {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+            .age-verification i {
+                font-size: 3rem;
+                color: var(--accent-warm);
+                margin-bottom: 20px;
+            }
+
+            .age-verification h3 {
+                margin-bottom: 15px;
+                color: var(--text-white);
+            }
+
+            .age-verification p {
+                margin-bottom: 25px;
+                color: var(--text-light);
+                line-height: 1.6;
+            }
+
+        .verification-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+            .cart-item:hover {
+                background-color: rgba(255, 255, 255, 0.03);
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+        .cart-item-info h4 {
+            color: var(--text-white);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-meta {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .cart-item-price {
+            color: var(--accent-warm);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+            .quantity-btn:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: var(--accent-warm);
+            }
+
+        .cart-summary {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .summary-total {
+            font-weight: 600;
+            color: var(--text-white);
+            font-size: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 3000;
+            max-width: 300px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            transform: translateX(400px);
+            opacity: 0;
+        }
+
+            .notification.show {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, var(--accent-warm) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            33% {
+                transform: translate(30px, 50px) rotate(120deg);
+            }
+
+            66% {
+                transform: translate(-20px, 80px) rotate(240deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        .admin-notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideDown 0.5s ease;
+        }
+
+        .maintenance-notification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #FF9800 0%, #F44336 100%);
+            color: white;
+            padding: 15px;
+            z-index: 10000;
+            text-align: center;
+            animation: slideDown 0.5s ease;
+        }
+
+        .maintenance-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .map-container {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+            .map-container iframe {
+                width: 100%;
+                height: 400px;
+                border: none;
+            }
+
+        .delivery-info {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+            .delivery-info h3 {
+                color: var(--text-white);
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .delivery-info h3 i {
+                    color: var(--accent-warm);
+                }
+
+        .address-input-container {
+            position: relative;
+        }
+
+        .address-suggestions {
+            position: absolute;
+            background: var(--secondary-bg);
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 100%;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .address-suggestion {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+            .address-suggestion:hover {
+                background-color: rgba(178, 105, 0, 0.1);
+            }
+
+            .address-suggestion:last-child {
+                border-bottom: none;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--accent-warm);
+                box-shadow: 0 0 0 2px rgba(178, 105, 0, 0.2);
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--text-white);
+                font-weight: 500;
+            }
+
+        /* Стили для выбора адреса на карте */
+        .address-selector {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .address-input-container {
+            flex: 1;
+        }
+
+        .map-select-btn {
+            background: var(--accent-dark);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .map-select-btn:hover {
+                background: var(--accent-warm);
+            }
+
+        .map-modal {
+            max-width: 900px;
+        }
+
+        .map-container-large {
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .address-confirm-btn {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .selected-address {
+            background: rgba(178, 105, 0, 0.1);
+            border: 1px solid var(--accent-warm);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+            .selected-address h4 {
+                color: var(--accent-warm);
+                margin-bottom: 5px;
+            }
+
+        /* Стили для выбора способа получения */
+        .delivery-type {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .delivery-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .delivery-option.active {
+                border-color: var(--accent-warm);
+                background: rgba(178, 105, 0, 0.1);
+            }
+
+            .delivery-option i {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--accent-warm);
+            }
+
+        /* Стили для кнопки оплаты */
+        .payment-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .payment-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cash-payment {
+            background: transparent;
+            border: 1px solid var(--accent-warm);
+            color: var(--text-light);
+        }
+
+        .online-payment {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            border: none;
+            color: var(--text-white);
+        }
+
+        .payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Стили для формы ЮКассы */
+        #yookassa-widget {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .payment-success {
+            text-align: center;
+            padding: 30px;
+            background: rgba(46, 125, 50, 0.1);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+            .payment-success i {
+                font-size: 3rem;
+                color: var(--success);
+                margin-bottom: 15px;
+            }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .menu-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-btn {
+                width: 200px;
+                margin-bottom: 10px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .combos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+                flex-direction: column;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+
+            .address-selector {
+                flex-direction: column;
+            }
+
+            .map-select-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .delivery-zones {
+                grid-template-columns: 1fr;
+            }
+
+            .zone-map {
+                height: 300px;
+            }
+
+            .payment-options {
+                flex-direction: column;
+            }
+
+            .delivery-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <header id="mainHeader">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-fire"></i>
+                    Уголёк
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Главная</a></li>
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#delivery">Доставка</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Уголёк</h1>
+                <p>Доставка вкусной еды в посёлке Орловском</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn">Смотреть меню</a>
+                    <a href="#delivery" class="btn btn-secondary">Узнать о доставке</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>О нас</h2>
+                <p>Мы готовим вкусную еду с любовью и доставляем прямо к вашей двери</p>
+            </div>
+            <div class="about-section">
+                <div class="about-content">
+                    <h3>Уголёк - доставка еды</h3>
+                    <p>Мы специализируемся на вкусных шашлыках, сочных бургерах и хрустящем фритюре. Все наши блюда готовятся из свежих продуктов с соблюдением всех технологий.</p>
+                    <p>Доставляем заказы по всему посёлку Орловскому и прилегающим территориям. Минимальная сумма заказа - 500 рублей.</p>
+                    <p>Среднее время доставки: 30-45 минут</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Уголёк - доставка еды" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPumTgemHj+WbvuWDjzwvdGV4dD48L3N2Zz4='">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="special-offer">
+                <div class="special-offer-content">
+                    <h3><i class="fas fa-gift"></i> Специальное предложение для новых клиентов!</h3>
+                    <p>При первом заказе получите скидку 15% на весь заказ</p>
+                    <small>Просто сообщите о предложении при оформлении заказа</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наше меню</h2>
+                <p>Попробуйте наши авторские блюда, созданные с теплом и вниманием к деталям</p>
+            </div>
+
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">Все</button>
+                <button class="category-btn" data-category="shashlik">Шашлык</button>
+                <button class="category-btn" data-category="burger">Бургеры</button>
+                <button class="category-btn" data-category="fry">Фритюр</button>
+                <button class="category-btn" data-category="lavash">Лаваш</button>
+                <button class="category-btn" data-category="drinks">Напитки</button>
+                <button class="category-btn" data-category="sauce">Соусы</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- Меню будет загружено через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="combos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Сборки от шефа</h2>
+                <p>Готовые наборы для идеального гастрономического опыта с выгодой до 15%</p>
+            </div>
+
+            <div class="combos-grid" id="combosGrid">
+                <!-- Комбо будет загружено через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="delivery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Доставка</h2>
+                <p>Быстрая доставка по посёлку Орловскому и прилегающим территориям</p>
+            </div>
+
+            <div class="delivery-info">
+                <h3><i class="fas fa-info-circle"></i> Общая информация о доставке</h3>
+                <p><strong>Время работы доставки:</strong> ежедневно с 11:00 до 23:00 без перерыва и выходных</p>
+                <p><strong>Способы оплаты:</strong> наличными курьеру, картой онлайн через ЮКассу при самовывозе</p>
+                <p><strong>Телефон для заказов:</strong> +7 (906) 428-46-30</p>
+                <p><strong>Изменение/отмена заказа:</strong> возможны не менее чем за 30 минут до доставки</p>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=42.134481%2C46.871387&z=14&pt=42.134481%2C46.871387~42.134481%2C46.871387" frameborder="0" allowfullscreen="true"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Уголёк</h3>
+                    <p>Доставка вкусной еды в посёлке Орловском. Мы готовим с любовью и вниманием к деталям.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Часы работы</h3>
+                    <ul>
+                        <li>Понедельник - Воскресенье: 11:00 - 23:00 без перерыва и выходных</li>
+                        <li>Доставка: 11:00 - 23:00</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> п. Орловский, Ростовская область</li>
+                        <li><i class="fas fa-phone"></i> +7 (906) 428-46-30</li>
+                        <li><i class="fas fa-envelope"></i> aksenova.2590@mail.ru</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 "Уголёк". Доставка еды. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="ageVerificationModal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="age-verification">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>ВНИМАНИЕ: Алкогольная продукция</h3>
+                    <p>Подтвердите, что вам есть 18 лет. Продажа алкоголя несовершеннолетним запрещена.</p>
+                    <div class="verification-buttons">
+                        <button class="btn" id="confirmAge">Мне есть 18</button>
+                        <button class="btn btn-secondary" id="cancelAge">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ваш заказ</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cartItems">
+                    <p id="emptyCartMessage">Ваша корзина пуста</p>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Промежуточный итог:</span>
+                        <span id="subtotal">0 ₽</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Доставка:</span>
+                        <span id="deliveryCost">100 ₽</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Итого:</span>
+                        <span id="total">100 ₽</span>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="customerName">Ваше имя *</label>
+                        <input type="text" id="customerName" class="form-control" placeholder="Введите ваше имя" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerPhone">Номер телефона *</label>
+                        <input type="tel" id="customerPhone" class="form-control" placeholder="+7 (906) 428-46-30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Способ получения *</label>
+                        <div class="delivery-type">
+                            <div class="delivery-option active" data-type="delivery">
+                                <i class="fas fa-truck"></i>
+                                <h4>Доставка</h4>
+                                <p>Оплата онлайн через ЮКассу</p>
+                            </div>
+                            <div class="delivery-option" data-type="pickup">
+                                <i class="fas fa-store"></i>
+                                <h4>Самовывоз</h4>
+                                <p>Оплата наличными при получении</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="deliveryAddressGroup">
+                        <label for="deliveryAddress">Адрес доставки *</label>
+                        <div class="address-selector">
+                            <div class="address-input-container">
+                                <input type="text" id="deliveryAddress" class="form-control" placeholder="Начните вводить улицу или выберите на карте" required>
+                                <div class="address-suggestions" id="addressSuggestions"></div>
+                            </div>
+                            <button class="map-select-btn" id="openMapBtn">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Выбрать на карте
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderNotes">Примечания к заказу</label>
+                        <textarea id="orderNotes" class="form-control" rows="3" placeholder="Например: этаж, домофон, особые пожелания..."></textarea>
+                    </div>
+
+                    <div class="form-group" id="ageConfirmation" style="display: none;">
+                        <label>
+                            <input type="checkbox" id="ageCheckbox">
+                            Я подтверждаю, что мне исполнилось 18 лет и я несу ответственность за заказ алкогольной продукции в соответствии с законодательством РФ.
+                        </label>
+                    </div>
+
+                    <button class="btn" style="width: 100%; margin-top: 20px;" id="checkoutButton">
+                        <i class="fas fa-credit-card"></i> Оплатить онлайн
+                    </button>
+
+                    <p style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #999;">
+                        Наш оператор свяжется с вами для подтверждения заказа
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для оплаты через ЮКассу -->
+    <div class="modal" id="yookassaModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Оплата через ЮКассу</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 20px;">
+                    <h4>Демо-режим оплаты</h4>
+                    <p>Сумма к оплате: <strong id="paymentAmount">0 ₽</strong></p>
+                    <div style="margin: 20px 0;">
+                        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background: #f9f9f9; display: inline-block;">
+                            <img src="https://yastatic.net/q/logoaas/v1/%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81.svg" style="height: 20px; margin-bottom: 5px;">
+                            <div style="font-size: 12px;">Банковская карта</div>
+                        </div>
+                    </div>
+                    <button class="btn" id="confirmPayment" style="width: 100%;">
+                        <i class="fas fa-credit-card"></i> Оплатить
+                    </button>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: #999;">
+                        В реальном приложении здесь будет форма оплаты ЮКассы
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Supabase с предоставленными данными
+        const supabaseUrl = 'https://pumliqqevodnfokoybkh.supabase.co';
+        const supabaseKey = 'sb_secret_PilY6mFi7utPB0EmY0AtMA_U4u6pljG';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Основные переменные
+        let cart = JSON.parse(localStorage.getItem('ugalek_cart')) || [];
+        let isAgeVerified = localStorage.getItem('ugalek_age_verified') === 'true';
+        let pendingAlcoholItem = null;
+        let selectedAddress = '';
+        let deliveryType = 'delivery'; // delivery или pickup
+        let menuItems = [];
+        let combos = [];
+
+        // DOM элементы
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const cartItems = document.getElementById('cartItems');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const subtotalElement = document.getElementById('subtotal');
+        const deliveryCostElement = document.getElementById('deliveryCost');
+        const totalElement = document.getElementById('total');
+        const ageConfirmation = document.getElementById('ageConfirmation');
+        const ageCheckbox = document.getElementById('ageCheckbox');
+        const checkoutButton = document.getElementById('checkoutButton');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const ageVerificationModal = document.getElementById('ageVerificationModal');
+        const confirmAgeButton = document.getElementById('confirmAge');
+        const cancelAgeButton = document.getElementById('cancelAge');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const menuGrid = document.getElementById('menuGrid');
+        const combosGrid = document.getElementById('combosGrid');
+        const mainHeader = document.getElementById('mainHeader');
+        const floatingElements = document.getElementById('floatingElements');
+        const deliveryAddress = document.getElementById('deliveryAddress');
+        const addressSuggestions = document.getElementById('addressSuggestions');
+        const openMapBtn = document.getElementById('openMapBtn');
+        const yookassaModal = document.getElementById('yookassaModal');
+        const paymentAmount = document.getElementById('paymentAmount');
+        const confirmPayment = document.getElementById('confirmPayment');
+        const deliveryOptions = document.querySelectorAll('.delivery-option');
+        const deliveryAddressGroup = document.getElementById('deliveryAddressGroup');
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', async function () {
+            console.log('Инициализация сайта...');
+
+            // Проверяем подключение к Supabase
+            const connected = await checkSupabaseConnection();
+
+            if (connected) {
+                // Загружаем данные из Supabase
+                await loadMenuItemsFromSupabase();
+                await loadCombosFromSupabase();
+                showNotification('Данные загружены из Supabase');
+            } else {
+                // Используем локальные данные
+                menuItems = getDefaultMenuItems();
+                combos = getDefaultCombos();
+                renderMenuItems();
+                renderCombos();
+                showNotification('Используем локальные данные. Проверьте подключение к интернету.');
+            }
+
+            updateCartCount();
+            createFloatingElements();
+            initScrollAnimations();
+            window.addEventListener('scroll', handleHeaderScroll);
+
+            // Обработчики событий
+            cartIcon.addEventListener('click', openCart);
+            checkoutButton.addEventListener('click', proceedToCheckout);
+            confirmAgeButton.addEventListener('click', confirmAge);
+            cancelAgeButton.addEventListener('click', cancelAge);
+            confirmPayment.addEventListener('click', processYooKassaPayment);
+
+            // Обработчики выбора способа получения
+            deliveryOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    deliveryOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    deliveryType = this.getAttribute('data-type');
+
+                    updateCheckoutButton();
+
+                    if (deliveryType === 'delivery') {
+                        deliveryAddressGroup.style.display = 'block';
+                    } else {
+                        deliveryAddressGroup.style.display = 'none';
+                    }
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    closeModal(this.closest('.modal'));
+                });
+            });
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const category = this.getAttribute('data-category');
+
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    filterMenuItems(category);
+                });
+            });
+
+            // Обработчики для адреса доставки
+            deliveryAddress.addEventListener('input', function () {
+                showAddressSuggestions(this.value);
+            });
+
+            document.addEventListener('click', function (e) {
+                if (e.target !== deliveryAddress && !addressSuggestions.contains(e.target)) {
+                    addressSuggestions.style.display = 'none';
+                }
+            });
+        });
+
+        // Проверка подключения к Supabase
+        async function checkSupabaseConnection() {
+            try {
+                const { data, error } = await supabase
+                    .from('menu_items')
+                    .select('count')
+                    .limit(1);
+
+                if (error) {
+                    console.error('Ошибка подключения к Supabase:', error);
+                    return false;
+                }
+
+                console.log('Подключение к Supabase успешно');
+                return true;
+            } catch (error) {
+                console.error('Ошибка проверки подключения:', error);
+                return false;
+            }
+        }
+
+        // Функции для работы с Supabase
+        async function loadMenuItemsFromSupabase() {
+            try {
+                const { data, error } = await supabase
+                    .from('menu_items')
+                    .select('*')
+                    .order('id');
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    menuItems = data;
+                    renderMenuItems();
+                    console.log('Меню загружено из Supabase:', menuItems.length, 'позиций');
+                } else {
+                    throw new Error('Нет данных в таблице menu_items');
+                }
+            } catch (error) {
+                console.error('Ошибка загрузки меню из Supabase:', error);
+                throw error;
+            }
+        }
+
+        async function loadCombosFromSupabase() {
+            try {
+                const { data, error } = await supabase
+                    .from('combos')
+                    .select('*')
+                    .order('id');
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    combos = data;
+                    renderCombos();
+                    console.log('Комбо загружены из Supabase:', combos.length, 'позиций');
+                } else {
+                    console.log('Нет данных в таблице combos, используем локальные данные');
+                    combos = getDefaultCombos();
+                    renderCombos();
+                }
+            } catch (error) {
+                console.error('Ошибка загрузки комбо из Supabase:', error);
+                combos = getDefaultCombos();
+                renderCombos();
+            }
+        }
+
+        async function saveOrderToSupabase(order) {
+            try {
+                const { data, error } = await supabase
+                    .from('orders')
+                    .insert([order])
+                    .select();
+
+                if (error) throw error;
+
+                console.log('Заказ сохранен в Supabase:', data);
+                return data[0];
+            } catch (error) {
+                console.error('Ошибка сохранения заказа в Supabase:', error);
+                throw error;
+            }
+        }
+
+        // Функции для работы с корзиной
+        function addToCart(id, item, price) {
+            const existingItem = cart.find(cartItem => cartItem.id === id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, item, price, quantity: 1 });
+            }
+
+            updateCartCount();
+            saveCartToStorage();
+            showNotification(`"${item}" добавлен в корзину`);
+        }
+
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function openCart() {
+            updateCartDisplay();
+            openModal(cartModal);
+        }
+
+        function updateCartDisplay() {
+            cartItems.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItems.appendChild(emptyCartMessage);
+                emptyCartMessage.style.display = 'block';
+            } else {
+                emptyCartMessage.style.display = 'none';
+
+                cart.forEach((cartItem, index) => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+
+                    cartItemElement.innerHTML = `
+                            <div class="cart-item-info">
+                                <h4>${cartItem.item}</h4>
+                                <div class="cart-item-meta">${cartItem.price} ₽ за шт.</div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="quantity-btn decrease-btn" data-index="${index}">-</button>
+                                <span>${cartItem.quantity}</span>
+                                <button class="quantity-btn increase-btn" data-index="${index}">+</button>
+                                <span class="cart-item-price">${cartItem.price * cartItem.quantity} ₽</span>
+                            </div>
+                        `;
+
+                    cartItems.appendChild(cartItemElement);
+                });
+
+                // Обработчики для кнопок изменения количества
+                document.querySelectorAll('.decrease-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        decreaseQuantity(index);
+                    });
+                });
+
+                document.querySelectorAll('.increase-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        increaseQuantity(index);
+                    });
+                });
+            }
+
+            updateCartSummary();
+            checkAlcoholInCart();
+            updateCheckoutButton();
+        }
+
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+
+            updateCartCount();
+            updateCartDisplay();
+            saveCartToStorage();
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity += 1;
+            updateCartCount();
+            updateCartDisplay();
+            saveCartToStorage();
+        }
+
+        function updateCartSummary() {
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const deliveryCost = deliveryType === 'delivery' ? (subtotal >= 1500 ? 0 : 100) : 0;
+            const total = subtotal + deliveryCost;
+
+            subtotalElement.textContent = `${subtotal} ₽`;
+            deliveryCostElement.textContent = `${deliveryCost} ₽`;
+            totalElement.textContent = `${total} ₽`;
+
+            if (deliveryType === 'delivery' && subtotal > 0 && subtotal < 1500) {
+                const remaining = 1500 - subtotal;
+                if (!document.getElementById('freeDeliveryInfo')) {
+                    const freeDeliveryInfo = document.createElement('div');
+                    freeDeliveryInfo.id = 'freeDeliveryInfo';
+                    freeDeliveryInfo.style.fontSize = '0.9rem';
+                    freeDeliveryInfo.style.color = 'var(--success)';
+                    freeDeliveryInfo.style.marginTop = '10px';
+                    freeDeliveryInfo.innerHTML = `<i class="fas fa-truck"></i> Добавьте ещё ${remaining} ₽ для бесплатной доставки`;
+                    deliveryCostElement.parentNode.appendChild(freeDeliveryInfo);
+                } else {
+                    document.getElementById('freeDeliveryInfo').innerHTML = `<i class="fas fa-truck"></i> Добавьте ещё ${remaining} ₽ для бесплатной доставки`;
+                }
+            } else if (document.getElementById('freeDeliveryInfo')) {
+                document.getElementById('freeDeliveryInfo').remove();
+            }
+        }
+
+        function updateCheckoutButton() {
+            const total = parseInt(totalElement.textContent);
+
+            if (deliveryType === 'delivery') {
+                checkoutButton.innerHTML = `<i class="fas fa-credit-card"></i> Оплатить онлайн ${total} ₽`;
+            } else {
+                checkoutButton.innerHTML = `<i class="fas fa-store"></i> Оформить заказ (оплата при получении)`;
+            }
+        }
+
+        function checkAlcoholInCart() {
+            const hasAlcohol = cart.some(item => {
+                return menuItems.find(menuItem => menuItem.id === item.id && menuItem.age_restricted);
+            });
+
+            if (hasAlcohol) {
+                ageConfirmation.style.display = 'block';
+                ageCheckbox.checked = isAgeVerified;
+            } else {
+                ageConfirmation.style.display = 'none';
+            }
+        }
+
+        // Функции для оформления заказа
+        async function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Добавьте товары в корзину перед оформлением заказа');
+                return;
+            }
+
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            if (subtotal < 500) {
+                showNotification('Минимальная сумма заказа 500 рублей');
+                return;
+            }
+
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+
+            if (!customerName || !customerPhone) {
+                showNotification('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            const phoneRegex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+            if (!phoneRegex.test(customerPhone.replace(/\s/g, ''))) {
+                showNotification('Пожалуйста, введите корректный номер телефона');
+                return;
+            }
+
+            if (deliveryType === 'delivery') {
+                const deliveryAddressValue = document.getElementById('deliveryAddress').value;
+                if (!deliveryAddressValue) {
+                    showNotification('Пожалуйста, укажите адрес доставки');
+                    return;
+                }
+            }
+
+            const hasAlcohol = cart.some(item => {
+                return menuItems.find(menuItem => menuItem.id === item.id && menuItem.age_restricted);
+            });
+
+            if (hasAlcohol && !ageCheckbox.checked) {
+                showNotification('Для заказа алкоголя необходимо подтвердить возраст');
+                return;
+            }
+
+            if (deliveryType === 'delivery') {
+                // Открываем модальное окно ЮКассы для онлайн-оплаты
+                const total = parseInt(totalElement.textContent);
+                paymentAmount.textContent = `${total} ₽`;
+                openModal(yookassaModal);
+            } else {
+                // Оформляем заказ с самовывозом (оплата наличными)
+                await createOrder('cash', false);
+            }
+        }
+
+        async function processYooKassaPayment() {
+            // В реальном приложении здесь будет интеграция с API ЮКассы
+            // Для демонстрации просто создаем заказ с онлайн-оплатой
+            await createOrder('online', true);
+            closeModal(yookassaModal);
+            showNotification('Оплата прошла успешно! Заказ подтвержден.');
+        }
+
+        async function createOrder(paymentMethod, isPaid) {
+            const orderId = `#${Date.now()}`;
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            const deliveryAddressValue = deliveryType === 'delivery' ? document.getElementById('deliveryAddress').value : 'Самовывоз';
+            const total = parseInt(totalElement.textContent);
+
+            const order = {
+                order_id: orderId,
+                items: [...cart],
+                customer_name: customerName,
+                customer_phone: customerPhone,
+                delivery_address: deliveryAddressValue,
+                delivery_type: deliveryType,
+                notes: document.getElementById('orderNotes').value,
+                total: total,
+                status: 'new',
+                payment_method: paymentMethod,
+                is_paid: isPaid
+            };
+
+            try {
+                // Сохраняем заказ в Supabase
+                await saveOrderToSupabase(order);
+
+                // Очищаем корзину и форму
+                cart = [];
+                updateCartCount();
+                updateCartDisplay();
+                saveCartToStorage();
+
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                document.getElementById('deliveryAddress').value = '';
+                document.getElementById('orderNotes').value = '';
+                ageCheckbox.checked = false;
+
+                closeModal(cartModal);
+
+                showNotification(`Заказ ${orderId} успешно оформлен! ${isPaid ? 'Оплата прошла успешно.' : ''} Наш оператор свяжется с вами в ближайшее время.`);
+            } catch (error) {
+                console.error('Ошибка сохранения заказа:', error);
+                showNotification('Ошибка оформления заказа. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
+            }
+        }
+
+        // Функции для работы с меню
+        function renderMenuItems() {
+            menuGrid.innerHTML = '';
+
+            menuItems.forEach((item, index) => {
+                const menuItemElement = document.createElement('div');
+                menuItemElement.className = `menu-item ${item.age_restricted ? 'age-restricted' : ''}`;
+                menuItemElement.setAttribute('data-category', item.category);
+                menuItemElement.style.transitionDelay = `${index * 0.1}s`;
+
+                let ageBadge = '';
+                if (item.age_restricted) {
+                    ageBadge = '<div class="age-badge">18+</div>';
+                }
+
+                menuItemElement.innerHTML = `
+                        ${ageBadge}
+                        <div class="menu-item-img" style="background-image: url('${item.image_url || item.image || 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}');"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>${item.name}</h3>
+                                <span class="menu-item-price">${item.price} ₽</span>
+                            </div>
+                            <p class="menu-item-desc">${item.description}</p>
+                            <div class="menu-item-meta">
+                                <span class="menu-item-weight">${item.weight}</span>
+                                <button class="add-to-cart-btn ${item.age_restricted ? 'age-required' : ''}"
+                                        data-id="${item.id}"
+                                        data-item="${item.name}"
+                                        data-price="${item.price}">
+                                    Добавить
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                menuGrid.appendChild(menuItemElement);
+            });
+
+            // Обработчики для кнопок добавления в корзину
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const id = this.getAttribute('data-id');
+                    const item = this.getAttribute('data-item');
+                    const price = parseInt(this.getAttribute('data-price'));
+                    const requiresAge = this.classList.contains('age-required');
+
+                    this.style.animation = 'none';
+                    setTimeout(() => {
+                        this.style.animation = null;
+                    }, 10);
+
+                    if (requiresAge && !isAgeVerified) {
+                        pendingAlcoholItem = { id, item, price };
+                        openModal(ageVerificationModal);
+                    } else {
+                        addToCart(id, item, price);
+                    }
+                });
+            });
+        }
+
+        function renderCombos() {
+            combosGrid.innerHTML = '';
+
+            combos.forEach((combo, index) => {
+                const comboElement = document.createElement('div');
+                comboElement.className = `combo-item ${combo.age_restricted ? 'age-restricted' : ''}`;
+                comboElement.style.transitionDelay = `${index * 0.15}s`;
+
+                let ageBadge = '';
+                if (combo.age_restricted) {
+                    ageBadge = '<div class="age-badge">18+</div>';
+                }
+
+                let itemsList = '';
+                let itemsArray = combo.items;
+                if (typeof combo.items === 'string') {
+                    try {
+                        itemsArray = JSON.parse(combo.items);
+                    } catch (e) {
+                        itemsArray = [combo.items];
+                    }
+                }
+
+                itemsArray.forEach(item => {
+                    itemsList += `<li><i class="fas fa-check"></i> ${item}</li>`;
+                });
+
+                comboElement.innerHTML = `
+                        ${ageBadge}
+                        <div class="combo-header">
+                            <h3>${combo.name}</h3>
+                        </div>
+                        <div class="combo-content">
+                            <div class="combo-includes">
+                                <h4>В набор входит:</h4>
+                                <ul>
+                                    ${itemsList}
+                                </ul>
+                            </div>
+                            <div class="combo-price">
+                                <div>
+                                    <span class="combo-savings">Экономия ${combo.savings || 0} ₽</span>
+                                    <div class="menu-item-price">${combo.price} ₽</div>
+                                </div>
+                                <button class="btn ${combo.age_restricted ? 'age-required' : ''}"
+                                        data-id="combo-${combo.id}"
+                                        data-item="${combo.name}"
+                                        data-price="${combo.price}">
+                                    Добавить сборку
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                combosGrid.appendChild(comboElement);
+            });
+
+            document.querySelectorAll('.combo-item .btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const id = this.getAttribute('data-id');
+                    const item = this.getAttribute('data-item');
+                    const price = parseInt(this.getAttribute('data-price'));
+                    const requiresAge = this.classList.contains('age-required');
+
+                    if (requiresAge && !isAgeVerified) {
+                        pendingAlcoholItem = { id, item, price };
+                        openModal(ageVerificationModal);
+                    } else {
+                        addToCart(id, item, price);
+                    }
+                });
+            });
+        }
+
+        function filterMenuItems(category) {
+            const allItems = document.querySelectorAll('.menu-item');
+
+            allItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.classList.add('animate-in');
+                    }, 100);
+                } else {
+                    item.classList.remove('animate-in');
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Функции для работы с адресом доставки
+        function showAddressSuggestions(input) {
+            addressSuggestions.innerHTML = '';
+
+            if (input.length < 2) {
+                addressSuggestions.style.display = 'none';
+                return;
+            }
+
+            // Простая заглушка для демонстрации
+            const suggestions = [
+                "ул. Ленина, д. 1",
+                "ул. Ленина, д. 10",
+                "ул. Советская, д. 5",
+                "ул. Советская, д. 15",
+                "ул. Мира, д. 3",
+                "ул. Мира, д. 20"
+            ];
+
+            const filtered = suggestions.filter(suggestion =>
+                suggestion.toLowerCase().includes(input.toLowerCase())
+            );
+
+            if (filtered.length > 0) {
+                filtered.forEach(suggestion => {
+                    const div = document.createElement('div');
+                    div.className = 'address-suggestion';
+                    div.innerHTML = `<i class="fas fa-home"></i> ${suggestion}`;
+                    div.addEventListener('click', function () {
+                        deliveryAddress.value = suggestion;
+                        addressSuggestions.style.display = 'none';
+                    });
+                    addressSuggestions.appendChild(div);
+                });
+                addressSuggestions.style.display = 'block';
+            } else {
+                addressSuggestions.style.display = 'none';
+            }
+        }
+
+        // Вспомогательные функции
+        function confirmAge() {
+            isAgeVerified = true;
+            localStorage.setItem('ugalek_age_verified', 'true');
+            closeModal(ageVerificationModal);
+
+            if (pendingAlcoholItem) {
+                addToCart(pendingAlcoholItem.id, pendingAlcoholItem.item, pendingAlcoholItem.price);
+                pendingAlcoholItem = null;
+            }
+        }
+
+        function cancelAge() {
+            closeModal(ageVerificationModal);
+            pendingAlcoholItem = null;
+        }
+
+        function openModal(modal) {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function saveCartToStorage() {
+            localStorage.setItem('ugalek_cart', JSON.stringify(cart));
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        function createFloatingElements() {
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                element.style.animationDelay = `${Math.random() * 15}s`;
+                element.style.width = `${10 + Math.random() * 20}px`;
+                element.style.height = element.style.width;
+                floatingElements.appendChild(element);
+            }
+        }
+
+        function handleHeaderScroll() {
+            if (window.scrollY > 100) {
+                mainHeader.classList.add('header-scrolled');
+            } else {
+                mainHeader.classList.remove('header-scrolled');
+            }
+        }
+
+        function initScrollAnimations() {
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+
+                        if (entry.target.id === 'menu') {
+                            animateMenuItems();
+                        }
+
+                        if (entry.target.id === 'combos') {
+                            animateCombos();
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        function animateMenuItems() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animate-in');
+                }, index * 100);
+            });
+        }
+
+        function animateCombos() {
+            const combos = document.querySelectorAll('.combo-item');
+            combos.forEach((combo, index) => {
+                setTimeout(() => {
+                    combo.classList.add('animate-in');
+                }, index * 150);
+            });
+        }
+
+        // Локальные данные для fallback
+        function getDefaultMenuItems() {
+            return [
+                // ШАШЛЫКИ
+                {
+                    id: 1,
+                    name: "Свиная шея",
+                    category: "shashlik",
+                    price: 2500,
+                    weight: "1 кг",
+                    description: "Нежная свиная шея, маринованная в луке и специях",
+                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    age_restricted: false
+                },
+                {
+                    id: 2,
+                    name: "Свиная корейка на кости",
+                    category: "shashlik",
+                    price: 2500,
+                    weight: "1 кг",
+                    description: "Сочная свиная корейка на кости с ароматными специями",
+                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    age_restricted: false
+                },
+                // БУРГЕРЫ
+                {
+                    id: 12,
+                    name: "Крутая чика",
+                    category: "burger",
+                    price: 450,
+                    weight: "порция",
+                    description: "Булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый",
+                    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    age_restricted: false
+                },
+                // НАПИТКИ
+                {
+                    id: 28,
+                    name: "Адреналин Раш",
+                    category: "drinks",
+                    price: 208,
+                    weight: "0,449 л, жб",
+                    description: "Энергетический напиток",
+                    image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    age_restricted: true
+                }
+            ];
+        }
+
+        function getDefaultCombos() {
+            return [
+                {
+                    id: 1,
+                    name: "Комбо для двоих",
+                    price: 850,
+                    savings: 150,
+                    items: ["Шашлык из свинины (300г)", "Классический бургер", "Картофель фри (2 порции)", "2 напитка на выбор"],
+                    age_restricted: false
+                },
+                {
+                    id: 2,
+                    name: "Мясной пир",
+                    price: 1200,
+                    savings: 200,
+                    items: ["Шашлык из свинины (300г)", "Шашлык из курицы (300г)", "2 классических бургера", "Картофель фри (2 порции)", "4 напитка на выбор"],
+                    age_restricted: false
+                }
+            ];
+        }
+    </script>
+</body>
+</html>

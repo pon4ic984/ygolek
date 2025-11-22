@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора - Уголёк</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #0D0D0D;
+            --secondary-bg: #1A1A1A;
+            --accent-dark: #5A2A2A;
+            --accent-warm: #B26900;
+            --text-light: #E0E0E0;
+            --text-white: #FFFFFF;
+            --success: #2E7D32;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --info: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #2A1A1A 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235a2a2a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: rgba(13, 13, 13, 0.95);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+            .logo:hover {
+                transform: scale(1.05);
+            }
+
+            .logo i {
+                color: var(--accent-warm);
+                margin-right: 10px;
+                animation: fire-flicker 3s infinite alternate;
+            }
+
+        @keyframes fire-flicker {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            25% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(0.95);
+                opacity: 1;
+            }
+
+            75% {
+                transform: scale(1.02);
+                opacity: 0.95;
+            }
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(178, 105, 0, 0.3);
+        }
+
+        /* Main Layout */
+        .main-content {
+            padding: 20px 0;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Tabs Navigation */
+        .admin-tabs {
+            display: flex;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 0;
+            margin-bottom: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+        }
+
+        .admin-tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .admin-tab:not(:last-child) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .admin-tab:hover {
+                background-color: rgba(178, 105, 0, 0.1);
+                color: var(--accent-warm);
+            }
+
+            .admin-tab.active {
+                background-color: var(--accent-dark);
+                color: var(--text-white);
+            }
+
+                .admin-tab.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    background: var(--accent-warm);
+                }
+
+            .admin-tab i {
+                font-size: 1.1rem;
+            }
+
+        /* Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+            .stat-card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .stat-card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .stat-card:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            .stat-card:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-title {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 5px;
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            color: var(--success);
+        }
+
+            .stat-change.negative {
+                color: var(--danger);
+            }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background-color: rgba(178, 105, 0, 0.2);
+            color: var(--accent-warm);
+        }
+
+        /* Section */
+        .section {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+            .section.active {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn:hover::before {
+                left: 100%;
+            }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            color: var(--text-white);
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(178, 105, 0, 0.3);
+            }
+
+        .btn-success {
+            background-color: var(--success);
+            color: var(--text-white);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: var(--text-white);
+        }
+
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            color: var(--text-white);
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        tr {
+            transition: background-color 0.3s ease;
+        }
+
+            tr:hover {
+                background-color: rgba(255, 255, 255, 0.03);
+            }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-new {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: var(--warning);
+        }
+
+        .status-in-progress {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: var(--info);
+        }
+
+        .status-completed {
+            background-color: rgba(46, 125, 50, 0.2);
+            color: var(--success);
+        }
+
+        .status-cancelled {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: var(--danger);
+        }
+
+        /* Analytics */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .analytics-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        /* Clients */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .client-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+            .client-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+            .modal.show {
+                display: flex;
+                opacity: 1;
+            }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(42, 26, 26, 0.98) 100%);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(90, 42, 42, 0.5);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--text-white);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+            .close-modal:hover {
+                color: var(--accent-warm);
+            }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-white);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--accent-warm);
+                box-shadow: 0 0 0 2px rgba(178, 105, 0, 0.2);
+            }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+            .form-row .form-group {
+                flex: 1;
+            }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 3000;
+            max-width: 300px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            transform: translateX(400px);
+            opacity: 0;
+        }
+
+            .notification.show {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+        /* Settings */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .settings-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+            .settings-card h3 {
+                margin-bottom: 15px;
+                color: var(--text-white);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .settings-card h3 i {
+                    color: var(--accent-warm);
+                }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+            .toggle-slider:before {
+                position: absolute;
+                content: "";
+                height: 16px;
+                width: 16px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+
+        input:checked + .toggle-slider {
+            background-color: var(--accent-warm);
+        }
+
+            input:checked + .toggle-slider:before {
+                transform: translateX(26px);
+            }
+
+        .toggle-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .toggle-text {
+            flex: 1;
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+            .color-option.active {
+                border-color: var(--accent-warm);
+                transform: scale(1.1);
+            }
+
+        /* Message Modal */
+        .message-modal .modal-content {
+            max-width: 500px;
+        }
+
+        .message-preview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 3px solid var(--accent-warm);
+        }
+
+        /* Dashboard widgets */
+        .dashboard-widgets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-widget {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+            .dashboard-widget h3 {
+                margin-bottom: 15px;
+                color: var(--text-white);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .dashboard-widget h3 i {
+                    color: var(--accent-warm);
+                }
+
+        .widget-list {
+            list-style: none;
+        }
+
+            .widget-list li {
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .widget-list li:last-child {
+                    border-bottom: none;
+                }
+
+            .widget-list .status-badge {
+                font-size: 0.7rem;
+            }
+
+        /* Admin Controls */
+        .admin-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Menu Management */
+        .menu-management {
+            margin-bottom: 30px;
+        }
+
+        .category-management {
+            margin-bottom: 30px;
+        }
+
+        .menu-item-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+            .menu-item-card:hover {
+                transform: translateY(-3px);
+            }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .menu-item-title {
+            font-size: 1.2rem;
+            color: var(--text-white);
+            margin-bottom: 5px;
+        }
+
+        .menu-item-price {
+            color: var(--accent-warm);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .menu-item-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        /* Delivery Zones */
+        .delivery-zones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .zone-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .zone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .zone-title {
+            font-size: 1.2rem;
+            color: var(--text-white);
+        }
+
+        .zone-cost {
+            color: var(--accent-warm);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-tabs {
+                flex-wrap: wrap;
+            }
+
+            .admin-tab {
+                flex: 1;
+                min-width: 120px;
+                justify-content: center;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-widgets {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item-details {
+                grid-template-columns: 1fr;
+            }
+
+            .delivery-zones-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-fire"></i>
+                    Уголёк - Панель администратора
+                </a>
+                <div class="user-info">
+                    <div class="user-avatar">АД</div>
+                    <div>
+                        <div>Администратор</div>
+                        <div style="font-size: 0.8rem; color: #999;">Управление доставкой еды</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Tabs Navigation -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Дашборд</span>
+                </button>
+                <button class="admin-tab" data-tab="orders">
+                    <i class="fas fa-utensils"></i>
+                    <span>Заказы</span>
+                </button>
+                <button class="admin-tab" data-tab="menu">
+                    <i class="fas fa-utensils"></i>
+                    <span>Управление меню</span>
+                </button>
+                <button class="admin-tab" data-tab="clients">
+                    <i class="fas fa-users"></i>
+                    <span>Клиенты</span>
+                </button>
+                <button class="admin-tab" data-tab="delivery">
+                    <i class="fas fa-truck"></i>
+                    <span>Доставка</span>
+                </button>
+                <button class="admin-tab" data-tab="analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Аналитика</span>
+                </button>
+                <button class="admin-tab" data-tab="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Настройки</span>
+                </button>
+                <a href="index.html" class="admin-tab">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выйти</span>
+                </a>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <!-- Statistics -->
+                <div class="dashboard">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Выручка за сегодня</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-ruble-sign"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="todayRevenue">0 ₽</div>
+                        <div class="stat-change">+0% с прошлой недели</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Заказов за сегодня</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="todayOrders">0</div>
+                        <div class="stat-change">+0 с утра</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Средний чек</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="averageOrder">0 ₽</div>
+                        <div class="stat-change">+0% с прошлой недели</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Новых клиентов</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="newClients">0</div>
+                        <div class="stat-change">+0 с вчерашнего дня</div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Widgets -->
+                <div class="dashboard-widgets">
+                    <div class="dashboard-widget">
+                        <h3><i class="fas fa-clock"></i> Последние заказы</h3>
+                        <ul class="widget-list" id="recentOrdersWidget">
+                            <!-- Recent orders will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <div class="dashboard-widget">
+                        <h3><i class="fas fa-chart-line"></i> Статистика за неделю</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar" style="font-size: 2rem; margin-right: 10px;"></i>
+                            График продаж за неделю
+                        </div>
+                    </div>
+                    <div class="dashboard-widget">
+                        <h3><i class="fas fa-broadcast-tower"></i> Управление сайтом</h3>
+                        <div class="admin-controls">
+                            <button class="btn btn-primary btn-small" onclick="sendSpecialOffer()">
+                                <i class="fas fa-gift"></i> Спецпредложение
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="sendMaintenanceNotice()">
+                                <i class="fas fa-tools"></i> Тех. работы
+                            </button>
+                            <button class="btn btn-success btn-small" onclick="updateLiveDashboard()">
+                                <i class="fas fa-sync"></i> Обновить
+                            </button>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.9rem; color: #999;">
+                            <div>Онлайн посетителей: <span id="onlineVisitors">0</span></div>
+                            <div>Последнее обновление: <span id="lastUpdate">-</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Последняя активность</h2>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Время</th>
+                                    <th>Тип</th>
+                                    <th>Детали</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentActivity">
+                                <!-- Activity will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Управление заказами</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" id="refreshOrders">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                        <button class="btn btn-primary" id="exportOrders">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Время</th>
+                                <th>Клиент</th>
+                                <th>Телефон</th>
+                                <th>Адрес</th>
+                                <th>Сумма</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Menu Management Section -->
+            <section id="menu" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Управление меню</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" id="refreshMenu">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                        <button class="btn btn-primary" id="addMenuItem">
+                            <i class="fas fa-plus"></i> Добавить блюдо
+                        </button>
+                    </div>
+                </div>
+
+                <div class="category-management">
+                    <h3 style="margin-bottom: 15px;">Категории меню</h3>
+                    <div class="admin-controls">
+                        <button class="btn btn-secondary btn-small" data-category="all">Все</button>
+                        <button class="btn btn-secondary btn-small" data-category="shashlik">Шашлык</button>
+                        <button class="btn btn-secondary btn-small" data-category="burger">Бургеры</button>
+                        <button class="btn btn-secondary btn-small" data-category="fry">Фритюр</button>
+                        <button class="btn btn-secondary btn-small" data-category="lavash">Лаваш</button>
+                        <button class="btn btn-secondary btn-small" data-category="drinks">Напитки</button>
+                        <button class="btn btn-secondary btn-small" data-category="sauce">Соусы</button>
+                    </div>
+                </div>
+
+                <div class="menu-management" id="menuManagement">
+                    <!-- Menu items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Clients Section -->
+            <section id="clients" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Управление клиентами</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" id="refreshClients">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                        <button class="btn btn-primary" id="exportClients">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+                <div class="clients-grid" id="clientsGrid">
+                    <!-- Clients will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Delivery Section -->
+            <section id="delivery" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Управление доставкой</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" id="refreshDelivery">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="delivery-zones-grid">
+                    <div class="zone-card">
+                        <div class="zone-header">
+                            <h3 class="zone-title">Центральная зона</h3>
+                            <span class="zone-cost">Бесплатно</span>
+                        </div>
+                        <p>Доставка бесплатная при заказе от 1500 руб.</p>
+                        <p>Время доставки: 30-45 минут</p>
+                        <div class="menu-item-actions" style="margin-top: 15px;">
+                            <button class="btn btn-secondary btn-small">Редактировать</button>
+                        </div>
+                    </div>
+
+                    <div class="zone-card">
+                        <div class="zone-header">
+                            <h3 class="zone-title">Отдаленная зона</h3>
+                            <span class="zone-cost">100 ₽</span>
+                        </div>
+                        <p>Стоимость доставки: 100 руб.</p>
+                        <p>Время доставки: 45-60 минут</p>
+                        <div class="menu-item-actions" style="margin-top: 15px;">
+                            <button class="btn btn-secondary btn-small">Редактировать</button>
+                        </div>
+                    </div>
+
+                    <div class="zone-card">
+                        <div class="zone-header">
+                            <h3 class="zone-title">За пределами поселка</h3>
+                            <span class="zone-cost">200 ₽</span>
+                        </div>
+                        <p>Стоимость доставки: 200 руб.</p>
+                        <p>Время доставки: 60+ минут</p>
+                        <div class="menu-item-actions" style="margin-top: 15px;">
+                            <button class="btn btn-secondary btn-small">Редактировать</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h3 style="margin-bottom: 15px;">Курьеры</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Имя</th>
+                                    <th>Телефон</th>
+                                    <th>Статус</th>
+                                    <th>Текущий заказ</th>
+                                    <th>Рейтинг</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Иван Петров</td>
+                                    <td>+7 (999) 123-45-67</td>
+                                    <td><span class="status-badge status-completed">Свободен</span></td>
+                                    <td>-</td>
+                                    <td>4.8/5</td>
+                                </tr>
+                                <tr>
+                                    <td>Алексей Смирнов</td>
+                                    <td>+7 (999) 765-43-21</td>
+                                    <td><span class="status-badge status-in-progress">В пути</span></td>
+                                    <td>#ORD-12345</td>
+                                    <td>4.9/5</td>
+                                </tr>
+                                <tr>
+                                    <td>Дмитрий Иванов</td>
+                                    <td>+7 (999) 555-44-33</td>
+                                    <td><span class="status-badge status-new">На линии</span></td>
+                                    <td>-</td>
+                                    <td>4.7/5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Аналитика продаж</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-secondary" id="refreshAnalytics">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                    </div>
+                </div>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Продажи по дням</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line" style="font-size: 2rem; margin-right: 10px;"></i>
+                            График продаж
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Популярные товары</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-pie" style="font-size: 2rem; margin-right: 10px;"></i>
+                            Круговая диаграмма
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Статистика по времени</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar" style="font-size: 2rem; margin-right: 10px;"></i>
+                            Столбчатая диаграмма
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Настройки системы</h2>
+                </div>
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fas fa-store"></i> Настройки ресторана</h3>
+                        <div class="form-group">
+                            <label class="form-label">Название ресторана</label>
+                            <input type="text" class="form-control" id="restaurantName" value="Уголёк">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Адрес</label>
+                            <input type="text" class="form-control" id="restaurantAddress" value="п. Орловский, Ростовская область">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="restaurantPhone" value="+7 (863) 755-XX-XX">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="restaurantEmail" value="info@ugolek.ru">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Время работы</label>
+                            <div class="form-row">
+                                <input type="time" class="form-control" id="openingTime" value="10:00">
+                                <input type="time" class="form-control" id="closingTime" value="23:00">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="saveRestaurantSettings">
+                            <i class="fas fa-save"></i> Сохранить настройки
+                        </button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-bell"></i> Уведомления</h3>
+                        <div class="toggle-label">
+                            <div class="toggle-text">Уведомления о новых заказах</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="newOrdersNotification" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-label">
+                            <div class="toggle-text">Email-уведомления</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-label">
+                            <div class="toggle-text">SMS-уведомления</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="smsNotifications">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary" id="saveNotificationSettings">
+                            <i class="fas fa-save"></i> Сохранить настройки
+                        </button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-palette"></i> Внешний вид</h3>
+                        <div class="form-group">
+                            <label class="form-label">Тема оформления</label>
+                            <select class="form-control" id="themeSelect">
+                                <option value="dark">Тёмная</option>
+                                <option value="light">Светлая</option>
+                                <option value="auto">Авто</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Акцентный цвет</label>
+                            <div class="color-picker">
+                                <div class="color-option active" style="background-color: #B26900;" data-color="#B26900"></div>
+                                <div class="color-option" style="background-color: #FF5722;" data-color="#FF5722"></div>
+                                <div class="color-option" style="background-color: #9C27B0;" data-color="#9C27B0"></div>
+                                <div class="color-option" style="background-color: #2196F3;" data-color="#2196F3"></div>
+                                <div class="color-option" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
+                            </div>
+                        </div>
+                        <div class="toggle-label">
+                            <div class="toggle-text">Компактный режим</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="compactMode">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary" id="saveAppearanceSettings">
+                            <i class="fas fa-save"></i> Сохранить настройки
+                        </button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-shield-alt"></i> Безопасность</h3>
+                        <div class="form-group">
+                            <label class="form-label">Текущий пароль</label>
+                            <input type="password" class="form-control" id="currentPassword">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Новый пароль</label>
+                            <input type="password" class="form-control" id="newPassword">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Подтвердите новый пароль</label>
+                            <input type="password" class="form-control" id="confirmPassword">
+                        </div>
+                        <button class="btn btn-primary" id="changePassword">
+                            <i class="fas fa-key"></i> Сменить пароль
+                        </button>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="form-label">Двухфакторная аутентификация</label>
+                            <div class="toggle-label">
+                                <div class="toggle-text">Включить 2FA</div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="orderDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Детали заказа <span id="orderModalId"></span></h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">ID заказа</label>
+                        <div class="form-control" id="orderIdText" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Статус</label>
+                        <div id="orderStatusText" class="status-badge status-new"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Состав заказа</label>
+                    <div id="orderItemsList" style="margin-top: 10px;">
+                        <!-- Order items will be populated here -->
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Клиент</label>
+                        <div class="form-control" id="orderCustomer" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <div class="form-control" id="orderPhone" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Адрес доставки</label>
+                    <div class="form-control" id="orderAddress" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Примечания</label>
+                    <div class="form-control" id="orderNotes" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Сумма</label>
+                        <div class="form-control" id="orderTotal" style="background-color: transparent; border: none; padding-left: 0; font-weight: 600;"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Изменить статус</label>
+                    <select class="form-control" id="orderStatusSelect">
+                        <option value="new">Новый</option>
+                        <option value="in-progress">В работе</option>
+                        <option value="completed">Завершен</option>
+                        <option value="cancelled">Отменен</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" id="updateOrderStatus">Обновить статус</button>
+                    <button class="btn btn-danger" id="cancelOrder">Отменить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal message-modal" id="messageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Написать клиенту</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Клиент</label>
+                    <div class="form-control" id="messageClient" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Телефон</label>
+                    <div class="form-control" id="messagePhone" style="background-color: transparent; border: none; padding-left: 0;"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Тип сообщения</label>
+                    <select class="form-control" id="messageType">
+                        <option value="sms">SMS</option>
+                        <option value="email">Email</option>
+                        <option value="whatsapp">WhatsApp</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Шаблон сообщения</label>
+                    <select class="form-control" id="messageTemplate">
+                        <option value="">-- Выберите шаблон --</option>
+                        <option value="welcome">Приветственное сообщение</option>
+                        <option value="promo">Промо-акция</option>
+                        <option value="birthday">Поздравление с днем рождения</option>
+                        <option value="feedback">Запрос отзыва</option>
+                        <option value="custom">Свой текст</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Текст сообщения</label>
+                    <textarea class="form-control" id="messageText" rows="4" placeholder="Введите текст сообщения..."></textarea>
+                </div>
+                <div class="message-preview" id="messagePreview">
+                    <strong>Предпросмотр:</strong>
+                    <div id="previewText">Сообщение появится здесь...</div>
+                </div>
+                <div class="form-group" style="margin-top: 20px;">
+                    <button class="btn btn-primary" id="sendMessage">
+                        <i class="fas fa-paper-plane"></i> Отправить сообщение
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Menu Item Modal -->
+    <div class="modal" id="addMenuItemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Добавить блюдо в меню</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Название блюда</label>
+                    <input type="text" class="form-control" id="menuItemName">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Категория</label>
+                    <select class="form-control" id="menuItemCategory">
+                        <option value="shashlik">Шашлык</option>
+                        <option value="burger">Бургеры</option>
+                        <option value="fry">Фритюр</option>
+                        <option value="lavash">Лаваш</option>
+                        <option value="drinks">Напитки</option>
+                        <option value="sauce">Соусы</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Цена (₽)</label>
+                        <input type="number" class="form-control" id="menuItemPrice">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Вес/Объем</label>
+                        <input type="text" class="form-control" id="menuItemWeight" placeholder="например: 1 кг, 0.5 л">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="form-control" id="menuItemDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Изображение (URL)</label>
+                    <input type="text" class="form-control" id="menuItemImage" placeholder="https://example.com/image.jpg">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="menuItemAgeRestricted">
+                        Требуется подтверждение возраста (18+)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" style="width: 100%;" id="saveMenuItem">Сохранить блюдо</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        let orders = JSON.parse(localStorage.getItem('ugalek_orders')) || [];
+        let clients = JSON.parse(localStorage.getItem('ugalek_clients')) || [];
+        let menuItems = [];
+        let settings = JSON.parse(localStorage.getItem('ugalek_settings')) || {
+            restaurant: {
+                name: "Уголёк",
+                address: "п. Орловский, Ростовская область",
+                phone: "+7 (863) 755-XX-XX",
+                email: "info@ugolek.ru",
+                openingTime: "10:00",
+                closingTime: "23:00"
+            },
+            notifications: {
+                newOrders: true,
+                email: true,
+                sms: false
+            },
+            appearance: {
+                theme: "dark",
+                accentColor: "#B26900",
+                compactMode: false
+            }
+        };
+
+        // DOM Elements
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const sections = document.querySelectorAll('.section');
+        const ordersTableBody = document.getElementById('ordersTableBody');
+        const clientsGrid = document.getElementById('clientsGrid');
+        const recentActivity = document.getElementById('recentActivity');
+        const recentOrdersWidget = document.getElementById('recentOrdersWidget');
+        const menuManagement = document.getElementById('menuManagement');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const refreshOrdersButton = document.getElementById('refreshOrders');
+        const refreshClientsButton = document.getElementById('refreshClients');
+        const refreshMenuButton = document.getElementById('refreshMenu');
+        const refreshAnalyticsButton = document.getElementById('refreshAnalytics');
+        const exportOrdersButton = document.getElementById('exportOrders');
+        const exportClientsButton = document.getElementById('exportClients');
+        const addMenuItemButton = document.getElementById('addMenuItem');
+        const saveMenuItemButton = document.getElementById('saveMenuItem');
+        const updateOrderStatusButton = document.getElementById('updateOrderStatus');
+        const cancelOrderButton = document.getElementById('cancelOrder');
+        const sendMessageButton = document.getElementById('sendMessage');
+
+        // Settings elements
+        const restaurantName = document.getElementById('restaurantName');
+        const restaurantAddress = document.getElementById('restaurantAddress');
+        const restaurantPhone = document.getElementById('restaurantPhone');
+        const restaurantEmail = document.getElementById('restaurantEmail');
+        const openingTime = document.getElementById('openingTime');
+        const closingTime = document.getElementById('closingTime');
+        const newOrdersNotification = document.getElementById('newOrdersNotification');
+        const emailNotifications = document.getElementById('emailNotifications');
+        const smsNotifications = document.getElementById('smsNotifications');
+        const themeSelect = document.getElementById('themeSelect');
+        const colorOptions = document.querySelectorAll('.color-option');
+        const compactMode = document.getElementById('compactMode');
+        const currentPassword = document.getElementById('currentPassword');
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const twoFactorAuth = document.getElementById('twoFactorAuth');
+        const saveRestaurantSettings = document.getElementById('saveRestaurantSettings');
+        const saveNotificationSettings = document.getElementById('saveNotificationSettings');
+        const saveAppearanceSettings = document.getElementById('saveAppearanceSettings');
+        const changePasswordButton = document.getElementById('changePassword');
+
+        // Message elements
+        const messageClient = document.getElementById('messageClient');
+        const messagePhone = document.getElementById('messagePhone');
+        const messageType = document.getElementById('messageType');
+        const messageTemplate = document.getElementById('messageTemplate');
+        const messageText = document.getElementById('messageText');
+        const previewText = document.getElementById('previewText');
+
+        // Menu item elements
+        const menuItemName = document.getElementById('menuItemName');
+        const menuItemCategory = document.getElementById('menuItemCategory');
+        const menuItemPrice = document.getElementById('menuItemPrice');
+        const menuItemWeight = document.getElementById('menuItemWeight');
+        const menuItemDescription = document.getElementById('menuItemDescription');
+        const menuItemImage = document.getElementById('menuItemImage');
+        const menuItemAgeRestricted = document.getElementById('menuItemAgeRestricted');
+
+        // Modals
+        const orderDetailsModal = document.getElementById('orderDetailsModal');
+        const messageModal = document.getElementById('messageModal');
+        const addMenuItemModal = document.getElementById('addMenuItemModal');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Load data
+            await loadMenuItems();
+            loadOrdersTable();
+            loadClientsGrid();
+            updateStatistics();
+            loadRecentActivity();
+            loadDashboardWidgets();
+            loadSettings();
+
+            // Add event listeners
+            refreshOrdersButton.addEventListener('click', loadOrdersTable);
+            refreshClientsButton.addEventListener('click', loadClientsGrid);
+            refreshMenuButton.addEventListener('click', loadMenuItems);
+            refreshAnalyticsButton.addEventListener('click', refreshAnalytics);
+            exportOrdersButton.addEventListener('click', exportOrders);
+            exportClientsButton.addEventListener('click', exportClients);
+            addMenuItemButton.addEventListener('click', openAddMenuItemModal);
+            saveMenuItemButton.addEventListener('click', saveMenuItem);
+            updateOrderStatusButton.addEventListener('click', updateOrderStatus);
+            cancelOrderButton.addEventListener('click', cancelOrder);
+            sendMessageButton.addEventListener('click', sendMessage);
+
+            // Settings event listeners
+            saveRestaurantSettings.addEventListener('click', saveRestaurantSettingsHandler);
+            saveNotificationSettings.addEventListener('click', saveNotificationSettingsHandler);
+            saveAppearanceSettings.addEventListener('click', saveAppearanceSettingsHandler);
+            changePasswordButton.addEventListener('click', changePasswordHandler);
+
+            // Message event listeners
+            messageTemplate.addEventListener('change', updateMessageTemplate);
+            messageText.addEventListener('input', updateMessagePreview);
+
+            // Category buttons
+            document.querySelectorAll('.category-management .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterMenuItems(category);
+
+                    // Update active button
+                    document.querySelectorAll('.category-management .btn').forEach(btn => {
+                        btn.classList.remove('btn-primary');
+                        btn.classList.add('btn-secondary');
+                    });
+                    this.classList.remove('btn-secondary');
+                    this.classList.add('btn-primary');
+                });
+            });
+
+            // Color picker
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    colorOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    closeModal(this.closest('.modal'));
+                });
+            });
+
+            // Tab switching
+            adminTabs.forEach(tab => {
+                if (tab.getAttribute('data-tab')) {
+                    tab.addEventListener('click', function () {
+                        const tabName = this.getAttribute('data-tab');
+
+                        // Update active tab
+                        adminTabs.forEach(t => {
+                            if (t.getAttribute('data-tab')) {
+                                t.classList.remove('active');
+                            }
+                        });
+                        this.classList.add('active');
+
+                        // Show corresponding section
+                        showSection(tabName);
+                    });
+                }
+            });
+
+            // Auto-refresh data every 30 seconds
+            setInterval(() => {
+                loadOrdersTable();
+                loadMenuItems();
+                updateStatistics();
+                loadRecentActivity();
+                loadDashboardWidgets();
+                updateLiveDashboard();
+            }, 30000);
+
+            // Initial live dashboard update
+            updateLiveDashboard();
+        });
+
+        // Functions
+        function showSection(sectionId) {
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        async function loadMenuItems() {
+            try {
+                // Try to load from data.json
+                const response = await fetch('data.json');
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Assume the structure of data.json matches our expected format
+                    if (data.menu && Array.isArray(data.menu)) {
+                        menuItems = data.menu;
+                        localStorage.setItem('ugalek_menu', JSON.stringify(menuItems));
+                    } else if (Array.isArray(data)) {
+                        // If data.json contains the array directly
+                        menuItems = data;
+                        localStorage.setItem('ugalek_menu', JSON.stringify(menuItems));
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading data.json:', error);
+                // If loading fails, use localStorage data
+                const storedMenu = JSON.parse(localStorage.getItem('ugalek_menu'));
+                if (storedMenu && storedMenu.length > 0) {
+                    menuItems = storedMenu;
+                }
+            }
+
+            renderMenuItems();
+        }
+
+        function renderMenuItems() {
+            menuManagement.innerHTML = '';
+
+            if (menuItems.length === 0) {
+                menuManagement.innerHTML = '<div style="text-align: center; padding: 40px;">Меню пустое</div>';
+                return;
+            }
+
+            menuItems.forEach(item => {
+                const menuItemCard = document.createElement('div');
+                menuItemCard.className = 'menu-item-card';
+                menuItemCard.setAttribute('data-category', item.category);
+
+                let ageBadge = '';
+                if (item.ageRestricted) {
+                    ageBadge = '<span class="status-badge status-new" style="margin-left: 10px;">18+</span>';
+                }
+
+                menuItemCard.innerHTML = `
+                    <div class="menu-item-header">
+                        <div>
+                            <h3 class="menu-item-title">${item.name} ${ageBadge}</h3>
+                            <span class="menu-item-price">${item.price} ₽</span>
+                        </div>
+                        <div>
+                            <span class="menu-item-weight">${item.weight}</span>
+                        </div>
+                    </div>
+                    <div class="menu-item-details">
+                        <div>
+                            <p><strong>Категория:</strong> ${getCategoryName(item.category)}</p>
+                            <p><strong>Описание:</strong> ${item.description}</p>
+                        </div>
+                        <div>
+                            <p><strong>ID:</strong> ${item.id}</p>
+                            <p><strong>Возрастное ограничение:</strong> ${item.ageRestricted ? 'Да' : 'Нет'}</p>
+                        </div>
+                    </div>
+                    <div class="menu-item-actions">
+                        <button class="btn btn-secondary btn-small edit-menu-item" data-id="${item.id}">
+                            <i class="fas fa-edit"></i> Редактировать
+                        </button>
+                        <button class="btn btn-danger btn-small delete-menu-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i> Удалить
+                        </button>
+                    </div>
+                `;
+
+                menuManagement.appendChild(menuItemCard);
+            });
+
+            // Add event listeners to menu item buttons
+            document.querySelectorAll('.edit-menu-item').forEach(button => {
+                button.addEventListener('click', function () {
+                    const itemId = this.getAttribute('data-id');
+                    editMenuItem(itemId);
+                });
+            });
+
+            document.querySelectorAll('.delete-menu-item').forEach(button => {
+                button.addEventListener('click', function () {
+                    const itemId = this.getAttribute('data-id');
+                    deleteMenuItem(itemId);
+                });
+            });
+        }
+
+        function filterMenuItems(category) {
+            const allItems = document.querySelectorAll('.menu-item-card');
+
+            allItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function getCategoryName(category) {
+            const categories = {
+                'shashlik': 'Шашлык',
+                'burger': 'Бургеры',
+                'fry': 'Фритюр',
+                'lavash': 'Лаваш',
+                'drinks': 'Напитки',
+                'sauce': 'Соусы'
+            };
+            return categories[category] || category;
+        }
+
+        function loadOrdersTable() {
+            // Reload data from localStorage
+            orders = JSON.parse(localStorage.getItem('ugalek_orders')) || [];
+
+            ordersTableBody.innerHTML = '';
+
+            if (orders.length === 0) {
+                ordersTableBody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">Нет заказов</td></tr>';
+                return;
+            }
+
+            // Sort orders by time (newest first)
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            sortedOrders.forEach(order => {
+                const row = document.createElement('tr');
+
+                // Format time
+                const orderTime = new Date(order.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                // Status badge
+                let statusClass = 'status-new';
+                let statusText = 'Новый';
+
+                if (order.status === 'in-progress') {
+                    statusClass = 'status-in-progress';
+                    statusText = 'В работе';
+                } else if (order.status === 'completed') {
+                    statusClass = 'status-completed';
+                    statusText = 'Завершен';
+                } else if (order.status === 'cancelled') {
+                    statusClass = 'status-cancelled';
+                    statusText = 'Отменен';
+                }
+
+                row.innerHTML = `
+                            <td>${order.id}</td>
+                            <td>${orderTime}</td>
+                            <td>${order.customerName || 'Не указан'}</td>
+                            <td>${order.customerPhone || 'Не указан'}</td>
+                            <td>${order.deliveryAddress || 'Не указан'}</td>
+                            <td>${order.total} ₽</td>
+                            <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-small view-order" data-id="${order.id}">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-danger btn-small delete-order" data-id="${order.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        `;
+
+                ordersTableBody.appendChild(row);
+            });
+
+            // Add event listeners to order buttons
+            document.querySelectorAll('.view-order').forEach(button => {
+                button.addEventListener('click', function () {
+                    const orderId = this.getAttribute('data-id');
+                    viewOrderDetails(orderId);
+                });
+            });
+
+            document.querySelectorAll('.delete-order').forEach(button => {
+                button.addEventListener('click', function () {
+                    const orderId = this.getAttribute('data-id');
+                    deleteOrder(orderId);
+                });
+            });
+        }
+
+        function loadClientsGrid() {
+            // Generate clients from orders if none exist
+            if (clients.length === 0) {
+                clients = generateClientsFromOrders();
+                localStorage.setItem('ugalek_clients', JSON.stringify(clients));
+            }
+
+            clientsGrid.innerHTML = '';
+
+            if (clients.length === 0) {
+                clientsGrid.innerHTML = '<div style="text-align: center; padding: 40px; grid-column: 1 / -1;">Нет данных о клиентах</div>';
+                return;
+            }
+
+            clients.forEach(client => {
+                const clientCard = document.createElement('div');
+                clientCard.className = 'client-card';
+
+                // Get first letter for avatar
+                const firstLetter = client.name.charAt(0).toUpperCase();
+
+                clientCard.innerHTML = `
+                            <div class="client-avatar">${firstLetter}</div>
+                            <h3>${client.name}</h3>
+                            <p><i class="fas fa-phone"></i> ${client.phone}</p>
+                            <p><i class="fas fa-shopping-bag"></i> Заказов: ${client.orders}</p>
+                            <p><i class="fas fa-ruble-sign"></i> Всего потрачено: ${client.totalSpent} ₽</p>
+                            <div style="margin-top: 15px;">
+                                <button class="btn btn-primary btn-small message-client" data-name="${client.name}" data-phone="${client.phone}" style="width: 100%;">
+                                    <i class="fas fa-envelope"></i> Написать
+                                </button>
+                            </div>
+                        `;
+
+                clientsGrid.appendChild(clientCard);
+            });
+
+            // Add event listeners to message buttons
+            document.querySelectorAll('.message-client').forEach(button => {
+                button.addEventListener('click', function () {
+                    const name = this.getAttribute('data-name');
+                    const phone = this.getAttribute('data-phone');
+                    openMessageModal(name, phone);
+                });
+            });
+        }
+
+        function generateClientsFromOrders() {
+            const clientMap = new Map();
+
+            orders.forEach(order => {
+                if (order.customerName && order.customerPhone) {
+                    const key = order.customerPhone;
+                    if (clientMap.has(key)) {
+                        const client = clientMap.get(key);
+                        client.orders += 1;
+                        client.totalSpent += order.total;
+                    } else {
+                        clientMap.set(key, {
+                            name: order.customerName,
+                            phone: order.customerPhone,
+                            orders: 1,
+                            totalSpent: order.total,
+                            firstOrder: order.timestamp
+                        });
+                    }
+                }
+            });
+
+            return Array.from(clientMap.values());
+        }
+
+        function loadRecentActivity() {
+            recentActivity.innerHTML = '';
+
+            // Use only orders for activity feed
+            const activities = [];
+
+            orders.forEach(order => {
+                activities.push({
+                    type: 'order',
+                    time: new Date(order.timestamp),
+                    details: `Новый заказ ${order.id} на сумму ${order.total} ₽`,
+                    status: order.status
+                });
+            });
+
+            // Sort by time (newest first) and take top 5
+            activities.sort((a, b) => b.time - a.time);
+            const recentActivities = activities.slice(0, 5);
+
+            if (recentActivities.length === 0) {
+                recentActivity.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 20px;">Нет активности</td></tr>';
+                return;
+            }
+
+            recentActivities.forEach(activity => {
+                const row = document.createElement('tr');
+
+                const timeString = activity.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const typeIcon = 'fa-shopping-bag';
+                const typeText = 'Заказ';
+
+                let statusClass = 'status-new';
+                if (activity.status === 'completed') statusClass = 'status-completed';
+                else if (activity.status === 'cancelled') statusClass = 'status-cancelled';
+                else if (activity.status === 'in-progress') statusClass = 'status-in-progress';
+
+                let statusText = 'Новый';
+                if (activity.status === 'completed') statusText = 'Завершен';
+                else if (activity.status === 'cancelled') statusText = 'Отменен';
+                else if (activity.status === 'in-progress') statusText = 'В работе';
+
+                row.innerHTML = `
+                            <td>${timeString}</td>
+                            <td><i class="fas ${typeIcon}"></i> ${typeText}</td>
+                            <td>${activity.details}</td>
+                            <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        `;
+
+                recentActivity.appendChild(row);
+            });
+        }
+
+        function loadDashboardWidgets() {
+            // Recent Orders Widget
+            recentOrdersWidget.innerHTML = '';
+            const recentOrders = [...orders].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 5);
+
+            if (recentOrders.length === 0) {
+                recentOrdersWidget.innerHTML = '<li style="text-align: center; padding: 20px;">Нет заказов</li>';
+            } else {
+                recentOrders.forEach(order => {
+                    const li = document.createElement('li');
+                    const time = new Date(order.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const statusClass = getStatusClass(order.status);
+                    const statusText = getStatusText(order.status);
+
+                    li.innerHTML = `
+                                <div>
+                                    <div>${order.id} - ${order.total} ₽</div>
+                                    <div style="font-size: 0.8rem; color: #999;">${time}</div>
+                                </div>
+                                <span class="status-badge ${statusClass}">${statusText}</span>
+                            `;
+                    recentOrdersWidget.appendChild(li);
+                });
+            }
+        }
+
+        function updateStatistics() {
+            // Calculate today's revenue
+            const today = new Date().toISOString().split('T')[0];
+            const todayOrders = orders.filter(order => {
+                const orderDate = new Date(order.timestamp).toISOString().split('T')[0];
+                return orderDate === today && order.status !== 'cancelled';
+            });
+
+            const todayRevenue = todayOrders.reduce((total, order) => total + order.total, 0);
+            document.getElementById('todayRevenue').textContent = todayRevenue.toLocaleString() + ' ₽';
+
+            // Update orders count
+            document.getElementById('todayOrders').textContent = todayOrders.length;
+
+            // Update average order
+            const averageOrder = todayOrders.length > 0 ? Math.round(todayRevenue / todayOrders.length) : 0;
+            document.getElementById('averageOrder').textContent = averageOrder.toLocaleString() + ' ₽';
+
+            // Update new clients count
+            const todayClients = clients.filter(client => {
+                const clientDate = new Date(client.firstOrder).toISOString().split('T')[0];
+                return clientDate === today;
+            });
+            document.getElementById('newClients').textContent = todayClients.length;
+        }
+
+        function updateLiveDashboard() {
+            const stats = JSON.parse(localStorage.getItem('ugalek_live_stats')) || {};
+
+            document.getElementById('onlineVisitors').textContent = stats.onlineVisitors || 0;
+            document.getElementById('lastUpdate').textContent = stats.currentTime || new Date().toLocaleTimeString();
+        }
+
+        function refreshAnalytics() {
+            showNotification('Данные аналитики обновлены');
+        }
+
+        function viewOrderDetails(orderId) {
+            const order = orders.find(o => o.id === orderId);
+
+            if (!order) {
+                showNotification('Заказ не найден');
+                return;
+            }
+
+            // Populate modal with order details
+            document.getElementById('orderModalId').textContent = orderId;
+            document.getElementById('orderIdText').textContent = orderId;
+            document.getElementById('orderCustomer').textContent = order.customerName || 'Не указан';
+            document.getElementById('orderPhone').textContent = order.customerPhone || 'Не указан';
+            document.getElementById('orderAddress').textContent = order.deliveryAddress || 'Не указан';
+            document.getElementById('orderNotes').textContent = order.notes || 'Нет примечаний';
+            document.getElementById('orderTotal').textContent = order.total + ' ₽';
+
+            // Status
+            const statusElement = document.getElementById('orderStatusText');
+            statusElement.textContent = getStatusText(order.status);
+            statusElement.className = `status-badge ${getStatusClass(order.status)}`;
+
+            // Order items
+            const orderItemsList = document.getElementById('orderItemsList');
+            orderItemsList.innerHTML = '';
+
+            if (order.items && order.items.length > 0) {
+                order.items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.style.display = 'flex';
+                    itemElement.style.justifyContent = 'space-between';
+                    itemElement.style.marginBottom = '8px';
+                    itemElement.style.paddingBottom = '8px';
+                    itemElement.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+
+                    itemElement.innerHTML = `
+                                <div>${item.item}</div>
+                                <div>${item.quantity} x ${item.price} ₽ = ${item.quantity * item.price} ₽</div>
+                            `;
+
+                    orderItemsList.appendChild(itemElement);
+                });
+            }
+
+            // Set current status in select
+            document.getElementById('orderStatusSelect').value = order.status || 'new';
+
+            // Show modal
+            openModal(orderDetailsModal);
+        }
+
+        function updateOrderStatus() {
+            const orderId = document.getElementById('orderModalId').textContent;
+            const newStatus = document.getElementById('orderStatusSelect').value;
+
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+
+            if (orderIndex === -1) {
+                showNotification('Заказ не найден');
+                return;
+            }
+
+            orders[orderIndex].status = newStatus;
+            localStorage.setItem('ugalek_orders', JSON.stringify(orders));
+
+            // Update UI
+            loadOrdersTable();
+            updateStatistics();
+            loadRecentActivity();
+            loadDashboardWidgets();
+
+            // Close modal
+            closeModal(orderDetailsModal);
+
+            showNotification(`Статус заказа ${orderId} обновлен на "${getStatusText(newStatus)}"`);
+        }
+
+        function cancelOrder() {
+            const orderId = document.getElementById('orderModalId').textContent;
+
+            if (!confirm(`Вы уверены, что хотите отменить заказ ${orderId}?`)) {
+                return;
+            }
+
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+
+            if (orderIndex === -1) {
+                showNotification('Заказ не найден');
+                return;
+            }
+
+            orders[orderIndex].status = 'cancelled';
+            localStorage.setItem('ugalek_orders', JSON.stringify(orders));
+
+            // Update UI
+            loadOrdersTable();
+            updateStatistics();
+            loadRecentActivity();
+            loadDashboardWidgets();
+
+            // Close modal
+            closeModal(orderDetailsModal);
+
+            showNotification(`Заказ ${orderId} отменен`);
+        }
+
+        function deleteOrder(orderId) {
+            if (!confirm(`Вы уверены, что хотите удалить заказ ${orderId}?`)) {
+                return;
+            }
+
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+
+            if (orderIndex === -1) {
+                showNotification('Заказ не найден');
+                return;
+            }
+
+            orders.splice(orderIndex, 1);
+            localStorage.setItem('ugalek_orders', JSON.stringify(orders));
+
+            // Update UI
+            loadOrdersTable();
+            updateStatistics();
+            loadRecentActivity();
+            loadDashboardWidgets();
+
+            showNotification(`Заказ ${orderId} удален`);
+        }
+
+        function exportOrders() {
+            // Create CSV content
+            let csvContent = "ID,Время,Клиент,Телефон,Адрес,Сумма,Статус\n";
+
+            orders.forEach(order => {
+                const orderTime = new Date(order.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const customer = order.customerName || 'Не указан';
+                const phone = order.customerPhone || 'Не указан';
+                const address = order.deliveryAddress || 'Не указан';
+                const status = getStatusText(order.status);
+
+                csvContent += `"${order.id}","${orderTime}","${customer}","${phone}","${address}","${order.total}","${status}"\n`;
+            });
+
+            // Create download link
+            const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "orders.csv");
+            document.body.appendChild(link);
+
+            // Trigger download
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification('Заказы экспортированы в CSV');
+        }
+
+        function exportClients() {
+            // Create CSV content
+            let csvContent = "Имя,Телефон,Количество заказов,Всего потрачено\n";
+
+            clients.forEach(client => {
+                csvContent += `"${client.name}","${client.phone}","${client.orders}","${client.totalSpent}"\n`;
+            });
+
+            // Create download link
+            const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "clients.csv");
+            document.body.appendChild(link);
+
+            // Trigger download
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification('Клиенты экспортированы в CSV');
+        }
+
+        function openAddMenuItemModal() {
+            // Reset form
+            menuItemName.value = '';
+            menuItemCategory.value = 'shashlik';
+            menuItemPrice.value = '';
+            menuItemWeight.value = '';
+            menuItemDescription.value = '';
+            menuItemImage.value = '';
+            menuItemAgeRestricted.checked = false;
+
+            openModal(addMenuItemModal);
+        }
+
+        function saveMenuItem() {
+            const name = menuItemName.value;
+            const category = menuItemCategory.value;
+            const price = parseInt(menuItemPrice.value);
+            const weight = menuItemWeight.value;
+            const description = menuItemDescription.value;
+            const image = menuItemImage.value;
+            const ageRestricted = menuItemAgeRestricted.checked;
+
+            if (!name || !price || !weight) {
+                showNotification('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            // Generate menu item ID
+            const itemId = `MENU-${Date.now()}`;
+
+            const menuItem = {
+                id: itemId,
+                name,
+                category,
+                price,
+                weight,
+                description,
+                image,
+                ageRestricted
+            };
+
+            menuItems.push(menuItem);
+            localStorage.setItem('ugalek_menu', JSON.stringify(menuItems));
+
+            // Close modal
+            closeModal(addMenuItemModal);
+
+            // Reload menu items
+            renderMenuItems();
+
+            showNotification(`Блюдо "${name}" успешно добавлено в меню!`);
+        }
+
+        function editMenuItem(itemId) {
+            const menuItem = menuItems.find(item => item.id === itemId);
+
+            if (!menuItem) {
+                showNotification('Блюдо не найдено');
+                return;
+            }
+
+            // Fill form with menu item data
+            menuItemName.value = menuItem.name;
+            menuItemCategory.value = menuItem.category;
+            menuItemPrice.value = menuItem.price;
+            menuItemWeight.value = menuItem.weight;
+            menuItemDescription.value = menuItem.description;
+            menuItemImage.value = menuItem.image;
+            menuItemAgeRestricted.checked = menuItem.ageRestricted;
+
+            // Change save button to update
+            const saveButton = document.getElementById('saveMenuItem');
+            saveButton.textContent = 'Обновить блюдо';
+            saveButton.onclick = function () {
+                updateMenuItem(itemId);
+            };
+
+            // Show modal
+            openModal(addMenuItemModal);
+        }
+
+        function updateMenuItem(itemId) {
+            const name = menuItemName.value;
+            const category = menuItemCategory.value;
+            const price = parseInt(menuItemPrice.value);
+            const weight = menuItemWeight.value;
+            const description = menuItemDescription.value;
+            const image = menuItemImage.value;
+            const ageRestricted = menuItemAgeRestricted.checked;
+
+            if (!name || !price || !weight) {
+                showNotification('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            const menuItemIndex = menuItems.findIndex(item => item.id === itemId);
+
+            if (menuItemIndex === -1) {
+                showNotification('Блюдо не найдено');
+                return;
+            }
+
+            menuItems[menuItemIndex].name = name;
+            menuItems[menuItemIndex].category = category;
+            menuItems[menuItemIndex].price = price;
+            menuItems[menuItemIndex].weight = weight;
+            menuItems[menuItemIndex].description = description;
+            menuItems[menuItemIndex].image = image;
+            menuItems[menuItemIndex].ageRestricted = ageRestricted;
+
+            localStorage.setItem('ugalek_menu', JSON.stringify(menuItems));
+
+            // Close modal
+            closeModal(addMenuItemModal);
+
+            // Reset save button
+            const saveButton = document.getElementById('saveMenuItem');
+            saveButton.textContent = 'Сохранить блюдо';
+            saveButton.onclick = saveMenuItem;
+
+            // Reload menu items
+            renderMenuItems();
+
+            showNotification(`Блюдо "${name}" обновлено!`);
+        }
+
+        function deleteMenuItem(itemId) {
+            if (!confirm(`Вы уверены, что хотите удалить это блюдо из меню?`)) {
+                return;
+            }
+
+            const menuItemIndex = menuItems.findIndex(item => item.id === itemId);
+
+            if (menuItemIndex === -1) {
+                showNotification('Блюдо не найдено');
+                return;
+            }
+
+            const itemName = menuItems[menuItemIndex].name;
+            menuItems.splice(menuItemIndex, 1);
+            localStorage.setItem('ugalek_menu', JSON.stringify(menuItems));
+
+            // Reload menu items
+            renderMenuItems();
+
+            showNotification(`Блюдо "${itemName}" удалено из меню`);
+        }
+
+        function openMessageModal(name, phone) {
+            messageClient.textContent = name;
+            messagePhone.textContent = phone;
+
+            // Reset form
+            messageType.value = 'sms';
+            messageTemplate.value = '';
+            messageText.value = '';
+            previewText.textContent = 'Сообщение появится здесь...';
+
+            openModal(messageModal);
+        }
+
+        function updateMessageTemplate() {
+            const template = messageTemplate.value;
+            let text = '';
+
+            switch (template) {
+                case 'welcome':
+                    text = 'Добро пожаловать в Уголёк! Благодарим за посещение нашего ресторана. Надеемся увидеть вас снова!';
+                    break;
+                case 'promo':
+                    text = 'Специальное предложение для вас! При заказе от 1500 руб. получите десерт в подарок. Акция действует до конца недели.';
+                    break;
+                case 'birthday':
+                    text = 'Поздравляем с днем рождения! В честь вашего праздника дарим скидку 15% на весь заказ. Ждем вас в Уголёк!';
+                    break;
+                case 'feedback':
+                    text = 'Здравствуйте! Будем благодарны, если вы оставите отзыв о вашем посещении ресторана Уголёк. Спасибо!';
+                    break;
+                case 'custom':
+                    text = '';
+                    break;
+                default:
+                    text = '';
+            }
+
+            messageText.value = text;
+            updateMessagePreview();
+        }
+
+        function updateMessagePreview() {
+            previewText.textContent = messageText.value || 'Сообщение появится здесь...';
+        }
+
+        function sendMessage() {
+            const client = messageClient.textContent;
+            const phone = messagePhone.textContent;
+            const type = messageType.value;
+            const text = messageText.value;
+
+            if (!text) {
+                showNotification('Пожалуйста, введите текст сообщения');
+                return;
+            }
+
+            // In a real application, you would send the message via API
+            // For this demo, we'll just show a notification
+
+            showNotification(`Сообщение отправлено клиенту ${client} (${type})`);
+            closeModal(messageModal);
+        }
+
+        function loadSettings() {
+            // Load restaurant settings
+            restaurantName.value = settings.restaurant.name;
+            restaurantAddress.value = settings.restaurant.address;
+            restaurantPhone.value = settings.restaurant.phone;
+            restaurantEmail.value = settings.restaurant.email;
+            openingTime.value = settings.restaurant.openingTime;
+            closingTime.value = settings.restaurant.closingTime;
+
+            // Load notification settings
+            newOrdersNotification.checked = settings.notifications.newOrders;
+            emailNotifications.checked = settings.notifications.email;
+            smsNotifications.checked = settings.notifications.sms;
+
+            // Load appearance settings
+            themeSelect.value = settings.appearance.theme;
+            compactMode.checked = settings.appearance.compactMode;
+
+            // Set active color
+            colorOptions.forEach(option => {
+                if (option.getAttribute('data-color') === settings.appearance.accentColor) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+
+        function saveRestaurantSettingsHandler() {
+            settings.restaurant = {
+                name: restaurantName.value,
+                address: restaurantAddress.value,
+                phone: restaurantPhone.value,
+                email: restaurantEmail.value,
+                openingTime: openingTime.value,
+                closingTime: closingTime.value
+            };
+
+            localStorage.setItem('ugalek_settings', JSON.stringify(settings));
+            showNotification('Настройки ресторана сохранены');
+        }
+
+        function saveNotificationSettingsHandler() {
+            settings.notifications = {
+                newOrders: newOrdersNotification.checked,
+                email: emailNotifications.checked,
+                sms: smsNotifications.checked
+            };
+
+            localStorage.setItem('ugalek_settings', JSON.stringify(settings));
+            showNotification('Настройки уведомлений сохранены');
+        }
+
+        function saveAppearanceSettingsHandler() {
+            const activeColor = document.querySelector('.color-option.active').getAttribute('data-color');
+
+            settings.appearance = {
+                theme: themeSelect.value,
+                accentColor: activeColor,
+                compactMode: compactMode.checked
+            };
+
+            localStorage.setItem('ugalek_settings', JSON.stringify(settings));
+            showNotification('Настройки внешнего вида сохранены');
+
+            // Apply theme changes
+            applyThemeChanges();
+        }
+
+        function changePasswordHandler() {
+            const current = currentPassword.value;
+            const newPass = newPassword.value;
+            const confirm = confirmPassword.value;
+
+            if (!current || !newPass || !confirm) {
+                showNotification('Пожалуйста, заполните все поля');
+                return;
+            }
+
+            if (newPass !== confirm) {
+                showNotification('Новые пароли не совпадают');
+                return;
+            }
+
+            // In a real application, you would verify the current password and update it via API
+            // For this demo, we'll just show a notification
+
+            showNotification('Пароль успешно изменен');
+
+            // Clear fields
+            currentPassword.value = '';
+            newPassword.value = '';
+            confirmPassword.value = '';
+        }
+
+        function applyThemeChanges() {
+            // This would apply theme changes in a real application
+            // For this demo, we'll just update the CSS variables
+            document.documentElement.style.setProperty('--accent-warm', settings.appearance.accentColor);
+        }
+
+        // Admin site management functions
+        function sendNotificationToSite(title, message, type = 'info', validUntil = null) {
+            const notifications = JSON.parse(localStorage.getItem('ugalek_admin_notifications')) || [];
+            const newNotification = {
+                id: 'note_' + Date.now(),
+                title,
+                message,
+                type,
+                validUntil: validUntil || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // По умолчанию на 7 дней
+                createdAt: new Date().toISOString(),
+                read: false
+            };
+
+            notifications.push(newNotification);
+            localStorage.setItem('ugalek_admin_notifications', JSON.stringify(notifications));
+
+            // Trigger storage event for real-time updates on the site
+            window.dispatchEvent(new Event('storage'));
+
+            showNotification('Уведомление отправлено на сайт');
+            return newNotification;
+        }
+
+        function sendSpecialOffer() {
+            const title = prompt('Заголовок спецпредложения:');
+            if (!title) return;
+
+            const message = prompt('Описание предложения:');
+            if (!message) return;
+
+            sendNotificationToSite(
+                title,
+                message,
+                'special_offer'
+            );
+        }
+
+        function sendMaintenanceNotice() {
+            const title = 'Технические работы';
+            const message = prompt('Сообщение о технических работах:');
+            if (!message) return;
+
+            sendNotificationToSite(
+                title,
+                message,
+                'maintenance'
+            );
+        }
+
+        // Helper functions
+        function getStatusText(status) {
+            switch (status) {
+                case 'new': return 'Новый';
+                case 'in-progress': return 'В работе';
+                case 'completed': return 'Завершен';
+                case 'cancelled': return 'Отменен';
+                default: return 'Неизвестно';
+            }
+        }
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'new': return 'status-new';
+                case 'in-progress': return 'status-in-progress';
+                case 'completed': return 'status-completed';
+                case 'cancelled': return 'status-cancelled';
+                default: return 'status-new';
+            }
+        }
+
+        function openModal(modal) {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

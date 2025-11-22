@@ -1,0 +1,549 @@
+{
+  "orders": [],
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "СВИНАЯ ШЕЯ 1 КГ",
+      "category": "shashlik",
+      "price": 2500,
+      "description": "Свиная шея на мангале",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "СВИНАЯ КОРЕЙКА НА КОСТИ 1КГ",
+      "category": "shashlik",
+      "price": 2500,
+      "description": "Свиная корейка на кости",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "КУРИНОЕ ФИЛЕ 1 КГ",
+      "category": "shashlik",
+      "price": 1500,
+      "description": "Куриное филе на мангале",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "ГРИБЫ ШАМПИНЬОНЫ",
+      "category": "shashlik",
+      "price": 800,
+      "description": "Грибы шампиньоны на мангале",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "БАРАНИНА МЯКОТЬ 1 КГ",
+      "category": "shashlik",
+      "price": 3500,
+      "description": "Баранина мякоть на мангале",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "name": "ЛЮЛЯ КУРИНЫЕ 1 КГ",
+      "category": "shashlik",
+      "price": 1300,
+      "description": "Люля из куриного фарша",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "name": "ЛЮЛЯ ГОВЯЖЬИ 1 КГ",
+      "category": "shashlik",
+      "price": 1800,
+      "description": "Люля из говяжьего фарша",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "name": "КАРТОФЕЛЬ КОЛЬЦА НА МАНГАЛЕ",
+      "category": "shashlik",
+      "price": 400,
+      "description": "Картофель кольцами на мангале",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "name": "ЦЫПЛЁНОК ТАБАКА 1 ШТ",
+      "category": "shashlik",
+      "price": 900,
+      "description": "Цыпленок табака",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 10,
+      "name": "ЛАВАШ ТОНКИЙ 1 ШТ",
+      "category": "shashlik",
+      "price": 100,
+      "description": "Тонкий лаваш",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 11,
+      "name": "ЛАВАШ ПЫШНЫЙ 1 ШТ",
+      "category": "shashlik",
+      "price": 100,
+      "description": "Пышный лаваш",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 12,
+      "name": "Крутая чика",
+      "category": "burger",
+      "price": 450,
+      "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 13,
+      "name": "Крутой Джентельмен",
+      "category": "burger",
+      "price": 500,
+      "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый, яйцо куриное",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 14,
+      "name": "Мистер бекон",
+      "category": "burger",
+      "price": 450,
+      "description": "белая булочка, соус красный, котлета свиная, сыр плавленый, майонез, огурец соленый, лук красный",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 15,
+      "name": "Угольный блюз",
+      "category": "burger",
+      "price": 550,
+      "description": "булочка черная, говяжья котлета, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 16,
+      "name": "Угольный блюз XXL",
+      "category": "burger",
+      "price": 800,
+      "description": "булочка черная, говяжья котлета 2 шт, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 17,
+      "name": "Крабс бургер",
+      "category": "burger",
+      "price": 550,
+      "description": "булочка черная, крабовая котлета, томаты, огурец свежий, лук красный, соус нежный, сыр плавленый",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 18,
+      "name": "Планета уголёк",
+      "category": "burger",
+      "price": 300,
+      "description": "булочка черная, котлета куриная, соус зернистый, соус ворчестер, огурец соленый, лук красный",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 19,
+      "name": "Картофель фри 150 гр",
+      "category": "fry",
+      "price": 200,
+      "description": "Картофель фри",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 20,
+      "name": "Картофель по деревенски 120 гр",
+      "category": "fry",
+      "price": 200,
+      "description": "Картофель по деревенски",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 21,
+      "name": "Сырные палочки 6 шт",
+      "category": "fry",
+      "price": 300,
+      "description": "Сырные палочки",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 22,
+      "name": "Куриные трипсы 6шт",
+      "category": "fry",
+      "price": 350,
+      "description": "Куриные трипсы",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 23,
+      "name": "Куриные крылья острые 6 шт",
+      "category": "fry",
+      "price": 600,
+      "description": "Острые куриные крылья",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 24,
+      "name": "Куриные крылья терияки 6шт",
+      "category": "fry",
+      "price": 600,
+      "description": "Куриные крылья терияки",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 25,
+      "name": "Креветки кольца фурай 10 шт",
+      "category": "fry",
+      "price": 600,
+      "description": "Креветки кольца фурай",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 26,
+      "name": "Курица в лаваше",
+      "category": "lavash",
+      "price": 350,
+      "description": "лаваш, соус зернистый, соус красный, салат летний, курица жареная",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 27,
+      "name": "Свинина в лаваше",
+      "category": "lavash",
+      "price": 350,
+      "description": "лаваш, соус красный, соус зернистый, свинина жареная, салат летний",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 28,
+      "name": "Красный соус 50г",
+      "category": "sauce",
+      "price": 80,
+      "description": "Красный соус",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 29,
+      "name": "Белый соус 50г",
+      "category": "sauce",
+      "price": 80,
+      "description": "Белый соус",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 30,
+      "name": "Сырный соус 50г",
+      "category": "sauce",
+      "price": 80,
+      "description": "Сырный соус",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 31,
+      "name": "Сладкий Чили соус 50г",
+      "category": "sauce",
+      "price": 80,
+      "description": "Сладкий Чили соус",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 32,
+      "name": "Томатный соус 50г",
+      "category": "sauce",
+      "price": 80,
+      "description": "Томатный соус",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 33,
+      "name": "Адреналин Раш 0,449 жб",
+      "category": "drinks",
+      "price": 208,
+      "description": "Адреналин Раш 0,449 жб",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 34,
+      "name": "Мартовский грушевый 0,5 с/б",
+      "category": "drinks",
+      "price": 114,
+      "description": "Мартовский грушевый 0,5 с/б",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 35,
+      "name": "Ипатовский грушёвый 1,25л",
+      "category": "drinks",
+      "price": 184,
+      "description": "Ипатовский грушёвый 1,25л",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 36,
+      "name": "Кока-Кола 0,33 жб (Ирак)",
+      "category": "drinks",
+      "price": 108,
+      "description": "Кока-Кола 0,33 жб (Ирак)",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 37,
+      "name": "Крафт Роял тархун, дыня и фейхоа 0,41л ст.",
+      "category": "drinks",
+      "price": 124,
+      "description": "Крафт Роял тархун, дыня и фейхоа 0,41л ст.",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 38,
+      "name": "Крафт Роял фейхоа, ягоды асаи и орхидея 0,41л ст.",
+      "category": "drinks",
+      "price": 124,
+      "description": "Крафт Роял фейхоа, ягоды асаи и орхидея 0,41л ст.",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 39,
+      "name": "Напиток газ лемонарий с соком мохито 0,45жб",
+      "category": "drinks",
+      "price": 110,
+      "description": "Напиток газ лемонарий с соком мохито 0,45жб",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 40,
+      "name": "Напиток сокосод. Сочная долина 0,95л яблоко",
+      "category": "drinks",
+      "price": 162,
+      "description": "Напиток сокосод. Сочная долина 0,95л яблоко",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 41,
+      "name": "Нарзан газ 0,45л ст.",
+      "category": "drinks",
+      "price": 130,
+      "description": "Нарзан газ 0,45л ст.",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 42,
+      "name": "От винта клубника/мохито 0,45л с/б",
+      "category": "drinks",
+      "price": 126,
+      "description": "От винта клубника/мохито 0,45л с/б",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 43,
+      "name": "Рычал Су 0,5л с/б",
+      "category": "drinks",
+      "price": 174,
+      "description": "Рычал Су 0,5л с/б",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 44,
+      "name": "Сок вкусносок 0,95л мульти фрукт",
+      "category": "drinks",
+      "price": 102,
+      "description": "Сок вкусносок 0,95л мульти фрукт",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 45,
+      "name": "Сок добрый 1л апельсин-мандарин",
+      "category": "drinks",
+      "price": 220,
+      "description": "Сок добрый 1л апельсин-мандарин",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 46,
+      "name": "Старые добрые традиции 0,5л барбарис с/б",
+      "category": "drinks",
+      "price": 104,
+      "description": "Старые добрые традиции 0,5л барбарис с/б",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 47,
+      "name": "Чай фруктомания черный лимон 0,5л Пэт",
+      "category": "drinks",
+      "price": 72,
+      "description": "Чай фруктомания черный лимон 0,5л Пэт",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 48,
+      "name": "Энергетик кайман ориджинал Энерджи 0,45л жб",
+      "category": "drinks",
+      "price": 114,
+      "description": "Энергетик кайман ориджинал Энерджи 0,45л жб",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 49,
+      "name": "Энергетик бёрн 0,449л жб",
+      "category": "drinks",
+      "price": 206,
+      "description": "Энергетик бёрн 0,449л жб",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 50,
+      "name": "Горная вершина 0,5газ",
+      "category": "drinks",
+      "price": 54,
+      "description": "Горная вершина 0,5газ",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 51,
+      "name": "Горная вершина 0,5 негаз",
+      "category": "drinks",
+      "price": 54,
+      "description": "Горная вершина 0,5 негаз",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 52,
+      "name": "Кока-кола Добрый 1л",
+      "category": "drinks",
+      "price": 152,
+      "description": "Кока-кола Добрый 1л",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 53,
+      "name": "Пепси 0,3 жб (Афган)",
+      "category": "drinks",
+      "price": 82,
+      "description": "Пепси 0,3 жб (Афган)",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 54,
+      "name": "Пепси 1л",
+      "category": "drinks",
+      "price": 178,
+      "description": "Пепси 1л",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 55,
+      "name": "Родник 0,45л груша",
+      "category": "drinks",
+      "price": 44,
+      "description": "Родник 0,45л груша",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 56,
+      "name": "Родник 0,45л кола",
+      "category": "drinks",
+      "price": 44,
+      "description": "Родник 0,45л кола",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 57,
+      "name": "Родник мин вода 0,48л газ",
+      "category": "drinks",
+      "price": 32,
+      "description": "Родник минеральная вода газированная 0,48л",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+      "id": 58,
+      "name": "Родник мин вода 0,48л негаз",
+      "category": "drinks",
+      "price": 34,
+      "description": "Родник минеральная вода негазированная 0,48л",
+      "available": true,
+      "createdAt": "2024-01-15T10:00:00.000Z"
+    }
+  ],
+  "clients": [],
+  "reviews": [],
+  "settings": {
+    "restaurantName": "Уголёк",
+    "address": "п. Орловский, Ростовская область",
+    "phone": "+7 (906) 428-46-30",
+    "email": "aksenova.2590@mail.ru",
+    "workingHours": {
+      "open": "11:00",
+      "close": "23:00"
+    },
+    "notifications": {
+      "newOrders": true,
+      "email": true,
+      "sms": false
+    }
+  },
+  "analytics": {
+    "totalRevenue": 0,
+    "totalOrders": 0,
+    "weeklyData": []
+  }
+}

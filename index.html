@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Уголёк - Доставка еды</title>
+    <title>Уголёк - Доставка еды в Орловском</title>
+    <meta name="description" content="Доставка вкусной еды в посёлке Орловском. Шашлыки, бургеры, фритюр и многое другое. Быстрая доставка, онлайн-оплата.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=278ab797-344c-4f04-b6c5-a34ee1fe73bf&lang=ru_RU" type="text/javascript"></script>
     <style>
         :root {
             --primary-bg: #0D0D0D;
@@ -23,6 +24,19 @@
             --danger: #F44336;
         }
 
+        .light-theme {
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #F5F5F5;
+            --accent-dark: #8B4513;
+            --accent-warm: #D2691E;
+            --text-light: #666666;
+            --text-white: #333333;
+            --gold: #B8860B;
+            --success: #2E7D32;
+            --warning: #FF9800;
+            --danger: #F44336;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -31,12 +45,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #2A1A1A 100%);
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, #2A1A1A 100%);
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            transition: all 0.3s ease;
         }
+
+            body.light-theme {
+                background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 50%, #FFF8F0 100%);
+            }
 
         .texture-overlay {
             position: fixed;
@@ -47,6 +66,10 @@
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235a2a2a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
             z-index: -1;
+        }
+
+        .light-theme .texture-overlay {
+            opacity: 0.1;
         }
 
         .container {
@@ -64,6 +87,11 @@
             border-bottom: 1px solid rgba(90, 42, 42, 0.3);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+        }
+
+        .light-theme header {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(210, 105, 30, 0.3);
         }
 
         .header-scrolled {
@@ -169,8 +197,115 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+            .theme-toggle:hover {
+                background: rgba(178, 105, 0, 0.1);
+                color: var(--accent-warm);
+            }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .light-theme .user-btn {
+            border: 1px solid rgba(0,0,0,0.2);
+            color: var(--text-white);
+        }
+
+        .user-btn:hover {
+            border-color: var(--accent-warm);
+            color: var(--accent-warm);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--secondary-bg);
+            border: 1px solid rgba(90,42,42,0.3);
+            border-radius: 8px;
+            padding: 10px 0;
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .light-theme .user-dropdown {
+            border: 1px solid rgba(210,105,30,0.3);
+        }
+
+        .user-menu:hover .user-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .light-theme .dropdown-item {
+            color: var(--text-white);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(178,105,0,0.1);
+            color: var(--accent-warm);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 5px 0;
+        }
+
+        .light-theme .dropdown-divider {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .auth-btn {
+            background: none;
+            border: 1px solid var(--accent-warm);
+            color: var(--accent-warm);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .auth-btn:hover {
+                background: var(--accent-warm);
+                color: white;
+            }
 
         .cart-icon {
             position: relative;
@@ -225,6 +360,10 @@
             overflow: hidden;
         }
 
+        .light-theme .hero {
+            background: radial-gradient(ellipse at 20% 50%, rgba(210, 105, 30, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(139, 69, 19, 0.08) 0%, transparent 50%), linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.8) 100%);
+        }
+
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
@@ -250,6 +389,10 @@
             animation: titleGlow 3s infinite alternate;
         }
 
+        .light-theme .hero h1 {
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         @keyframes titleGlow {
             from {
                 text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -260,6 +403,19 @@
             }
         }
 
+        .light-theme @keyframes titleGlow {
+            from
+
+        {
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        to {
+            text-shadow: 0 5px 25px rgba(210, 105, 30, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        }
+
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 40px;
@@ -267,6 +423,11 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1s ease 0.5s forwards;
             opacity: 0;
+        }
+
+        .light-theme .hero p {
+            color: var(--text-white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes fadeIn {
@@ -369,6 +530,10 @@
                 color: var(--text-light);
             }
 
+        .light-theme .section-title p {
+            color: var(--text-white);
+        }
+
         .menu-categories {
             display: flex;
             justify-content: center;
@@ -388,17 +553,22 @@
             font-weight: 500;
         }
 
-            .category-btn.active {
-                background-color: var(--accent-dark);
-                color: var(--text-white);
-                transform: scale(1.05);
-                box-shadow: 0 4px 10px rgba(90, 42, 42, 0.3);
-            }
+        .light-theme .category-btn {
+            color: var(--text-white);
+            border: 1px solid var(--accent-dark);
+        }
 
-            .category-btn:hover:not(.active) {
-                border-color: var(--accent-warm);
-                color: var(--accent-warm);
-            }
+        .category-btn.active {
+            background-color: var(--accent-dark);
+            color: var(--text-white);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(90, 42, 42, 0.3);
+        }
+
+        .category-btn:hover:not(.active) {
+            border-color: var(--accent-warm);
+            color: var(--accent-warm);
+        }
 
         .menu-grid {
             display: grid;
@@ -418,16 +588,21 @@
             transform: translateY(20px);
         }
 
-            .menu-item.animate-in {
-                opacity: 1;
-                transform: translateY(0);
-                transition: all 0.5s ease;
-            }
+        .light-theme .menu-item {
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.8) 0%, rgba(255, 248, 240, 0.9) 100%);
+            border: 1px solid rgba(210, 105, 30, 0.3);
+        }
 
-            .menu-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            }
+        .menu-item.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
 
         .menu-item-img {
             height: 200px;
@@ -450,6 +625,10 @@
             width: 100%;
             height: 50%;
             background: linear-gradient(transparent, rgba(13, 13, 13, 0.8));
+        }
+
+        .light-theme .menu-item-img::after {
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.8));
         }
 
         .menu-item-content {
@@ -481,6 +660,10 @@
             color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.5;
+        }
+
+        .light-theme .menu-item-desc {
+            color: var(--text-white);
         }
 
         .menu-item-meta {
@@ -624,16 +807,21 @@
             transform: translateY(20px);
         }
 
-            .combo-item.animate-in {
-                opacity: 1;
-                transform: translateY(0);
-                transition: all 0.5s ease;
-            }
+        .light-theme .combo-item {
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.8) 0%, rgba(255, 248, 240, 0.9) 100%);
+            border: 1px solid rgba(210, 105, 30, 0.3);
+        }
 
-            .combo-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            }
+        .combo-item.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        .combo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
 
         .combo-header {
             padding: 20px;
@@ -751,6 +939,11 @@
             backdrop-filter: blur(10px);
         }
 
+        .light-theme footer {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.8) 100%);
+            border-top: 1px solid rgba(210, 105, 30, 0.3);
+        }
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -778,9 +971,13 @@
                     transition: color 0.3s;
                 }
 
-                    .footer-column ul li a:hover {
-                        color: var(--accent-warm);
-                    }
+        .light-theme .footer-column ul li a {
+            color: var(--text-white);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-warm);
+        }
 
         .social-links {
             display: flex;
@@ -800,11 +997,16 @@
                 transition: all 0.3s;
             }
 
-                .social-links a:hover {
-                    background-color: var(--accent-warm);
-                    color: var(--text-white);
-                    transform: translateY(-2px);
-                }
+        .light-theme .social-links a {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--text-white);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-warm);
+            color: var(--text-white);
+            transform: translateY(-2px);
+        }
 
         .copyright {
             text-align: center;
@@ -812,6 +1014,10 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #999;
             font-size: 0.9rem;
+        }
+
+        .light-theme .copyright {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .modal {
@@ -850,6 +1056,11 @@
             transition: transform 0.3s ease;
         }
 
+        .light-theme .modal-content {
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.95) 0%, rgba(255, 248, 240, 0.98) 100%);
+            border: 1px solid rgba(210, 105, 30, 0.5);
+        }
+
         .modal.show .modal-content {
             transform: scale(1);
         }
@@ -862,10 +1073,14 @@
             align-items: center;
         }
 
-            .modal-header h3 {
-                color: var(--text-white);
-                font-size: 1.3rem;
-            }
+        .light-theme .modal-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header h3 {
+            color: var(--text-white);
+            font-size: 1.3rem;
+        }
 
         .close-modal {
             background: none;
@@ -876,9 +1091,13 @@
             transition: color 0.3s;
         }
 
-            .close-modal:hover {
-                color: var(--accent-warm);
-            }
+        .light-theme .close-modal {
+            color: var(--text-white);
+        }
+
+        .close-modal:hover {
+            color: var(--accent-warm);
+        }
 
         .modal-body {
             padding: 20px;
@@ -906,6 +1125,10 @@
                 line-height: 1.6;
             }
 
+        .light-theme .age-verification p {
+            color: var(--text-white);
+        }
+
         .verification-buttons {
             display: flex;
             justify-content: center;
@@ -925,11 +1148,19 @@
             transition: all 0.3s ease;
         }
 
-            .cart-item:hover {
-                background-color: rgba(255, 255, 255, 0.03);
-                padding-left: 10px;
-                padding-right: 10px;
-            }
+        .light-theme .cart-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .light-theme .cart-item:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
 
         .cart-item-info h4 {
             color: var(--text-white);
@@ -968,14 +1199,27 @@
             transition: all 0.3s;
         }
 
-            .quantity-btn:hover {
-                background: rgba(255, 255, 255, 0.1);
-                border-color: var(--accent-warm);
-            }
+        .light-theme .quantity-btn {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: var(--text-white);
+        }
+
+        .quantity-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-warm);
+        }
+
+        .light-theme .quantity-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
 
         .cart-summary {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
+        }
+
+        .light-theme .cart-summary {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .summary-row {
@@ -992,6 +1236,10 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 10px;
             margin-top: 10px;
+        }
+
+        .light-theme .summary-total {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .notification {
@@ -1053,56 +1301,6 @@
             }
         }
 
-        .admin-notification {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 10000;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: slideDown 0.5s ease;
-        }
-
-        .maintenance-notification {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #FF9800 0%, #F44336 100%);
-            color: white;
-            padding: 15px;
-            z-index: 10000;
-            text-align: center;
-            animation: slideDown 0.5s ease;
-        }
-
-        .maintenance-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
         .map-container {
             margin: 40px 0;
             border-radius: 12px;
@@ -1125,17 +1323,22 @@
             backdrop-filter: blur(10px);
         }
 
-            .delivery-info h3 {
-                color: var(--text-white);
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
+        .light-theme .delivery-info {
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.8) 0%, rgba(255, 248, 240, 0.9) 100%);
+            border: 1px solid rgba(210, 105, 30, 0.3);
+        }
 
-                .delivery-info h3 i {
-                    color: var(--accent-warm);
-                }
+        .delivery-info h3 {
+            color: var(--text-white);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .delivery-info h3 i {
+                color: var(--accent-warm);
+            }
 
         .address-input-container {
             position: relative;
@@ -1154,6 +1357,10 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
+        .light-theme .address-suggestions {
+            border: 1px solid rgba(210, 105, 30, 0.3);
+        }
+
         .address-suggestion {
             padding: 10px 15px;
             cursor: pointer;
@@ -1161,13 +1368,17 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-            .address-suggestion:hover {
-                background-color: rgba(178, 105, 0, 0.1);
-            }
+        .light-theme .address-suggestion {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
 
-            .address-suggestion:last-child {
-                border-bottom: none;
-            }
+        .address-suggestion:hover {
+            background-color: rgba(178, 105, 0, 0.1);
+        }
+
+        .address-suggestion:last-child {
+            border-bottom: none;
+        }
 
         .form-control {
             width: 100%;
@@ -1180,11 +1391,17 @@
             transition: all 0.3s;
         }
 
-            .form-control:focus {
-                outline: none;
-                border-color: var(--accent-warm);
-                box-shadow: 0 0 0 2px rgba(178, 105, 0, 0.2);
-            }
+        .light-theme .form-control {
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: var(--text-white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-warm);
+            box-shadow: 0 0 0 2px rgba(178, 105, 0, 0.2);
+        }
 
         .form-group {
             margin-bottom: 20px;
@@ -1197,7 +1414,6 @@
                 font-weight: 500;
             }
 
-        /* Стили для выбора адреса на карте */
         .address-selector {
             display: flex;
             gap: 10px;
@@ -1256,7 +1472,49 @@
                 margin-bottom: 5px;
             }
 
-        /* Стили для выбора способа получения */
+        #yandexMap {
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .map-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a1a 100%);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .light-theme .map-loading {
+            background: linear-gradient(135deg, #f5f5f5 0%, #fff8f0 100%);
+            color: var(--text-white);
+        }
+
+        .map-loading i {
+            margin-right: 10px;
+            color: var(--accent-warm);
+        }
+
+        .map-instructions {
+            text-align: center;
+            padding: 10px;
+            background: rgba(178, 105, 0, 0.1);
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+            .map-instructions i {
+                color: var(--accent-warm);
+                margin-right: 5px;
+            }
+
         .delivery-type {
             display: flex;
             gap: 15px;
@@ -1273,18 +1531,21 @@
             transition: all 0.3s;
         }
 
-            .delivery-option.active {
-                border-color: var(--accent-warm);
-                background: rgba(178, 105, 0, 0.1);
-            }
+        .light-theme .delivery-option {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
 
-            .delivery-option i {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-                color: var(--accent-warm);
-            }
+        .delivery-option.active {
+            border-color: var(--accent-warm);
+            background: rgba(178, 105, 0, 0.1);
+        }
 
-        /* Стили для кнопки оплаты */
+        .delivery-option i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-warm);
+        }
+
         .payment-options {
             display: flex;
             gap: 10px;
@@ -1307,6 +1568,10 @@
             color: var(--text-light);
         }
 
+        .light-theme .cash-payment {
+            color: var(--text-white);
+        }
+
         .online-payment {
             background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent-warm) 100%);
             border: none;
@@ -1318,7 +1583,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* Стили для формы ЮКассы */
         #yookassa-widget {
             margin: 20px 0;
             border-radius: 8px;
@@ -1339,6 +1603,257 @@
                 margin-bottom: 15px;
             }
 
+        /* Стили для многошагового оформления заказа */
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+            .checkout-steps::before {
+                content: '';
+                position: absolute;
+                top: 15px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: rgba(255,255,255,0.1);
+                z-index: 1;
+            }
+
+        .light-theme .checkout-steps::before {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .light-theme .step-number {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .step.active .step-number {
+            background: var(--accent-warm);
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .light-theme .step-label {
+            color: var(--text-white);
+        }
+
+        .step.active .step-label {
+            color: var(--accent-warm);
+            font-weight: 500;
+        }
+
+        .checkout-step {
+            display: none;
+        }
+
+            .checkout-step.active {
+                display: block;
+            }
+
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        /* Стили для аутентификации */
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .light-theme .auth-tabs {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .light-theme .auth-tab {
+            color: var(--text-white);
+        }
+
+        .auth-tab.active {
+            color: var(--accent-warm);
+            border-bottom-color: var(--accent-warm);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+            .auth-form.active {
+                display: block;
+            }
+
+        .social-auth {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            .social-auth p {
+                margin-bottom: 15px;
+                color: var(--text-light);
+            }
+
+        .light-theme .social-auth p {
+            color: var(--text-white);
+        }
+
+        .social-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 0.9rem;
+        }
+
+            .social-btn:hover {
+                transform: translateY(-2px);
+            }
+
+        .google-btn {
+            background: #DB4437;
+        }
+
+        .vk-btn {
+            background: #4C75A3;
+        }
+
+        /* Стили для истории заказов */
+        .order-history {
+            margin-top: 30px;
+        }
+
+        .order-item {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 26, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(90, 42, 42, 0.3);
+        }
+
+        .light-theme .order-item {
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.8) 0%, rgba(255, 248, 240, 0.9) 100%);
+            border: 1px solid rgba(210, 105, 30, 0.3);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-new {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+        }
+
+        .status-completed {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .status-cancelled {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+        }
+
+        .order-items {
+            margin-bottom: 15px;
+        }
+
+        .order-item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .order-total {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 10px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .light-theme .order-total {
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Стили для избранного */
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        .light-theme .empty-state {
+            color: var(--text-white);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-warm);
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -1387,11 +1902,7 @@
                 justify-content: center;
             }
 
-            .delivery-zones {
-                grid-template-columns: 1fr;
-            }
-
-            .zone-map {
+            #yandexMap {
                 height: 300px;
             }
 
@@ -1401,6 +1912,38 @@
 
             .delivery-type {
                 flex-direction: column;
+            }
+
+            .checkout-steps {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .step {
+                flex: 1;
+                min-width: 80px;
+            }
+
+            .step-label {
+                font-size: 0.7rem;
+                text-align: center;
+            }
+
+            .user-btn span {
+                display: none;
+            }
+
+            .social-auth {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                flex: 1;
+            }
+
+            .order-header {
+                flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
@@ -1425,6 +1968,33 @@
                     </ul>
                 </nav>
                 <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <button class="user-btn" id="userButton">
+                            <i class="fas fa-user"></i>
+                            <span id="userName"></span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" class="dropdown-item" id="profileLink">
+                                <i class="fas fa-user-circle"></i> Профиль
+                            </a>
+                            <a href="#" class="dropdown-item" id="ordersLink">
+                                <i class="fas fa-history"></i> История заказов
+                            </a>
+                            <a href="#" class="dropdown-item" id="favoritesLink">
+                                <i class="fas fa-heart"></i> Избранное
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" id="logoutButton">
+                                <i class="fas fa-sign-out-alt"></i> Выйти
+                            </a>
+                        </div>
+                    </div>
+                    <button class="auth-btn" id="authButton">
+                        <i class="fas fa-user"></i> Войти
+                    </button>
                     <div class="cart-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
@@ -1497,7 +2067,11 @@
             </div>
 
             <div class="menu-grid" id="menuGrid">
-                <!-- Меню будет загружено через JavaScript -->
+                <div class="empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <h3>Загрузка меню...</h3>
+                    <p>Пожалуйста, подождите</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1510,7 +2084,11 @@
             </div>
 
             <div class="combos-grid" id="combosGrid">
-                <!-- Комбо будет загружено через JavaScript -->
+                <div class="empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <h3>Загрузка сборок...</h3>
+                    <p>Пожалуйста, подождите</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1573,6 +2151,7 @@
         </div>
     </footer>
 
+    <!-- Модальные окна -->
     <div class="modal" id="ageVerificationModal">
         <div class="modal-content">
             <div class="modal-body">
@@ -1589,41 +2168,199 @@
         </div>
     </div>
 
-    <div class="modal" id="cartModal">
-        <div class="modal-content">
+    <div class="modal" id="authModal">
+        <div class="modal-content" style="max-width: 400px;">
             <div class="modal-header">
-                <h3>Ваш заказ</h3>
+                <h3>Вход / Регистрация</h3>
                 <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="cart-items" id="cartItems">
-                    <p id="emptyCartMessage">Ваша корзина пуста</p>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
                 </div>
 
-                <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>Промежуточный итог:</span>
-                        <span id="subtotal">0 ₽</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Доставка:</span>
-                        <span id="deliveryCost">100 ₽</span>
-                    </div>
-                    <div class="summary-row summary-total">
-                        <span>Итого:</span>
-                        <span id="total">100 ₽</span>
+                <div class="auth-content">
+                    <div class="auth-form active" id="loginForm">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Введите пароль">
+                        </div>
+                        <button class="btn" id="loginButton" style="width: 100%;">
+                            <i class="fas fa-sign-in-alt"></i> Войти
+                        </button>
+
+                        <div class="social-auth">
+                            <p style="margin-bottom: 15px; color: var(--text-light);">Или войдите через</p>
+                            <div style="display: flex; gap: 10px; justify-content: center;">
+                                <button class="social-btn google-btn">
+                                    <i class="fab fa-google"></i> Google
+                                </button>
+                                <button class="social-btn vk-btn">
+                                    <i class="fab fa-vk"></i> VK
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group" style="margin-top: 20px;">
+                    <div class="auth-form" id="registerForm">
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" id="registerName" class="form-control" placeholder="Ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="registerEmail" class="form-control" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="registerPassword" class="form-control" placeholder="Не менее 6 символов">
+                        </div>
+                        <div class="form-group">
+                            <label>Подтвердите пароль</label>
+                            <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Повторите пароль">
+                        </div>
+                        <button class="btn" id="registerButton" style="width: 100%;">
+                            <i class="fas fa-user-plus"></i> Зарегистрироваться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Профиль пользователя</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input type="text" id="profileName" class="form-control" placeholder="Ваше имя">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="profileEmail" class="form-control" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" id="profilePhone" class="form-control" placeholder="+7 (900) 123-45-67">
+                </div>
+                <button class="btn" id="saveProfileButton" style="width: 100%;">
+                    <i class="fas fa-save"></i> Сохранить изменения
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="ordersModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3>История заказов</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="order-history" id="orderHistory">
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <h3>У вас еще нет заказов</h3>
+                        <p>Сделайте свой первый заказ и он появится здесь</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="favoritesModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3>Избранные товары</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="favorites-grid" id="favoritesGrid">
+                    <div class="empty-state">
+                        <i class="fas fa-heart"></i>
+                        <h3>В избранном пусто</h3>
+                        <p>Добавляйте товары в избранное, нажимая на сердечко</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Оформление заказа</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Индикатор шагов -->
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Корзина</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Данные</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Доставка</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Оплата</div>
+                    </div>
+                </div>
+
+                <!-- Шаг 1: Корзина -->
+                <div class="checkout-step active" id="checkoutStep1">
+                    <div class="cart-items" id="cartItems">
+                        <p id="emptyCartMessage">Ваша корзина пуста</p>
+                    </div>
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Промежуточный итог:</span>
+                            <span id="subtotal">0 ₽</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Доставка:</span>
+                            <span id="deliveryCost">100 ₽</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Итого:</span>
+                            <span id="total">100 ₽</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Шаг 2: Данные клиента -->
+                <div class="checkout-step" id="checkoutStep2">
+                    <div class="form-group">
                         <label for="customerName">Ваше имя *</label>
                         <input type="text" id="customerName" class="form-control" placeholder="Введите ваше имя" required>
                     </div>
-
                     <div class="form-group">
                         <label for="customerPhone">Номер телефона *</label>
                         <input type="tel" id="customerPhone" class="form-control" placeholder="+7 (906) 428-46-30" required>
                     </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email</label>
+                        <input type="email" id="customerEmail" class="form-control" placeholder="your@email.com">
+                    </div>
+                </div>
 
+                <!-- Шаг 3: Доставка -->
+                <div class="checkout-step" id="checkoutStep3">
                     <div class="form-group">
                         <label>Способ получения *</label>
                         <div class="delivery-type">
@@ -1665,14 +2402,26 @@
                             Я подтверждаю, что мне исполнилось 18 лет и я несу ответственность за заказ алкогольной продукции в соответствии с законодательством РФ.
                         </label>
                     </div>
+                </div>
 
-                    <button class="btn" style="width: 100%; margin-top: 20px;" id="checkoutButton">
-                        <i class="fas fa-credit-card"></i> Оплатить онлайн
+                <!-- Шаг 4: Подтверждение -->
+                <div class="checkout-step" id="checkoutStep4">
+                    <div class="order-summary">
+                        <h4>Подтверждение заказа</h4>
+                        <div id="orderSummaryContent">
+                            <!-- Детали заказа будут заполнены через JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Навигация -->
+                <div class="step-navigation">
+                    <button class="btn btn-secondary" id="prevStep" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Назад
                     </button>
-
-                    <p style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #999;">
-                        Наш оператор свяжется с вами для подтверждения заказа
-                    </p>
+                    <button class="btn" id="nextStep">
+                        Далее <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1706,11 +2455,47 @@
         </div>
     </div>
 
+    <!-- Обновленное модальное окно для выбора адреса на Яндекс.Карте -->
+    <div class="modal" id="mapModal">
+        <div class="modal-content map-modal">
+            <div class="modal-header">
+                <h3>Выберите адрес доставки на карте</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="map-instructions">
+                    <i class="fas fa-mouse-pointer"></i> Кликните на карте, чтобы выбрать адрес доставки
+                </div>
+
+                <div id="yandexMapContainer">
+                    <div class="map-loading" id="mapLoading">
+                        <i class="fas fa-spinner fa-spin"></i> Загрузка карты...
+                    </div>
+                    <div id="yandexMap" style="width: 100%; height: 500px; display: none;"></div>
+                </div>
+
+                <div class="selected-address" id="selectedAddressInfo" style="display: none;">
+                    <h4>Выбранный адрес:</h4>
+                    <p id="selectedAddressText"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Уточните адрес (если нужно):</label>
+                    <input type="text" id="addressDetails" class="form-control" placeholder="Например: подъезд 2, этаж 3, квартира 25">
+                </div>
+
+                <button class="btn address-confirm-btn" id="confirmAddressBtn" disabled>
+                    <i class="fas fa-check"></i> Использовать этот адрес
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Инициализация Supabase с предоставленными данными
-        const supabaseUrl = 'https://pumliqqevodnfokoybkh.supabase.co';
-        const supabaseKey = 'sb_secret_PilY6mFi7utPB0EmY0AtMA_U4u6pljG';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        // Переменные для данных
+        let menuItems = [];
+        let combos = [];
+        let settings = {};
 
         // Основные переменные
         let cart = JSON.parse(localStorage.getItem('ugalek_cart')) || [];
@@ -1718,8 +2503,15 @@
         let pendingAlcoholItem = null;
         let selectedAddress = '';
         let deliveryType = 'delivery'; // delivery или pickup
-        let menuItems = [];
-        let combos = [];
+        let currentUser = JSON.parse(localStorage.getItem('ugalek_current_user')) || null;
+        let favorites = JSON.parse(localStorage.getItem('ugalek_favorites')) || [];
+        let orders = JSON.parse(localStorage.getItem('ugalek_orders')) || [];
+
+        // Переменные для работы с Яндекс.Картой
+        let ymap;
+        let selectedPlacemark = null;
+        let selectedCoords = null;
+        let selectedMapAddress = '';
 
         // DOM элементы
         const cartIcon = document.getElementById('cartIcon');
@@ -1743,42 +2535,177 @@
         const floatingElements = document.getElementById('floatingElements');
         const deliveryAddress = document.getElementById('deliveryAddress');
         const addressSuggestions = document.getElementById('addressSuggestions');
+        const themeToggle = document.getElementById('themeToggle');
+        const authButton = document.getElementById('authButton');
+        const userMenu = document.getElementById('userMenu');
+        const userName = document.getElementById('userName');
+        const authModal = document.getElementById('authModal');
+        const loginButton = document.getElementById('loginButton');
+        const registerButton = document.getElementById('registerButton');
+        const logoutButton = document.getElementById('logoutButton');
+        const profileLink = document.getElementById('profileLink');
+        const ordersLink = document.getElementById('ordersLink');
+        const favoritesLink = document.getElementById('favoritesLink');
+        const profileModal = document.getElementById('profileModal');
+        const ordersModal = document.getElementById('ordersModal');
+        const favoritesModal = document.getElementById('favoritesModal');
+
+        // Элементы для работы с картой
         const openMapBtn = document.getElementById('openMapBtn');
+        const mapModal = document.getElementById('mapModal');
+        const confirmAddressBtn = document.getElementById('confirmAddressBtn');
+        const selectedAddressInfo = document.getElementById('selectedAddressInfo');
+        const selectedAddressText = document.getElementById('selectedAddressText');
+        const addressDetails = document.getElementById('addressDetails');
+        const mapLoading = document.getElementById('mapLoading');
+        const yandexMap = document.getElementById('yandexMap');
+
+        // Элементы для оплаты
         const yookassaModal = document.getElementById('yookassaModal');
         const paymentAmount = document.getElementById('paymentAmount');
         const confirmPayment = document.getElementById('confirmPayment');
         const deliveryOptions = document.querySelectorAll('.delivery-option');
         const deliveryAddressGroup = document.getElementById('deliveryAddressGroup');
 
+        // Элементы для многошагового оформления заказа
+        const checkoutSteps = document.querySelectorAll('.checkout-step');
+        const prevStepButton = document.getElementById('prevStep');
+        const nextStepButton = document.getElementById('nextStep');
+        const steps = document.querySelectorAll('.step');
+        let currentStep = 1;
+
+        // Функция загрузки данных из JSON
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error('Ошибка загрузки данных');
+                }
+                const data = await response.json();
+                
+                menuItems = data.menu;
+                combos = data.combos;
+                settings = data.settings;
+                
+                // После загрузки данных обновляем интерфейс
+                updateRestaurantInfo();
+                loadMenuItems();
+                loadCombos();
+                
+                console.log('Данные успешно загружены');
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                showNotification('Ошибка загрузки меню. Пожалуйста, обновите страницу.');
+                
+                // Загружаем демо-данные в случае ошибки
+                loadDemoData();
+            }
+        }
+
+        function loadDemoData() {
+            // Резервные данные на случай ошибки загрузки
+            menuItems = [
+                {
+                    id: 1,
+                    name: "Свиная шея",
+                    category: "shashlik",
+                    price: 2500,
+                    weight: "1 кг",
+                    description: "Нежная свиная шея, маринованная в луке и специях",
+                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    ageRestricted: false
+                },
+                {
+                    id: 2,
+                    name: "Свиная корейка на кости",
+                    category: "shashlik",
+                    price: 2500,
+                    weight: "1 кг",
+                    description: "Сочная свиная корейка на кости с ароматными специями",
+                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    ageRestricted: false
+                }
+            ];
+            
+            combos = [
+                {
+                    id: 1,
+                    name: "Комбо для двоих",
+                    price: 850,
+                    savings: 150,
+                    items: [
+                        "Шашлык из свинины (300г)",
+                        "Классический бургер",
+                        "Картофель фри (2 порции)",
+                        "2 напитка на выбор"
+                    ],
+                    ageRestricted: false
+                }
+            ];
+            
+            settings = {
+                restaurant: {
+                    name: "Уголёк",
+                    address: "п. Орловский, Ростовская область",
+                    phone: "+7 (906) 428-46-30",
+                    email: "aksenova.2590@mail.ru",
+                    openingTime: "11:00",
+                    closingTime: "23:00"
+                },
+                delivery: {
+                    minOrder: 500,
+                    freeDelivery: 1500,
+                    deliveryCost: 100,
+                    deliveryTime: "30-45 минут"
+                }
+            };
+        }
+
+        function updateRestaurantInfo() {
+            if (!settings.restaurant) return;
+            
+            // Обновляем информацию в доставке
+            const deliveryInfo = document.querySelector('.delivery-info');
+            if (deliveryInfo) {
+                const phoneElement = deliveryInfo.querySelector('p:nth-child(3)');
+                if (phoneElement) {
+                    phoneElement.innerHTML = `<strong>Телефон для заказов:</strong> ${settings.restaurant.phone}`;
+                }
+            }
+            
+            // Обновляем информацию в футере
+            const footerPhone = document.querySelector('footer .footer-column:nth-child(3) li:nth-child(2)');
+            if (footerPhone) {
+                footerPhone.innerHTML = `<i class="fas fa-phone"></i> ${settings.restaurant.phone}`;
+            }
+            
+            const footerEmail = document.querySelector('footer .footer-column:nth-child(3) li:nth-child(3)');
+            if (footerEmail) {
+                footerEmail.innerHTML = `<i class="fas fa-envelope"></i> ${settings.restaurant.email}`;
+            }
+            
+            // Обновляем информацию о времени работы
+            const hoursElement = document.querySelector('.footer-column:nth-child(2) li:nth-child(1)');
+            if (hoursElement && settings.restaurant) {
+                hoursElement.textContent = `Понедельник - Воскресенье: ${settings.restaurant.openingTime} - ${settings.restaurant.closingTime} без перерыва и выходных`;
+            }
+        }
+
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', async function () {
-            console.log('Инициализация сайта...');
-
-            // Проверяем подключение к Supabase
-            const connected = await checkSupabaseConnection();
-
-            if (connected) {
-                // Загружаем данные из Supabase
-                await loadMenuItemsFromSupabase();
-                await loadCombosFromSupabase();
-                showNotification('Данные загружены из Supabase');
-            } else {
-                // Используем локальные данные
-                menuItems = getDefaultMenuItems();
-                combos = getDefaultCombos();
-                renderMenuItems();
-                renderCombos();
-                showNotification('Используем локальные данные. Проверьте подключение к интернету.');
-            }
-
+            // Загружаем данные первым делом
+            await loadData();
+            
             updateCartCount();
             createFloatingElements();
             initScrollAnimations();
+            initThemeToggle();
+            initAuth();
+            initMultiStepCheckout();
             window.addEventListener('scroll', handleHeaderScroll);
 
             // Обработчики событий
             cartIcon.addEventListener('click', openCart);
-            checkoutButton.addEventListener('click', proceedToCheckout);
             confirmAgeButton.addEventListener('click', confirmAge);
             cancelAgeButton.addEventListener('click', cancelAge);
             confirmPayment.addEventListener('click', processYooKassaPayment);
@@ -1799,6 +2726,12 @@
                     }
                 });
             });
+
+            // Обработчик для кнопки "Выбрать на карте"
+            openMapBtn.addEventListener('click', openMapModal);
+
+            // Обработчик для кнопки подтверждения адреса
+            confirmAddressBtn.addEventListener('click', confirmAddressFromMap);
 
             closeModalButtons.forEach(button => {
                 button.addEventListener('click', function () {
@@ -1827,92 +2760,318 @@
                     addressSuggestions.style.display = 'none';
                 }
             });
+
+            // Обработчик клика вне модального окна карты
+            document.addEventListener('click', function (e) {
+                if (e.target === mapModal) {
+                    closeModal(mapModal);
+                }
+            });
+
+            // Обработчики для навигации по шагам оформления заказа
+            prevStepButton.addEventListener('click', goToPreviousStep);
+            nextStepButton.addEventListener('click', goToNextStep);
         });
 
-        // Проверка подключения к Supabase
-        async function checkSupabaseConnection() {
-            try {
-                const { data, error } = await supabase
-                    .from('menu_items')
-                    .select('count')
-                    .limit(1);
+        // Функции для аутентификации
+        function initAuth() {
+            updateAuthUI();
 
-                if (error) {
-                    console.error('Ошибка подключения к Supabase:', error);
-                    return false;
-                }
+            authButton.addEventListener('click', openAuthModal);
+            loginButton.addEventListener('click', handleLogin);
+            registerButton.addEventListener('click', handleRegister);
+            logoutButton.addEventListener('click', handleLogout);
+            profileLink.addEventListener('click', openProfileModal);
+            ordersLink.addEventListener('click', openOrdersModal);
+            favoritesLink.addEventListener('click', openFavoritesModal);
 
-                console.log('Подключение к Supabase успешно');
-                return true;
-            } catch (error) {
-                console.error('Ошибка проверки подключения:', error);
-                return false;
+            // Обработчики для табов аутентификации
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchAuthTab(tabName);
+                });
+            });
+        }
+
+        function updateAuthUI() {
+            if (currentUser) {
+                authButton.style.display = 'none';
+                userMenu.style.display = 'block';
+                userName.textContent = currentUser.name || currentUser.email;
+            } else {
+                authButton.style.display = 'block';
+                userMenu.style.display = 'none';
             }
         }
 
-        // Функции для работы с Supabase
-        async function loadMenuItemsFromSupabase() {
+        function openAuthModal() {
+            openModal(authModal);
+            switchAuthTab('login');
+        }
+
+        function switchAuthTab(tabName) {
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
+            });
+
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.toggle('active', form.id === tabName + 'Form');
+            });
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showNotification('Пожалуйста, заполните все поля');
+                return;
+            }
+
+            const loginButton = document.getElementById('loginButton');
+            loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Вход...';
+            loginButton.disabled = true;
+
             try {
-                const { data, error } = await supabase
-                    .from('menu_items')
-                    .select('*')
-                    .order('id');
+                // В реальном приложении здесь будет запрос к Supabase
+                // const { user, error } = await supabase.auth.signIn({ email, password });
 
-                if (error) throw error;
+                // Заглушка для демонстрации
+                await new Promise(resolve => setTimeout(resolve, 1000));
 
-                if (data && data.length > 0) {
-                    menuItems = data;
-                    renderMenuItems();
-                    console.log('Меню загружено из Supabase:', menuItems.length, 'позиций');
-                } else {
-                    throw new Error('Нет данных в таблице menu_items');
-                }
+                // Имитируем успешный вход
+                currentUser = {
+                    id: 1,
+                    email: email,
+                    name: email.split('@')[0]
+                };
+
+                localStorage.setItem('ugalek_current_user', JSON.stringify(currentUser));
+                updateAuthUI();
+                closeModal(authModal);
+                showNotification('Успешный вход!');
+
+                // Загружаем данные пользователя
+                loadUserData();
+
             } catch (error) {
-                console.error('Ошибка загрузки меню из Supabase:', error);
-                throw error;
+                showNotification('Ошибка входа: ' + error.message);
+            } finally {
+                loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Войти';
+                loginButton.disabled = false;
             }
         }
 
-        async function loadCombosFromSupabase() {
+        async function handleRegister() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            if (!name || !email || !password || !confirmPassword) {
+                showNotification('Пожалуйста, заполните все поля');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showNotification('Пароли не совпадают');
+                return;
+            }
+
+            if (password.length < 6) {
+                showNotification('Пароль должен содержать не менее 6 символов');
+                return;
+            }
+
+            const registerButton = document.getElementById('registerButton');
+            registerButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Регистрация...';
+            registerButton.disabled = true;
+
             try {
-                const { data, error } = await supabase
-                    .from('combos')
-                    .select('*')
-                    .order('id');
+                // В реальном приложении здесь будет запрос к Supabase
+                // const { user, error } = await supabase.auth.signUp({ email, password });
 
-                if (error) throw error;
+                // Заглушка для демонстрации
+                await new Promise(resolve => setTimeout(resolve, 1000));
 
-                if (data && data.length > 0) {
-                    combos = data;
-                    renderCombos();
-                    console.log('Комбо загружены из Supabase:', combos.length, 'позиций');
-                } else {
-                    console.log('Нет данных в таблице combos, используем локальные данные');
-                    combos = getDefaultCombos();
-                    renderCombos();
-                }
+                showNotification('Регистрация успешна! Проверьте вашу почту для подтверждения.');
+                switchAuthTab('login');
+
             } catch (error) {
-                console.error('Ошибка загрузки комбо из Supabase:', error);
-                combos = getDefaultCombos();
-                renderCombos();
+                showNotification('Ошибка регистрации: ' + error.message);
+            } finally {
+                registerButton.innerHTML = '<i class="fas fa-user-plus"></i> Зарегистрироваться';
+                registerButton.disabled = false;
             }
         }
 
-        async function saveOrderToSupabase(order) {
+        async function handleLogout() {
             try {
-                const { data, error } = await supabase
-                    .from('orders')
-                    .insert([order])
-                    .select();
+                // В реальном приложении здесь будет запрос к Supabase
+                // await supabase.auth.signOut();
 
-                if (error) throw error;
-
-                console.log('Заказ сохранен в Supabase:', data);
-                return data[0];
+                currentUser = null;
+                localStorage.removeItem('ugalek_current_user');
+                updateAuthUI();
+                showNotification('Вы успешно вышли из системы');
             } catch (error) {
-                console.error('Ошибка сохранения заказа в Supabase:', error);
-                throw error;
+                showNotification('Ошибка при выходе: ' + error.message);
             }
+        }
+
+        function openProfileModal(e) {
+            e.preventDefault();
+            if (currentUser) {
+                document.getElementById('profileName').value = currentUser.name || '';
+                document.getElementById('profileEmail').value = currentUser.email || '';
+                document.getElementById('profilePhone').value = currentUser.phone || '';
+                openModal(profileModal);
+            }
+        }
+
+        function openOrdersModal(e) {
+            e.preventDefault();
+            loadOrderHistory();
+            openModal(ordersModal);
+        }
+
+        function openFavoritesModal(e) {
+            e.preventDefault();
+            loadFavorites();
+            openModal(favoritesModal);
+        }
+
+        function loadUserData() {
+            if (!currentUser) return;
+
+            // Загружаем историю заказов пользователя
+            loadOrderHistory();
+            // Загружаем избранные товары
+            loadFavorites();
+        }
+
+        function loadOrderHistory() {
+            const orderHistory = document.getElementById('orderHistory');
+
+            if (!orders || orders.length === 0) {
+                orderHistory.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <h3>У вас еще нет заказов</h3>
+                        <p>Сделайте свой первый заказ и он появится здесь</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let ordersHtml = '';
+            orders.forEach(order => {
+                let itemsHtml = '';
+                order.items.forEach(item => {
+                    itemsHtml += `
+                        <div class="order-item-row">
+                            <span>${item.item} × ${item.quantity}</span>
+                            <span>${item.price * item.quantity} ₽</span>
+                        </div>
+                    `;
+                });
+
+                let statusClass = '';
+                let statusText = '';
+                switch (order.status) {
+                    case 'new':
+                        statusClass = 'status-new';
+                        statusText = 'Новый';
+                        break;
+                    case 'completed':
+                        statusClass = 'status-completed';
+                        statusText = 'Завершен';
+                        break;
+                    case 'cancelled':
+                        statusClass = 'status-cancelled';
+                        statusText = 'Отменен';
+                        break;
+                    default:
+                        statusClass = 'status-new';
+                        statusText = 'Новый';
+                }
+
+                ordersHtml += `
+                    <div class="order-item">
+                        <div class="order-header">
+                            <div>
+                                <h4>Заказ ${order.id}</h4>
+                                <p>${new Date(order.timestamp).toLocaleDateString('ru-RU')}</p>
+                            </div>
+                            <div class="order-status ${statusClass}">${statusText}</div>
+                        </div>
+                        <div class="order-items">
+                            ${itemsHtml}
+                        </div>
+                        <div class="order-total">
+                            <div class="order-item-row">
+                                <span>Итого:</span>
+                                <span>${order.total} ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            orderHistory.innerHTML = ordersHtml;
+        }
+
+        function loadFavorites() {
+            const favoritesGrid = document.getElementById('favoritesGrid');
+
+            if (!favorites || favorites.length === 0) {
+                favoritesGrid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-heart"></i>
+                        <h3>В избранном пусто</h3>
+                        <p>Добавляйте товары в избранное, нажимая на сердечко</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let favoritesHtml = '';
+            favorites.forEach(favId => {
+                const item = menuItems.find(menuItem => menuItem.id === favId);
+                if (item) {
+                    favoritesHtml += `
+                        <div class="menu-item">
+                            <div class="menu-item-img" style="background-image: url('${item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}');"></div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h3>${item.name}</h3>
+                                    <span class="menu-item-price">${item.price} ₽</span>
+                                </div>
+                                <p class="menu-item-desc">${item.description}</p>
+                                <div class="menu-item-meta">
+                                    <span class="menu-item-weight">${item.weight}</span>
+                                    <button class="add-to-cart-btn" data-id="${item.id}" data-item="${item.name}" data-price="${item.price}">
+                                        Добавить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            favoritesGrid.innerHTML = favoritesHtml;
+
+            // Добавляем обработчики для кнопок добавления в корзину
+            document.querySelectorAll('#favoritesGrid .add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const item = this.getAttribute('data-item');
+                    const price = parseInt(this.getAttribute('data-price'));
+                    addToCart(id, item, price);
+                });
+            });
         }
 
         // Функции для работы с корзиной
@@ -2012,15 +3171,20 @@
 
         function updateCartSummary() {
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            const deliveryCost = deliveryType === 'delivery' ? (subtotal >= 1500 ? 0 : 100) : 0;
+            const freeDeliveryThreshold = settings.delivery?.freeDelivery || 1500;
+            const deliveryCostValue = settings.delivery?.deliveryCost || 100;
+            
+            const deliveryCost = deliveryType === 'delivery' ? 
+                (subtotal >= freeDeliveryThreshold ? 0 : deliveryCostValue) : 0;
+            
             const total = subtotal + deliveryCost;
 
             subtotalElement.textContent = `${subtotal} ₽`;
             deliveryCostElement.textContent = `${deliveryCost} ₽`;
             totalElement.textContent = `${total} ₽`;
 
-            if (deliveryType === 'delivery' && subtotal > 0 && subtotal < 1500) {
-                const remaining = 1500 - subtotal;
+            if (deliveryType === 'delivery' && subtotal > 0 && subtotal < freeDeliveryThreshold) {
+                const remaining = freeDeliveryThreshold - subtotal;
                 if (!document.getElementById('freeDeliveryInfo')) {
                     const freeDeliveryInfo = document.createElement('div');
                     freeDeliveryInfo.id = 'freeDeliveryInfo';
@@ -2041,15 +3205,15 @@
             const total = parseInt(totalElement.textContent);
 
             if (deliveryType === 'delivery') {
-                checkoutButton.innerHTML = `<i class="fas fa-credit-card"></i> Оплатить онлайн ${total} ₽`;
+                nextStepButton.innerHTML = `Далее <i class="fas fa-arrow-right"></i>`;
             } else {
-                checkoutButton.innerHTML = `<i class="fas fa-store"></i> Оформить заказ (оплата при получении)`;
+                nextStepButton.innerHTML = `Далее <i class="fas fa-arrow-right"></i>`;
             }
         }
 
         function checkAlcoholInCart() {
             const hasAlcohol = cart.some(item => {
-                return menuItems.find(menuItem => menuItem.id === item.id && menuItem.age_restricted);
+                return menuItems.find(menuItem => menuItem.id == item.id && menuItem.ageRestricted);
             });
 
             if (hasAlcohol) {
@@ -2060,16 +3224,181 @@
             }
         }
 
-        // Функции для оформления заказа
-        async function proceedToCheckout() {
-            if (cart.length === 0) {
-                showNotification('Добавьте товары в корзину перед оформлением заказа');
-                return;
+        // Многошаговое оформление заказа
+        function initMultiStepCheckout() {
+            showStep(1);
+        }
+
+        function showStep(step) {
+            // Скрываем все шаги
+            document.querySelectorAll('.checkout-step').forEach(s => {
+                s.classList.remove('active');
+            });
+
+            // Показываем текущий шаг
+            const currentStepElement = document.getElementById(`checkoutStep${step}`);
+            if (currentStepElement) {
+                currentStepElement.classList.add('active');
             }
 
+            // Обновляем индикатор шагов
+            updateStepIndicator(step);
+
+            // Обновляем кнопки навигации
+            updateNavigationButtons(step);
+        }
+
+        function updateStepIndicator(step) {
+            document.querySelectorAll('.step').forEach((stepElement, index) => {
+                const stepNumber = index + 1;
+                stepElement.classList.remove('active', 'completed');
+
+                if (stepNumber === step) {
+                    stepElement.classList.add('active');
+                } else if (stepNumber < step) {
+                    stepElement.classList.add('completed');
+                }
+            });
+        }
+
+        function updateNavigationButtons(step) {
+            prevStepButton.style.display = step > 1 ? 'block' : 'none';
+
+            if (step === 4) {
+                nextStepButton.innerHTML = '<i class="fas fa-credit-card"></i> Оплатить';
+            } else {
+                nextStepButton.innerHTML = 'Далее <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        function goToPreviousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function goToNextStep() {
+            if (validateStep(currentStep)) {
+                if (currentStep < 4) {
+                    currentStep++;
+                    showStep(currentStep);
+
+                    // Если переходим на шаг 4, обновляем сводку заказа
+                    if (currentStep === 4) {
+                        updateOrderSummary();
+                    }
+                } else {
+                    proceedToFinalCheckout();
+                }
+            }
+        }
+
+        function validateStep(step) {
+            switch (step) {
+                case 1: // Корзина
+                    if (cart.length === 0) {
+                        showNotification('Добавьте товары в корзину');
+                        return false;
+                    }
+                    return true;
+
+                case 2: // Данные клиента
+                    const name = document.getElementById('customerName').value;
+                    const phone = document.getElementById('customerPhone').value;
+
+                    if (!name || !phone) {
+                        showNotification('Заполните все обязательные поля');
+                        return false;
+                    }
+
+                    const phoneRegex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+                    if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                        showNotification('Введите корректный номер телефона');
+                        return false;
+                    }
+                    return true;
+
+                case 3: // Доставка
+                    if (deliveryType === 'delivery') {
+                        const address = document.getElementById('deliveryAddress').value;
+                        if (!address) {
+                            showNotification('Укажите адрес доставки');
+                            return false;
+                        }
+                    }
+
+                    const hasAlcohol = cart.some(item => {
+                        return menuItems.find(menuItem => menuItem.id == item.id && menuItem.ageRestricted);
+                    });
+
+                    if (hasAlcohol && !ageCheckbox.checked) {
+                        showNotification('Для заказа алкоголя необходимо подтвердить возраст');
+                        return false;
+                    }
+                    return true;
+
+                default:
+                    return true;
+            }
+        }
+
+        function updateOrderSummary() {
+            const orderSummaryContent = document.getElementById('orderSummaryContent');
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            if (subtotal < 500) {
-                showNotification('Минимальная сумма заказа 500 рублей');
+            const freeDeliveryThreshold = settings.delivery?.freeDelivery || 1500;
+            const deliveryCostValue = settings.delivery?.deliveryCost || 100;
+            
+            const deliveryCost = deliveryType === 'delivery' ? 
+                (subtotal >= freeDeliveryThreshold ? 0 : deliveryCostValue) : 0;
+            
+            const total = subtotal + deliveryCost;
+
+            let itemsHtml = '';
+            cart.forEach(item => {
+                itemsHtml += `
+                    <div class="order-item-row">
+                        <span>${item.item} × ${item.quantity}</span>
+                        <span>${item.price * item.quantity} ₽</span>
+                    </div>
+                `;
+            });
+
+            orderSummaryContent.innerHTML = `
+                <div class="order-items">
+                    ${itemsHtml}
+                </div>
+                <div class="order-total">
+                    <div class="summary-row">
+                        <span>Промежуточный итог:</span>
+                        <span>${subtotal} ₽</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Доставка:</span>
+                        <span>${deliveryCost} ₽</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Итого:</span>
+                        <span>${total} ₽</span>
+                    </div>
+                </div>
+                <div class="delivery-info" style="margin-top: 20px;">
+                    <h4>Данные доставки</h4>
+                    <p><strong>Имя:</strong> ${document.getElementById('customerName').value}</p>
+                    <p><strong>Телефон:</strong> ${document.getElementById('customerPhone').value}</p>
+                    <p><strong>Способ получения:</strong> ${deliveryType === 'delivery' ? 'Доставка' : 'Самовывоз'}</p>
+                    ${deliveryType === 'delivery' ? `<p><strong>Адрес:</strong> ${document.getElementById('deliveryAddress').value}</p>` : ''}
+                    ${document.getElementById('orderNotes').value ? `<p><strong>Примечания:</strong> ${document.getElementById('orderNotes').value}</p>` : ''}
+                </div>
+            `;
+        }
+
+        function proceedToFinalCheckout() {
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const minOrder = settings.delivery?.minOrder || 500;
+            
+            if (subtotal < minOrder) {
+                showNotification(`Минимальная сумма заказа ${minOrder} рублей`);
                 return;
             }
 
@@ -2096,7 +3425,7 @@
             }
 
             const hasAlcohol = cart.some(item => {
-                return menuItems.find(menuItem => menuItem.id === item.id && menuItem.age_restricted);
+                return menuItems.find(menuItem => menuItem.id == item.id && menuItem.ageRestricted);
             });
 
             if (hasAlcohol && !ageCheckbox.checked) {
@@ -2111,91 +3440,109 @@
                 openModal(yookassaModal);
             } else {
                 // Оформляем заказ с самовывозом (оплата наличными)
-                await createOrder('cash', false);
+                createOrder('cash', false);
             }
         }
 
-        async function processYooKassaPayment() {
+        function processYooKassaPayment() {
             // В реальном приложении здесь будет интеграция с API ЮКассы
             // Для демонстрации просто создаем заказ с онлайн-оплатой
-            await createOrder('online', true);
+            createOrder('online', true);
             closeModal(yookassaModal);
             showNotification('Оплата прошла успешно! Заказ подтвержден.');
         }
 
-        async function createOrder(paymentMethod, isPaid) {
+        function createOrder(paymentMethod, isPaid) {
             const orderId = `#${Date.now()}`;
             const customerName = document.getElementById('customerName').value;
             const customerPhone = document.getElementById('customerPhone').value;
+            const customerEmail = document.getElementById('customerEmail').value;
             const deliveryAddressValue = deliveryType === 'delivery' ? document.getElementById('deliveryAddress').value : 'Самовывоз';
+            const orderNotes = document.getElementById('orderNotes').value;
             const total = parseInt(totalElement.textContent);
 
             const order = {
-                order_id: orderId,
+                id: orderId,
                 items: [...cart],
-                customer_name: customerName,
-                customer_phone: customerPhone,
-                delivery_address: deliveryAddressValue,
-                delivery_type: deliveryType,
-                notes: document.getElementById('orderNotes').value,
+                customerName,
+                customerPhone,
+                customerEmail,
+                deliveryAddress: deliveryAddressValue,
+                deliveryType,
+                notes: orderNotes,
                 total: total,
+                timestamp: new Date().toISOString(),
                 status: 'new',
-                payment_method: paymentMethod,
-                is_paid: isPaid
+                paymentMethod: paymentMethod,
+                isPaid: isPaid
             };
 
-            try {
-                // Сохраняем заказ в Supabase
-                await saveOrderToSupabase(order);
+            // Сохраняем заказ в "базу данных" (localStorage)
+            orders.push(order);
+            localStorage.setItem('ugalek_orders', JSON.stringify(orders));
 
-                // Очищаем корзину и форму
-                cart = [];
-                updateCartCount();
-                updateCartDisplay();
-                saveCartToStorage();
+            // Очищаем корзину и форму
+            cart = [];
+            updateCartCount();
+            updateCartDisplay();
+            saveCartToStorage();
 
-                document.getElementById('customerName').value = '';
-                document.getElementById('customerPhone').value = '';
-                document.getElementById('deliveryAddress').value = '';
-                document.getElementById('orderNotes').value = '';
-                ageCheckbox.checked = false;
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerEmail').value = '';
+            document.getElementById('deliveryAddress').value = '';
+            document.getElementById('orderNotes').value = '';
+            ageCheckbox.checked = false;
 
-                closeModal(cartModal);
+            closeModal(cartModal);
+            currentStep = 1;
+            showStep(1);
 
-                showNotification(`Заказ ${orderId} успешно оформлен! ${isPaid ? 'Оплата прошла успешно.' : ''} Наш оператор свяжется с вами в ближайшее время.`);
-            } catch (error) {
-                console.error('Ошибка сохранения заказа:', error);
-                showNotification('Ошибка оформления заказа. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
-            }
+            showNotification(`Заказ ${orderId} успешно оформлен! ${isPaid ? 'Оплата прошла успешно.' : ''} Наш оператор свяжется с вами в ближайшее время.`);
         }
 
         // Функции для работы с меню
-        function renderMenuItems() {
+        function loadMenuItems() {
+            if (!menuItems || menuItems.length === 0) {
+                menuGrid.innerHTML = '<div class="empty-state"><i class="fas fa-utensils"></i><h3>Меню временно недоступно</h3><p>Попробуйте обновить страницу</p></div>';
+                return;
+            }
+
             menuGrid.innerHTML = '';
 
             menuItems.forEach((item, index) => {
                 const menuItemElement = document.createElement('div');
-                menuItemElement.className = `menu-item ${item.age_restricted ? 'age-restricted' : ''}`;
+                menuItemElement.className = `menu-item ${item.ageRestricted ? 'age-restricted' : ''}`;
                 menuItemElement.setAttribute('data-category', item.category);
                 menuItemElement.style.transitionDelay = `${index * 0.1}s`;
 
                 let ageBadge = '';
-                if (item.age_restricted) {
+                if (item.ageRestricted) {
                     ageBadge = '<div class="age-badge">18+</div>';
                 }
 
+                const isFavorite = favorites.includes(item.id);
+                const favoriteIcon = isFavorite ? 'fas' : 'far';
+
+                // Используем изображение из данных или заглушку
+                const imageUrl = item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+
                 menuItemElement.innerHTML = `
-                        ${ageBadge}
-                        <div class="menu-item-img" style="background-image: url('${item.image_url || item.image || 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}');"></div>
-                        <div class="menu-item-content">
-                            <div class="menu-item-title">
-                                <h3>${item.name}</h3>
-                                <span class="menu-item-price">${item.price} ₽</span>
-                            </div>
-                            <p class="menu-item-desc">${item.description}</p>
-                            <div class="menu-item-meta">
-                                <span class="menu-item-weight">${item.weight}</span>
-                                <button class="add-to-cart-btn ${item.age_restricted ? 'age-required' : ''}"
+                    ${ageBadge}
+                    <div class="menu-item-img" style="background-image: url('${imageUrl}');"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>${item.name}</h3>
+                            <span class="menu-item-price">${item.price} ₽</span>
+                        </div>
+                        <p class="menu-item-desc">${item.description}</p>
+                        <div class="menu-item-meta">
+                            <span class="menu-item-weight">${item.weight}</span>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="favorite-btn" data-id="${item.id}" style="background: none; border: none; color: ${isFavorite ? 'var(--accent-warm)' : 'var(--text-light)'}; cursor: pointer;">
+                                    <i class="${favoriteIcon} fa-heart"></i>
+                                </button>
+                                <button class="add-to-cart-btn ${item.ageRestricted ? 'age-required' : ''}"
                                         data-id="${item.id}"
                                         data-item="${item.name}"
                                         data-price="${item.price}">
@@ -2203,7 +3550,8 @@
                                 </button>
                             </div>
                         </div>
-                    `;
+                    </div>
+                `;
 
                 menuGrid.appendChild(menuItemElement);
             });
@@ -2229,61 +3577,88 @@
                     }
                 });
             });
+
+            // Обработчики для кнопок избранного
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    toggleFavorite(id, this);
+                });
+            });
         }
 
-        function renderCombos() {
+        function toggleFavorite(id, button) {
+            const index = favorites.indexOf(id);
+            const icon = button.querySelector('i');
+
+            if (index === -1) {
+                // Добавляем в избранное
+                favorites.push(id);
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                button.style.color = 'var(--accent-warm)';
+                showNotification('Товар добавлен в избранное');
+            } else {
+                // Удаляем из избранного
+                favorites.splice(index, 1);
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                button.style.color = 'var(--text-light)';
+                showNotification('Товар удален из избранного');
+            }
+
+            localStorage.setItem('ugalek_favorites', JSON.stringify(favorites));
+        }
+
+        function loadCombos() {
+            if (!combos || combos.length === 0) {
+                combosGrid.innerHTML = '<div class="empty-state"><i class="fas fa-box"></i><h3>Сборки временно недоступны</h3><p>Попробуйте обновить страницу</p></div>';
+                return;
+            }
+
             combosGrid.innerHTML = '';
 
             combos.forEach((combo, index) => {
                 const comboElement = document.createElement('div');
-                comboElement.className = `combo-item ${combo.age_restricted ? 'age-restricted' : ''}`;
+                comboElement.className = `combo-item ${combo.ageRestricted ? 'age-restricted' : ''}`;
                 comboElement.style.transitionDelay = `${index * 0.15}s`;
 
                 let ageBadge = '';
-                if (combo.age_restricted) {
+                if (combo.ageRestricted) {
                     ageBadge = '<div class="age-badge">18+</div>';
                 }
 
                 let itemsList = '';
-                let itemsArray = combo.items;
-                if (typeof combo.items === 'string') {
-                    try {
-                        itemsArray = JSON.parse(combo.items);
-                    } catch (e) {
-                        itemsArray = [combo.items];
-                    }
-                }
-
-                itemsArray.forEach(item => {
+                combo.items.forEach(item => {
                     itemsList += `<li><i class="fas fa-check"></i> ${item}</li>`;
                 });
 
                 comboElement.innerHTML = `
-                        ${ageBadge}
-                        <div class="combo-header">
-                            <h3>${combo.name}</h3>
+                    ${ageBadge}
+                    <div class="combo-header">
+                        <h3>${combo.name}</h3>
+                    </div>
+                    <div class="combo-content">
+                        <div class="combo-includes">
+                            <h4>В набор входит:</h4>
+                            <ul>
+                                ${itemsList}
+                            </ul>
                         </div>
-                        <div class="combo-content">
-                            <div class="combo-includes">
-                                <h4>В набор входит:</h4>
-                                <ul>
-                                    ${itemsList}
-                                </ul>
+                        <div class="combo-price">
+                            <div>
+                                <span class="combo-savings">Экономия ${combo.savings} ₽</span>
+                                <div class="menu-item-price">${combo.price} ₽</div>
                             </div>
-                            <div class="combo-price">
-                                <div>
-                                    <span class="combo-savings">Экономия ${combo.savings || 0} ₽</span>
-                                    <div class="menu-item-price">${combo.price} ₽</div>
-                                </div>
-                                <button class="btn ${combo.age_restricted ? 'age-required' : ''}"
-                                        data-id="combo-${combo.id}"
-                                        data-item="${combo.name}"
-                                        data-price="${combo.price}">
-                                    Добавить сборку
-                                </button>
-                            </div>
+                            <button class="btn ${combo.ageRestricted ? 'age-required' : ''}"
+                                    data-id="combo-${combo.id}"
+                                    data-item="${combo.name}"
+                                    data-price="${combo.price}">
+                                Добавить сборку
+                            </button>
                         </div>
-                    `;
+                    </div>
+                `;
 
                 combosGrid.appendChild(comboElement);
             });
@@ -2321,6 +3696,197 @@
                     }, 300);
                 }
             });
+        }
+
+        // Функции для работы с Яндекс.Картой
+        function openMapModal() {
+            openModal(mapModal);
+
+            // Инициализируем карту, если она еще не была инициализирована
+            if (!ymap) {
+                initYandexMap();
+            } else {
+                // Если карта уже инициализирована, обновляем ее размер
+                setTimeout(function () {
+                    if (ymap) {
+                        ymap.container.fitToViewport();
+                    }
+                }, 100);
+            }
+
+            // Сбрасываем выбранный адрес
+            resetMapSelection();
+        }
+
+        function initYandexMap() {
+            // Проверяем, загружена ли API Яндекс.Карт
+            if (typeof ymaps === 'undefined') {
+                console.error('Yandex Maps API не загружена');
+                mapLoading.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Не удалось загрузить карту. Проверьте подключение к интернету.';
+                showNotification('Ошибка загрузки карты. Пожалуйста, попробуйте позже.');
+                return;
+            }
+
+            ymaps.ready(function () {
+                try {
+                    // Скрываем индикатор загрузки и показываем карту
+                    mapLoading.style.display = 'none';
+                    yandexMap.style.display = 'block';
+
+                    // Координаты поселка Орловский
+                    const orlovskyCoords = [46.871387, 42.134481];
+
+                    // Создаем карту
+                    ymap = new ymaps.Map('yandexMap', {
+                        center: orlovskyCoords,
+                        zoom: 14,
+                        controls: ['zoomControl', 'fullscreenControl']
+                    }, {
+                        searchControlProvider: 'yandex#search'
+                    });
+
+                    // Добавляем обработчик клика на карту
+                    ymap.events.add('click', function (e) {
+                        const coords = e.get('coords');
+                        selectedCoords = coords;
+
+                        // Удаляем предыдущую метку, если есть
+                        if (selectedPlacemark) {
+                            ymap.geoObjects.remove(selectedPlacemark);
+                        }
+
+                        // Добавляем новую метку
+                        selectedPlacemark = new ymaps.Placemark(coords, {
+                            hintContent: 'Выбранный адрес',
+                            balloonContent: 'Загрузка адреса...'
+                        }, {
+                            preset: 'islands#redIcon',
+                            draggable: true
+                        });
+
+                        ymap.geoObjects.add(selectedPlacemark);
+
+                        // Получаем адрес по координатам
+                        getAddressByCoords(coords);
+
+                        // Активируем кнопку подтверждения
+                        confirmAddressBtn.disabled = false;
+                    });
+
+                    // Добавляем поиск на карту
+                    const searchControl = new ymaps.control.SearchControl({
+                        options: {
+                            provider: 'yandex#search',
+                            noPlacemark: false
+                        }
+                    });
+
+                    ymap.controls.add(searchControl);
+
+                    // Обработчик выбора результата поиска
+                    searchControl.events.add('resultselect', function (e) {
+                        const results = searchControl.getResultsArray();
+                        const selectedResult = results[e.get('index')];
+
+                        if (selectedResult) {
+                            const coords = selectedResult.geometry.getCoordinates();
+                            selectedCoords = coords;
+
+                            // Удаляем предыдущую метку
+                            if (selectedPlacemark) {
+                                ymap.geoObjects.remove(selectedPlacemark);
+                            }
+
+                            // Добавляем новую метку
+                            selectedPlacemark = new ymaps.Placemark(coords, {
+                                hintContent: selectedResult.properties.get('name'),
+                                balloonContent: selectedResult.properties.get('text')
+                            }, {
+                                preset: 'islands#redIcon',
+                                draggable: true
+                            });
+
+                            ymap.geoObjects.add(selectedPlacemark);
+                            ymap.setCenter(coords, 16);
+
+                            // Обновляем выбранный адрес
+                            const address = selectedResult.properties.get('name') + ', ' + selectedResult.properties.get('description');
+                            updateSelectedAddress(address);
+
+                            // Активируем кнопку подтверждения
+                            confirmAddressBtn.disabled = false;
+                        }
+                    });
+
+                    console.log('Яндекс.Карта успешно инициализирована');
+                } catch (error) {
+                    console.error('Ошибка при инициализации карты:', error);
+                    showNotification('Ошибка при загрузке карты. Пожалуйста, попробуйте позже.');
+                }
+            });
+        }
+
+        function getAddressByCoords(coords) {
+            ymaps.geocode(coords).then(function (res) {
+                const firstGeoObject = res.geoObjects.get(0);
+
+                if (!firstGeoObject) {
+                    updateSelectedAddress('Адрес не найден');
+                    return;
+                }
+
+                // Формируем адрес
+                const address = firstGeoObject.getAddressLine();
+
+                // Обновляем баллун метки
+                if (selectedPlacemark) {
+                    selectedPlacemark.properties.set({
+                        balloonContent: address
+                    });
+                }
+
+                // Обновляем выбранный адрес
+                updateSelectedAddress(address);
+            }).catch(function (error) {
+                console.error('Ошибка геокодирования:', error);
+                updateSelectedAddress('Ошибка определения адреса');
+            });
+        }
+
+        function updateSelectedAddress(address) {
+            selectedMapAddress = address;
+            selectedAddressText.textContent = address;
+            selectedAddressInfo.style.display = 'block';
+        }
+
+        function resetMapSelection() {
+            selectedMapAddress = '';
+            selectedCoords = null;
+
+            if (selectedPlacemark && ymap) {
+                ymap.geoObjects.remove(selectedPlacemark);
+                selectedPlacemark = null;
+            }
+
+            selectedAddressInfo.style.display = 'none';
+            confirmAddressBtn.disabled = true;
+            if (addressDetails) addressDetails.value = '';
+        }
+
+        function confirmAddressFromMap() {
+            if (selectedMapAddress) {
+                // Устанавливаем адрес в поле ввода
+                const details = addressDetails.value.trim();
+                const fullAddress = details ? `${selectedMapAddress} (${details})` : selectedMapAddress;
+                deliveryAddress.value = fullAddress;
+
+                // Закрываем модальное окно
+                closeModal(mapModal);
+
+                showNotification('Адрес успешно выбран на карте!');
+            } else {
+                showNotification('Пожалуйста, выберите адрес на карте');
+            }
         }
 
         // Функции для работы с адресом доставки
@@ -2480,74 +4046,28 @@
             });
         }
 
-        // Локальные данные для fallback
-        function getDefaultMenuItems() {
-            return [
-                // ШАШЛЫКИ
-                {
-                    id: 1,
-                    name: "Свиная шея",
-                    category: "shashlik",
-                    price: 2500,
-                    weight: "1 кг",
-                    description: "Нежная свиная шея, маринованная в луке и специях",
-                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    age_restricted: false
-                },
-                {
-                    id: 2,
-                    name: "Свиная корейка на кости",
-                    category: "shashlik",
-                    price: 2500,
-                    weight: "1 кг",
-                    description: "Сочная свиная корейка на кости с ароматными специями",
-                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    age_restricted: false
-                },
-                // БУРГЕРЫ
-                {
-                    id: 12,
-                    name: "Крутая чика",
-                    category: "burger",
-                    price: 450,
-                    weight: "порция",
-                    description: "Булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый",
-                    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    age_restricted: false
-                },
-                // НАПИТКИ
-                {
-                    id: 28,
-                    name: "Адреналин Раш",
-                    category: "drinks",
-                    price: 208,
-                    weight: "0,449 л, жб",
-                    description: "Энергетический напиток",
-                    image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    age_restricted: true
-                }
-            ];
-        }
+        function initThemeToggle() {
+            const savedTheme = localStorage.getItem('ugalek_theme') || 'dark';
 
-        function getDefaultCombos() {
-            return [
-                {
-                    id: 1,
-                    name: "Комбо для двоих",
-                    price: 850,
-                    savings: 150,
-                    items: ["Шашлык из свинины (300г)", "Классический бургер", "Картофель фри (2 порции)", "2 напитка на выбор"],
-                    age_restricted: false
-                },
-                {
-                    id: 2,
-                    name: "Мясной пир",
-                    price: 1200,
-                    savings: 200,
-                    items: ["Шашлык из свинины (300г)", "Шашлык из курицы (300г)", "2 классических бургера", "Картофель фри (2 порции)", "4 напитка на выбор"],
-                    age_restricted: false
+            // Применяем сохраненную тему
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-theme');
+
+                if (document.body.classList.contains('light-theme')) {
+                    localStorage.setItem('ugalek_theme', 'light');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    localStorage.setItem('ugalek_theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
                 }
-            ];
+            });
         }
     </script>
 </body>

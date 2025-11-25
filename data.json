@@ -6,7 +6,7 @@
       "category": "shashlik",
       "price": 2500,
       "weight": "1 КГ",
-      "description": "Свиная шея на мангале",
+      "description": "Нежное мясо свиной шеи, маринованное и приготовленное на мангале",
       "image": "",
       "ageRestricted": false
     },
@@ -16,7 +16,7 @@
       "category": "shashlik",
       "price": 2500,
       "weight": "1 КГ",
-      "description": "Свиная корейка на кости на мангале",
+      "description": "Сочная свиная корейка на кости с хрустящей корочкой",
       "image": "",
       "ageRestricted": false
     },
@@ -26,7 +26,7 @@
       "category": "shashlik",
       "price": 1500,
       "weight": "1 КГ",
-      "description": "Куриное филе на мангале",
+      "description": "Нежное куриное филе в специальном маринаде",
       "image": "",
       "ageRestricted": false
     },
@@ -36,7 +36,7 @@
       "category": "shashlik",
       "price": 800,
       "weight": "порция",
-      "description": "Грибы шампиньоны на мангале",
+      "description": "Ароматные грибы-шампиньоны на гриле",
       "image": "",
       "ageRestricted": false
     },
@@ -46,7 +46,7 @@
       "category": "shashlik",
       "price": 3500,
       "weight": "1 КГ",
-      "description": "Баранина мякоть на мангале",
+      "description": "Отборная баранина с традиционными специями",
       "image": "",
       "ageRestricted": false
     },
@@ -56,7 +56,7 @@
       "category": "shashlik",
       "price": 1300,
       "weight": "1 КГ",
-      "description": "Люля куриные на мангале",
+      "description": "Нежные куриные люля с зеленью и специями",
       "image": "",
       "ageRestricted": false
     },
@@ -66,7 +66,7 @@
       "category": "shashlik",
       "price": 1800,
       "weight": "1 КГ",
-      "description": "Люля говяжьи на мангале",
+      "description": "Ароматные говяжьи люля с восточными специями",
       "image": "",
       "ageRestricted": false
     },
@@ -76,7 +76,7 @@
       "category": "shashlik",
       "price": 400,
       "weight": "порция",
-      "description": "Картофель кольца на мангале",
+      "description": "Картофельные кольца с травами на мангале",
       "image": "",
       "ageRestricted": false
     },
@@ -86,7 +86,7 @@
       "category": "shashlik",
       "price": 900,
       "weight": "1 ШТ",
-      "description": "Цыплёнок табака",
+      "description": "Цыпленок табака с чесночным соусом",
       "image": "",
       "ageRestricted": false
     },
@@ -96,7 +96,7 @@
       "category": "shashlik",
       "price": 100,
       "weight": "1 ШТ",
-      "description": "Лаваш тонкий",
+      "description": "Свежий тонкий лаваш",
       "image": "",
       "ageRestricted": false
     },
@@ -106,7 +106,7 @@
       "category": "shashlik",
       "price": 100,
       "weight": "1 ШТ",
-      "description": "Лаваш пышный",
+      "description": "Свежий пышный лаваш",
       "image": "",
       "ageRestricted": false
     },
@@ -115,7 +115,7 @@
       "name": "Крутая чика",
       "category": "burger",
       "price": 450,
-      "weight": "порция",
+      "weight": "330г",
       "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый",
       "image": "",
       "ageRestricted": false
@@ -125,7 +125,7 @@
       "name": "Крутой Джентельмен",
       "category": "burger",
       "price": 500,
-      "weight": "порция",
+      "weight": "380г",
       "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый, яйцо куриное",
       "image": "",
       "ageRestricted": false
@@ -135,7 +135,7 @@
       "name": "Мистер бекон",
       "category": "burger",
       "price": 450,
-      "weight": "порция",
+      "weight": "350г",
       "description": "белая булочка, соус красный, котлета свиная, сыр плавленый, майонез, огурец соленый, лук красный",
       "image": "",
       "ageRestricted": false
@@ -145,7 +145,7 @@
       "name": "Угольный блюз",
       "category": "burger",
       "price": 550,
-      "weight": "порция",
+      "weight": "400г",
       "description": "булочка черная, говяжья котлета, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
       "image": "",
       "ageRestricted": false
@@ -155,7 +155,7 @@
       "name": "Угольный блюз XXL",
       "category": "burger",
       "price": 800,
-      "weight": "порция",
+      "weight": "650г",
       "description": "булочка черная, говяжья котлета 2 шт, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
       "image": "",
       "ageRestricted": false
@@ -165,7 +165,7 @@
       "name": "Крабс бургер",
       "category": "burger",
       "price": 550,
-      "weight": "порция",
+      "weight": "370г",
       "description": "булочка черная, крабовая котлета, томаты, огурец свежий, лук красный, соус нежный, сыр плавленый",
       "image": "",
       "ageRestricted": false
@@ -175,7 +175,7 @@
       "name": "Планета уголёк",
       "category": "burger",
       "price": 300,
-      "weight": "порция",
+      "weight": "280г",
       "description": "булочка черная, котлета куриная, соус зернистый, соус ворчестер, огурец соленый, лук красный",
       "image": "",
       "ageRestricted": false
@@ -186,7 +186,7 @@
       "category": "fry",
       "price": 200,
       "weight": "150 гр",
-      "description": "Картофель фри",
+      "description": "Хрустящий картофель фри",
       "image": "",
       "ageRestricted": false
     },
@@ -196,7 +196,7 @@
       "category": "fry",
       "price": 200,
       "weight": "120 гр",
-      "description": "Картофель по деревенски",
+      "description": "Ароматный картофель по-деревенски с травами",
       "image": "",
       "ageRestricted": false
     },
@@ -206,7 +206,7 @@
       "category": "fry",
       "price": 300,
       "weight": "6 шт",
-      "description": "Сырные палочки",
+      "description": "Хрустящие сырные палочки с моцареллой",
       "image": "",
       "ageRestricted": false
     },
@@ -216,7 +216,7 @@
       "category": "fry",
       "price": 350,
       "weight": "6 шт",
-      "description": "Куриные трипсы",
+      "description": "Хрустящие куриные полоски в панировке",
       "image": "",
       "ageRestricted": false
     },
@@ -226,7 +226,7 @@
       "category": "fry",
       "price": 600,
       "weight": "6 шт",
-      "description": "Куриные крылья острые",
+      "description": "Острые куриные крылья в фирменном соусе",
       "image": "",
       "ageRestricted": false
     },
@@ -236,7 +236,7 @@
       "category": "fry",
       "price": 600,
       "weight": "6 шт",
-      "description": "Куриные крылья терияки",
+      "description": "Куриные крылья в соусе терияки",
       "image": "",
       "ageRestricted": false
     },
@@ -246,7 +246,7 @@
       "category": "fry",
       "price": 600,
       "weight": "10 шт",
-      "description": "Креветки кольца фурай",
+      "description": "Хрустящие кольца из креветок",
       "image": "",
       "ageRestricted": false
     },
@@ -255,7 +255,7 @@
       "name": "Курица в лаваше",
       "category": "lavash",
       "price": 350,
-      "weight": "порция",
+      "weight": "320г",
       "description": "лаваш, соус зернистый, соус красный, салат летний, курица жареная",
       "image": "",
       "ageRestricted": false
@@ -265,7 +265,7 @@
       "name": "Свинина в лаваше",
       "category": "lavash",
       "price": 350,
-      "weight": "порция",
+      "weight": "330г",
       "description": "лаваш, соус красный, соус зернистый, свинина жареная, салат летний",
       "image": "",
       "ageRestricted": false
@@ -276,7 +276,7 @@
       "category": "sauce",
       "price": 80,
       "weight": "50г",
-      "description": "Красный соус",
+      "description": "Пикантный красный соус",
       "image": "",
       "ageRestricted": false
     },
@@ -286,7 +286,7 @@
       "category": "sauce",
       "price": 80,
       "weight": "50г",
-      "description": "Белый соус",
+      "description": "Нежный белый соус",
       "image": "",
       "ageRestricted": false
     },
@@ -296,7 +296,7 @@
       "category": "sauce",
       "price": 80,
       "weight": "50г",
-      "description": "Сырный соус",
+      "description": "Ароматный сырный соус",
       "image": "",
       "ageRestricted": false
     },
@@ -306,7 +306,7 @@
       "category": "sauce",
       "price": 80,
       "weight": "50г",
-      "description": "Сладкий Чили соус",
+      "description": "Сладко-острый соус Чили",
       "image": "",
       "ageRestricted": false
     },
@@ -316,7 +316,7 @@
       "category": "sauce",
       "price": 80,
       "weight": "50г",
-      "description": "Томатный соус",
+      "description": "Классический томатный соус",
       "image": "",
       "ageRestricted": false
     },
@@ -325,8 +325,9 @@
       "name": "Адреналин Раш",
       "category": "drinks",
       "price": 208,
-      "weight": "0,449 жб",
-      "description": "Адреналин Раш",
+      "volume": "0,449 л",
+      "package": "жб",
+      "description": "Энергетический напиток",
       "image": "",
       "ageRestricted": true
     },
@@ -335,8 +336,9 @@
       "name": "Мартовский грушевый",
       "category": "drinks",
       "price": 114,
-      "weight": "0,5 с/б",
-      "description": "Мартовский грушевый",
+      "volume": "0,5 л",
+      "package": "с/б",
+      "description": "Грушевый напиток",
       "image": "",
       "ageRestricted": false
     },
@@ -345,8 +347,9 @@
       "name": "Ипатовский грушёвый",
       "category": "drinks",
       "price": 184,
-      "weight": "1,25л",
-      "description": "Ипатовский грушёвый",
+      "volume": "1,25 л",
+      "package": "ПЭТ",
+      "description": "Грушевый напиток",
       "image": "",
       "ageRestricted": false
     },
@@ -355,8 +358,10 @@
       "name": "Кока-Кола",
       "category": "drinks",
       "price": 108,
-      "weight": "0,33 жб (Ирак)",
-      "description": "Кока-Кола",
+      "volume": "0,33 л",
+      "package": "жб",
+      "origin": "Ирак",
+      "description": "Классическая Coca-Cola",
       "image": "",
       "ageRestricted": false
     },
@@ -365,8 +370,9 @@
       "name": "Крафт Роял тархун, дыня и фейхоа",
       "category": "drinks",
       "price": 124,
-      "weight": "0,41л ст.",
-      "description": "Крафт Роял тархун, дыня и фейхоа",
+      "volume": "0,41 л",
+      "package": "ст",
+      "description": "Крафтовый напиток с тархуном, дыней и фейхоа",
       "image": "",
       "ageRestricted": false
     },
@@ -375,8 +381,9 @@
       "name": "Крафт Роял фейхоа, ягоды асаи и орхидея",
       "category": "drinks",
       "price": 124,
-      "weight": "0,41л ст.",
-      "description": "Крафт Роял фейхоа, ягоды асаи и орхидея",
+      "volume": "0,41 л",
+      "package": "ст",
+      "description": "Крафтовый напиток с фейхоа, ягодами асаи и орхидеей",
       "image": "",
       "ageRestricted": false
     },
@@ -385,8 +392,9 @@
       "name": "Напиток газ лемонарий с соком мохито",
       "category": "drinks",
       "price": 110,
-      "weight": "0,45жб",
-      "description": "Напиток газ лемонарий с соком мохито",
+      "volume": "0,45 л",
+      "package": "жб",
+      "description": "Газированный напиток со вкусом мохито",
       "image": "",
       "ageRestricted": false
     },
@@ -395,8 +403,9 @@
       "name": "Напиток сокосод. Сочная долина",
       "category": "drinks",
       "price": 162,
-      "weight": "0,95л яблоко",
-      "description": "Напиток сокосод. Сочная долина",
+      "volume": "0,95 л",
+      "flavor": "яблоко",
+      "description": "Сокосодержащий напиток со вкусом яблока",
       "image": "",
       "ageRestricted": false
     },
@@ -405,8 +414,9 @@
       "name": "Нарзан газ",
       "category": "drinks",
       "price": 130,
-      "weight": "0,45л ст.",
-      "description": "Нарзан газ",
+      "volume": "0,45 л",
+      "package": "ст",
+      "description": "Лечебно-столовая минеральная вода",
       "image": "",
       "ageRestricted": false
     },
@@ -415,8 +425,9 @@
       "name": "От винта клубника/мохито",
       "category": "drinks",
       "price": 126,
-      "weight": "0,45л с/б",
-      "description": "От винта клубника/мохито",
+      "volume": "0,45 л",
+      "package": "с/б",
+      "description": "Напиток со вкусом клубники и мохито",
       "image": "",
       "ageRestricted": false
     },
@@ -425,8 +436,9 @@
       "name": "Рычал Су",
       "category": "drinks",
       "price": 174,
-      "weight": "0,5л с/б",
-      "description": "Рычал Су",
+      "volume": "0,5 л",
+      "package": "с/б",
+      "description": "Минеральная вода",
       "image": "",
       "ageRestricted": false
     },
@@ -435,8 +447,9 @@
       "name": "Сок вкусносок",
       "category": "drinks",
       "price": 102,
-      "weight": "0,95л мульти фрукт",
-      "description": "Сок вкусносок",
+      "volume": "0,95 л",
+      "flavor": "мульти фрукт",
+      "description": "Сок мультифрукт",
       "image": "",
       "ageRestricted": false
     },
@@ -445,8 +458,9 @@
       "name": "Сок добрый",
       "category": "drinks",
       "price": 220,
-      "weight": "1л апельсин-мандарин",
-      "description": "Сок добрый",
+      "volume": "1 л",
+      "flavor": "апельсин-мандарин",
+      "description": "Сок апельсин-мандарин",
       "image": "",
       "ageRestricted": false
     },
@@ -455,8 +469,10 @@
       "name": "Старые добрые традиции",
       "category": "drinks",
       "price": 104,
-      "weight": "0,5л барбарис с/б",
-      "description": "Старые добрые традиции",
+      "volume": "0,5 л",
+      "flavor": "барбарис",
+      "package": "с/б",
+      "description": "Напиток со вкусом барбариса",
       "image": "",
       "ageRestricted": false
     },
@@ -465,8 +481,9 @@
       "name": "Чай фруктомания черный лимон",
       "category": "drinks",
       "price": 72,
-      "weight": "0,5л Пэт",
-      "description": "Чай фруктомания черный лимон",
+      "volume": "0,5 л",
+      "package": "ПЭТ",
+      "description": "Черный чай с лимоном",
       "image": "",
       "ageRestricted": false
     },
@@ -475,28 +492,31 @@
       "name": "Энергетик кайман ориджинал Энерджи",
       "category": "drinks",
       "price": 114,
-      "weight": "0,45л жб",
-      "description": "Энергетик кайман ориджинал Энерджи",
+      "volume": "0,45 л",
+      "package": "жб",
+      "description": "Энергетический напиток",
       "image": "",
-      "ageRestricted": false
+      "ageRestricted": true
     },
     {
       "id": 49,
       "name": "Энергетик бёрн",
       "category": "drinks",
       "price": 206,
-      "weight": "0,449л жб",
-      "description": "Энергетик бёрн",
+      "volume": "0,449 л",
+      "package": "жб",
+      "description": "Энергетический напиток",
       "image": "",
-      "ageRestricted": false
+      "ageRestricted": true
     },
     {
       "id": 50,
-      "name": "Горная вершина",
+      "name": "Горная вершина газ",
       "category": "drinks",
       "price": 54,
-      "weight": "0,5газ",
-      "description": "Горная вершина",
+      "volume": "0,5 л",
+      "type": "газ",
+      "description": "Вода питьевая газированная",
       "image": "",
       "ageRestricted": false
     },
@@ -505,8 +525,9 @@
       "name": "Горная вершина негаз",
       "category": "drinks",
       "price": 54,
-      "weight": "0,5 негаз",
-      "description": "Горная вершина негаз",
+      "volume": "0,5 л",
+      "type": "негаз",
+      "description": "Вода питьевая негазированная",
       "image": "",
       "ageRestricted": false
     },
@@ -515,8 +536,9 @@
       "name": "Кока-кола Добрый",
       "category": "drinks",
       "price": 152,
-      "weight": "1л",
-      "description": "Кока-кола Добрый",
+      "volume": "1 л",
+      "package": "ПЭТ",
+      "description": "Coca-Cola",
       "image": "",
       "ageRestricted": false
     },
@@ -525,8 +547,10 @@
       "name": "Пепси",
       "category": "drinks",
       "price": 82,
-      "weight": "0,3 жб (Афган)",
-      "description": "Пепси",
+      "volume": "0,3 л",
+      "package": "жб",
+      "origin": "Афган",
+      "description": "Pepsi",
       "image": "",
       "ageRestricted": false
     },
@@ -535,8 +559,9 @@
       "name": "Пепси",
       "category": "drinks",
       "price": 178,
-      "weight": "1л",
-      "description": "Пепси",
+      "volume": "1 л",
+      "package": "ПЭТ",
+      "description": "Pepsi",
       "image": "",
       "ageRestricted": false
     },
@@ -545,8 +570,9 @@
       "name": "Родник груша",
       "category": "drinks",
       "price": 44,
-      "weight": "0,45л груша",
-      "description": "Родник груша",
+      "volume": "0,45 л",
+      "flavor": "груша",
+      "description": "Напиток со вкусом груши",
       "image": "",
       "ageRestricted": false
     },
@@ -555,18 +581,20 @@
       "name": "Родник кола",
       "category": "drinks",
       "price": 44,
-      "weight": "0,45л кола",
-      "description": "Родник кола",
+      "volume": "0,45 л",
+      "flavor": "кола",
+      "description": "Напиток со вкусом колы",
       "image": "",
       "ageRestricted": false
     },
     {
       "id": 57,
-      "name": "Родник мин вода",
+      "name": "Родник мин вода газ",
       "category": "drinks",
       "price": 32,
-      "weight": "0,48л",
-      "description": "Родник мин вода",
+      "volume": "0,48 л",
+      "type": "газ",
+      "description": "Минеральная вода газированная",
       "image": "",
       "ageRestricted": false
     },
@@ -575,8 +603,9 @@
       "name": "Родник мин вода негаз",
       "category": "drinks",
       "price": 34,
-      "weight": "0,48л",
-      "description": "Родник мин вода негаз",
+      "volume": "0,48 л",
+      "type": "негаз",
+      "description": "Минеральная вода негазированная",
       "image": "",
       "ageRestricted": false
     }
@@ -608,6 +637,32 @@
         "4 напитка на выбор"
       ],
       "ageRestricted": false
+    },
+    {
+      "id": 3,
+      "name": "Бургер-ланч",
+      "price": 650,
+      "savings": 100,
+      "items": [
+        "Любой бургер",
+        "Картофель фри",
+        "Напиток на выбор"
+      ],
+      "ageRestricted": false
+    },
+    {
+      "id": 4,
+      "name": "Семейный ужин",
+      "price": 2200,
+      "savings": 300,
+      "items": [
+        "Свиная шея (500г)",
+        "Цыплёнок табака",
+        "2 лаваша с мясом",
+        "Картофель по-деревенски",
+        "4 напитка на выбор"
+      ],
+      "ageRestricted": false
     }
   ],
   "settings": {
@@ -617,13 +672,33 @@
       "phone": "+7 (906) 428-46-30",
       "email": "aksenova.2590@mail.ru",
       "openingTime": "11:00",
-      "closingTime": "23:00"
+      "closingTime": "23:00",
+      "instagram": "",
+      "whatsapp": "+79064284630"
     },
     "delivery": {
       "minOrder": 500,
       "freeDelivery": 1500,
       "deliveryCost": 100,
-      "deliveryTime": "30-45 минут"
-    }
+      "deliveryTime": "30-45 минут",
+      "deliveryZones": [
+        {"zone": "В пределах поселка", "cost": 100, "minOrder": 500},
+        {"zone": "Пригород", "cost": 150, "minOrder": 800}
+      ]
+    },
+    "payment": {
+      "cash": true,
+      "card": true,
+      "online": true,
+      "sberbank": false
+    },
+    "categories": [
+      {"id": "shashlik", "name": "Шашлык", "order": 1},
+      {"id": "burger", "name": "Бургеры", "order": 2},
+      {"id": "fry", "name": "Фритюр", "order": 3},
+      {"id": "lavash", "name": "Блюда из лаваша", "order": 4},
+      {"id": "sauce", "name": "Соусы", "order": 5},
+      {"id": "drinks", "name": "Напитки", "order": 6}
+    ]
   }
 }

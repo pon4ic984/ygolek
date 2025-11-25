@@ -7,7 +7,7 @@
       "price": 2500,
       "weight": "1 КГ",
       "description": "Нежное мясо свиной шеи, маринованное и приготовленное на мангале",
-      "image": "",
+      "image": "https://i.ibb.co/mCsqKky7/image.jpg",
       "ageRestricted": false
     },
     {
@@ -117,7 +117,7 @@
       "price": 450,
       "weight": "330г",
       "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый",
-      "image": "",
+      "image": "https://i.ibb.co/9mS8r3pd/image.jpg",
       "ageRestricted": false
     },
     {
@@ -127,7 +127,7 @@
       "price": 500,
       "weight": "380г",
       "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый, яйцо куриное",
-      "image": "",
+      "image": "https://i.ibb.co/Hp4c6Nc0/image.jpg",
       "ageRestricted": false
     },
     {
@@ -137,7 +137,7 @@
       "price": 450,
       "weight": "350г",
       "description": "белая булочка, соус красный, котлета свиная, сыр плавленый, майонез, огурец соленый, лук красный",
-      "image": "",
+      "image": "https://i.ibb.co/Zpmy7LKX/image.jpg",
       "ageRestricted": false
     },
     {
@@ -147,7 +147,7 @@
       "price": 550,
       "weight": "400г",
       "description": "булочка черная, говяжья котлета, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
-      "image": "",
+      "image": "https://i.ibb.co/XxNRPq9x/image.jpg",
       "ageRestricted": false
     },
     {
@@ -157,7 +157,7 @@
       "price": 800,
       "weight": "650г",
       "description": "булочка черная, говяжья котлета 2 шт, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
-      "image": "",
+      "image": "https://i.ibb.co/rfNMChY1/image.jpg",
       "ageRestricted": false
     },
     {
@@ -167,7 +167,7 @@
       "price": 550,
       "weight": "370г",
       "description": "булочка черная, крабовая котлета, томаты, огурец свежий, лук красный, соус нежный, сыр плавленый",
-      "image": "",
+      "image": "https://i.ibb.co/LXPPQTpf/image.jpg",
       "ageRestricted": false
     },
     {
@@ -197,7 +197,7 @@
       "price": 200,
       "weight": "120 гр",
       "description": "Ароматный картофель по-деревенски с травами",
-      "image": "",
+      "image": "https://i.ibb.co/14ywd5c/image.jpg",
       "ageRestricted": false
     },
     {
@@ -207,7 +207,7 @@
       "price": 300,
       "weight": "6 шт",
       "description": "Хрустящие сырные палочки с моцареллой",
-      "image": "",
+      "image": "https://i.ibb.co/cV66JHY/image.jpg",
       "ageRestricted": false
     },
     {

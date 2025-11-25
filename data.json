@@ -17,7 +17,7 @@
       "price": 2500,
       "weight": "1 КГ",
       "description": "Сочная свиная корейка на кости с хрустящей корочкой",
-      "image": "",
+      "image": "https://i.ibb.co/JwkKRZgk/image.jpg",
       "ageRestricted": false
     },
     {
@@ -47,7 +47,7 @@
       "price": 3500,
       "weight": "1 КГ",
       "description": "Отборная баранина с традиционными специями",
-      "image": "",
+      "image": "https://i.ibb.co/FL0ZVPJX/image.jpg",
       "ageRestricted": false
     },
     {
@@ -57,7 +57,7 @@
       "price": 1300,
       "weight": "1 КГ",
       "description": "Нежные куриные люля с зеленью и специями",
-      "image": "",
+      "image": "https://i.ibb.co/qMXQgZ1f/image.jpg",
       "ageRestricted": false
     },
     {
@@ -67,7 +67,7 @@
       "price": 1800,
       "weight": "1 КГ",
       "description": "Ароматные говяжьи люля с восточными специями",
-      "image": "",
+      "image": "https://i.ibb.co/FqhQyjwG/image.jpg",
       "ageRestricted": false
     },
     {
@@ -87,7 +87,7 @@
       "price": 900,
       "weight": "1 ШТ",
       "description": "Цыпленок табака с чесночным соусом",
-      "image": "",
+      "image": "https://i.ibb.co/n8zgfhvC/image.jpg",
       "ageRestricted": false
     },
     {
@@ -177,7 +177,7 @@
       "price": 300,
       "weight": "280г",
       "description": "булочка черная, котлета куриная, соус зернистый, соус ворчестер, огурец соленый, лук красный",
-      "image": "",
+      "image": "https://i.ibb.co/BHG8rz1F/image.jpg",
       "ageRestricted": false
     },
     {
@@ -227,7 +227,7 @@
       "price": 600,
       "weight": "6 шт",
       "description": "Острые куриные крылья в фирменном соусе",
-      "image": "",
+      "image": "https://i.ibb.co/zT6dfhwj/2.jpg",
       "ageRestricted": false
     },
     {

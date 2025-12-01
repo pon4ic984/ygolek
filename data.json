@@ -27,7 +27,7 @@
       "price": 1500,
       "weight": "1 КГ",
       "description": "Нежное куриное филе в специальном маринаде",
-      "image": "https://via.placeholder.com/600x400.png?text=Куриное+филе",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Grilled_Chicken_Breasts_%2828905381261%29.jpg",
       "ageRestricted": false
     },
     {
@@ -77,7 +77,7 @@
       "price": 400,
       "weight": "порция",
       "description": "Картофельные кольца с травами на мангале",
-      "image": "https://via.placeholder.com/600x400.png?text=Картофель+на+мангале",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Roasted_Potato_Wedges_with_Shallots_and_Rosemary_%285706897999%29.jpg",
       "ageRestricted": false
     },
     {
@@ -97,7 +97,7 @@
       "price": 100,
       "weight": "1 ШТ",
       "description": "Свежий тонкий лаваш",
-      "image": "https://via.placeholder.com/600x400.png?text=Лаваш+тонкий",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Lavash_Bread.jpg",
       "ageRestricted": false
     },
     {
@@ -107,7 +107,7 @@
       "price": 100,
       "weight": "1 ШТ",
       "description": "Свежий пышный лаваш",
-      "image": "https://via.placeholder.com/600x400.png?text=Лаваш+пышный",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bread_on_plate.jpg",
       "ageRestricted": false
     },
     {
@@ -247,7 +247,7 @@
       "price": 600,
       "weight": "10 шт",
       "description": "Хрустящие кольца из креветок",
-      "image": "https://via.placeholder.com/600x400.png?text=Креветки+фурай",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Cooked_shrimp_on_a_plate.jpg",
       "ageRestricted": false
     },
     {
@@ -267,7 +267,7 @@
       "price": 350,
       "weight": "330г",
       "description": "лаваш, соус красный, соус зернистый, свинина жареная, салат летний",
-      "image": "https://via.placeholder.com/600x400.png?text=Свинина+в+лаваше",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Lavash_Bread.jpg",
       "ageRestricted": false
     },
     {
@@ -277,7 +277,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Пикантный красный соус",
-      "image": "https://via.placeholder.com/600x400.png?text=Красный+соус",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
       "ageRestricted": false
     },
     {
@@ -287,7 +287,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Нежный белый соус",
-      "image": "https://via.placeholder.com/600x400.png?text=Белый+соус",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
       "ageRestricted": false
     },
     {
@@ -297,7 +297,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Ароматный сырный соус",
-      "image": "https://via.placeholder.com/600x400.png?text=Сырный+соус",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
       "ageRestricted": false
     },
     {
@@ -307,7 +307,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Сладко-острый соус Чили",
-      "image": "https://via.placeholder.com/600x400.png?text=Соус+Сладкий+Чили",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/48/Sweet_Chili_Sauce.jpg",
       "ageRestricted": false
     },
     {
@@ -317,7 +317,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Классический томатный соус",
-      "image": "https://via.placeholder.com/600x400.png?text=Томатный+соус",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
       "ageRestricted": false
     },
     {
@@ -328,7 +328,7 @@
       "volume": "0,449 л",
       "package": "жб",
       "description": "Энергетический напиток",
-      "image": "https://via.placeholder.com/600x400.png?text=Адреналин+Раш",
+      "image": "",
       "ageRestricted": true
     },
     {
@@ -339,7 +339,7 @@
       "volume": "0,5 л",
       "package": "с/б",
       "description": "Грушевый напиток",
-      "image": "https://via.placeholder.com/600x400.png?text=Мартовский+грушевый",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -350,7 +350,7 @@
       "volume": "1,25 л",
       "package": "ПЭТ",
       "description": "Грушевый напиток",
-      "image": "https://via.placeholder.com/600x400.png?text=Ипатовский+грушёвый",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -362,7 +362,7 @@
       "package": "жб",
       "origin": "Ирак",
       "description": "Классическая Coca-Cola",
-      "image": "https://via.placeholder.com/600x400.png?text=Кока-Кола+0,33+л",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -373,7 +373,7 @@
       "volume": "0,41 л",
       "package": "ст",
       "description": "Крафтовый напиток с тархуном, дыней и фейхоа",
-      "image": "https://via.placeholder.com/600x400.png?text=Крафт+Роял+тархун+дыня+фейхоа",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -384,7 +384,7 @@
       "volume": "0,41 л",
       "package": "ст",
       "description": "Крафтовый напиток с фейхоа, ягодами асаи и орхидеей",
-      "image": "https://via.placeholder.com/600x400.png?text=Крафт+Роял+фейхоа+асаи",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -395,7 +395,7 @@
       "volume": "0,45 л",
       "package": "жб",
       "description": "Газированный напиток со вкусом мохито",
-      "image": "https://via.placeholder.com/600x400.png?text=Лемонарий+мохито",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -406,7 +406,7 @@
       "volume": "0,95 л",
       "flavor": "яблоко",
       "description": "Сокосодержащий напиток со вкусом яблока",
-      "image": "https://via.placeholder.com/600x400.png?text=Сочная+долина+яблоко",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -417,7 +417,7 @@
       "volume": "0,45 л",
       "package": "ст",
       "description": "Лечебно-столовая минеральная вода",
-      "image": "https://via.placeholder.com/600x400.png?text=Нарзан+газ",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -428,7 +428,7 @@
       "volume": "0,45 л",
       "package": "с/б",
       "description": "Напиток со вкусом клубники и мохито",
-      "image": "https://via.placeholder.com/600x400.png?text=От+винта+клубника+мохито",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -439,7 +439,7 @@
       "volume": "0,5 л",
       "package": "с/б",
       "description": "Минеральная вода",
-      "image": "https://via.placeholder.com/600x400.png?text=Рычал+Су",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -450,7 +450,7 @@
       "volume": "0,95 л",
       "flavor": "мульти фрукт",
       "description": "Сок мультифрукт",
-      "image": "https://via.placeholder.com/600x400.png?text=Сок+Вкусносок",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -461,7 +461,7 @@
       "volume": "1 л",
       "flavor": "апельсин-мандарин",
       "description": "Сок апельсин-мандарин",
-      "image": "https://via.placeholder.com/600x400.png?text=Сок+Добрый+апельсин+мандарин",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -473,7 +473,7 @@
       "flavor": "барбарис",
       "package": "с/б",
       "description": "Напиток со вкусом барбариса",
-      "image": "https://via.placeholder.com/600x400.png?text=Старые+добрые+традиции+барбарис",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -484,7 +484,7 @@
       "volume": "0,5 л",
       "package": "ПЭТ",
       "description": "Черный чай с лимоном",
-      "image": "https://via.placeholder.com/600x400.png?text=Чай+Фруктомания+лимон",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -495,7 +495,7 @@
       "volume": "0,45 л",
       "package": "жб",
       "description": "Энергетический напиток",
-      "image": "https://via.placeholder.com/600x400.png?text=Кайман+Original+Energy",
+      "image": "",
       "ageRestricted": true
     },
     {
@@ -506,7 +506,7 @@
       "volume": "0,449 л",
       "package": "жб",
       "description": "Энергетический напиток",
-      "image": "https://via.placeholder.com/600x400.png?text=Burn+Energy",
+      "image": "",
       "ageRestricted": true
     },
     {
@@ -517,7 +517,7 @@
       "volume": "0,5 л",
       "type": "газ",
       "description": "Вода питьевая газированная",
-      "image": "https://via.placeholder.com/600x400.png?text=Горная+вершина+газ",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -528,7 +528,7 @@
       "volume": "0,5 л",
       "type": "негаз",
       "description": "Вода питьевая негазированная",
-      "image": "https://via.placeholder.com/600x400.png?text=Горная+вершина+негаз",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -539,7 +539,7 @@
       "volume": "1 л",
       "package": "ПЭТ",
       "description": "Coca-Cola",
-      "image": "https://via.placeholder.com/600x400.png?text=Кока-кола+Добрый+1л",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -551,7 +551,7 @@
       "package": "жб",
       "origin": "Афган",
       "description": "Pepsi",
-      "image": "https://via.placeholder.com/600x400.png?text=Pepsi+0,3+л",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -562,7 +562,7 @@
       "volume": "1 л",
       "package": "ПЭТ",
       "description": "Pepsi",
-      "image": "https://via.placeholder.com/600x400.png?text=Pepsi+1+л",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -573,7 +573,7 @@
       "volume": "0,45 л",
       "flavor": "груша",
       "description": "Напиток со вкусом груши",
-      "image": "https://via.placeholder.com/600x400.png?text=Родник+груша",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -584,7 +584,7 @@
       "volume": "0,45 л",
       "flavor": "кола",
       "description": "Напиток со вкусом колы",
-      "image": "https://via.placeholder.com/600x400.png?text=Родник+кола",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -595,7 +595,7 @@
       "volume": "0,48 л",
       "type": "газ",
       "description": "Минеральная вода газированная",
-      "image": "https://via.placeholder.com/600x400.png?text=Родник+мин+вода+газ",
+      "image": "",
       "ageRestricted": false
     },
     {
@@ -606,7 +606,7 @@
       "volume": "0,48 л",
       "type": "негаз",
       "description": "Минеральная вода негазированная",
-      "image": "https://via.placeholder.com/600x400.png?text=Родник+мин+вода+негаз",
+      "image": "",
       "ageRestricted": false
     }
   ],
@@ -682,16 +682,8 @@
       "deliveryCost": 100,
       "deliveryTime": "30-45 минут",
       "deliveryZones": [
-        {
-          "zone": "В пределах поселка",
-          "cost": 100,
-          "minOrder": 500
-        },
-        {
-          "zone": "Пригород",
-          "cost": 150,
-          "minOrder": 800
-        }
+        { "zone": "В пределах поселка", "cost": 100, "minOrder": 500 },
+        { "zone": "Пригород", "cost": 150, "minOrder": 800 }
       ]
     },
     "payment": {
@@ -701,36 +693,12 @@
       "sberbank": false
     },
     "categories": [
-      {
-        "id": "shashlik",
-        "name": "Шашлык",
-        "order": 1
-      },
-      {
-        "id": "burger",
-        "name": "Бургеры",
-        "order": 2
-      },
-      {
-        "id": "fry",
-        "name": "Фритюр",
-        "order": 3
-      },
-      {
-        "id": "lavash",
-        "name": "Блюда из лаваша",
-        "order": 4
-      },
-      {
-        "id": "sauce",
-        "name": "Соусы",
-        "order": 5
-      },
-      {
-        "id": "drinks",
-        "name": "Напитки",
-        "order": 6
-      }
+      { "id": "shashlik", "name": "Шашлык", "order": 1 },
+      { "id": "burger", "name": "Бургеры", "order": 2 },
+      { "id": "fry", "name": "Фритюр", "order": 3 },
+      { "id": "lavash", "name": "Блюда из лаваша", "order": 4 },
+      { "id": "sauce", "name": "Соусы", "order": 5 },
+      { "id": "drinks", "name": "Напитки", "order": 6 }
     ]
   }
 }

@@ -27,7 +27,7 @@
       "price": 1500,
       "weight": "1 КГ",
       "description": "Нежное куриное филе в специальном маринаде",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Grilled_Chicken_Breasts_%2828905381261%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Grilled_Chicken.jpg",
       "ageRestricted": false
     },
     {
@@ -77,7 +77,7 @@
       "price": 400,
       "weight": "порция",
       "description": "Картофельные кольца с травами на мангале",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Roasted_Potato_Wedges_with_Shallots_and_Rosemary_%285706897999%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Potato_Wedges.jpeg",
       "ageRestricted": false
     },
     {
@@ -97,7 +97,7 @@
       "price": 100,
       "weight": "1 ШТ",
       "description": "Свежий тонкий лаваш",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Lavash_Bread.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lavash_Bread.jpg",
       "ageRestricted": false
     },
     {
@@ -107,7 +107,7 @@
       "price": 100,
       "weight": "1 ШТ",
       "description": "Свежий пышный лаваш",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bread_on_plate.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Baked_Bread_on_a_plate_02.jpg",
       "ageRestricted": false
     },
     {
@@ -247,7 +247,7 @@
       "price": 600,
       "weight": "10 шт",
       "description": "Хрустящие кольца из креветок",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Cooked_shrimp_on_a_plate.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried_shrimp_variations.jpg",
       "ageRestricted": false
     },
     {
@@ -267,7 +267,7 @@
       "price": 350,
       "weight": "330г",
       "description": "лаваш, соус красный, соус зернистый, свинина жареная, салат летний",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Lavash_Bread.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_wrap_2.jpg",
       "ageRestricted": false
     },
     {
@@ -277,7 +277,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Пикантный красный соус",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Fresh_Tomato_Sauce_(Unsplash).jpg",
       "ageRestricted": false
     },
     {
@@ -287,7 +287,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Нежный белый соус",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/White_Sauce_Pasta_served_in_an_Aluminium_foil_container.jpg",
       "ageRestricted": false
     },
     {
@@ -297,7 +297,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Ароматный сырный соус",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cheese_sauce_with_tuna_pasta_for_lunch.jpg",
       "ageRestricted": false
     },
     {
@@ -307,7 +307,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Сладко-острый соус Чили",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/48/Sweet_Chili_Sauce.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet_Chili_Sauce_(cropped).jpg",
       "ageRestricted": false
     },
     {
@@ -317,7 +317,7 @@
       "price": 80,
       "weight": "50г",
       "description": "Классический томатный соус",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Fresh_Tomato_Sauce_%28Unsplash%29.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/A_bunny_bread_bowl_with_meat_ball_and_tomato_sauce.jpg",
       "ageRestricted": false
     },
     {
@@ -328,7 +328,7 @@
       "volume": "0,449 л",
       "package": "жб",
       "description": "Энергетический напиток",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Adrenaline_Rush_berry_energy.png",
       "ageRestricted": true
     },
     {
@@ -339,7 +339,7 @@
       "volume": "0,5 л",
       "package": "с/б",
       "description": "Грушевый напиток",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Apple_juice.jpg",
       "ageRestricted": false
     },
     {
@@ -350,7 +350,7 @@
       "volume": "1,25 л",
       "package": "ПЭТ",
       "description": "Грушевый напиток",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Russet_apple_juice.JPG",
       "ageRestricted": false
     },
     {
@@ -362,7 +362,7 @@
       "package": "жб",
       "origin": "Ирак",
       "description": "Классическая Coca-Cola",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Coca-Cola.jpg",
       "ageRestricted": false
     },
     {
@@ -373,7 +373,7 @@
       "volume": "0,41 л",
       "package": "ст",
       "description": "Крафтовый напиток с тархуном, дыней и фейхоа",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Orangejuice.jpg",
       "ageRestricted": false
     },
     {
@@ -384,7 +384,7 @@
       "volume": "0,41 л",
       "package": "ст",
       "description": "Крафтовый напиток с фейхоа, ягодами асаи и орхидеей",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Fresh_Orange_Juice.jpg",
       "ageRestricted": false
     },
     {
@@ -395,7 +395,7 @@
       "volume": "0,45 л",
       "package": "жб",
       "description": "Газированный напиток со вкусом мохито",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_cola.jpg",
       "ageRestricted": false
     },
     {
@@ -406,7 +406,7 @@
       "volume": "0,95 л",
       "flavor": "яблоко",
       "description": "Сокосодержащий напиток со вкусом яблока",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Apple_juice_glass.jpg",
       "ageRestricted": false
     },
     {
@@ -417,7 +417,7 @@
       "volume": "0,45 л",
       "package": "ст",
       "description": "Лечебно-столовая минеральная вода",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
       "ageRestricted": false
     },
     {
@@ -428,7 +428,7 @@
       "volume": "0,45 л",
       "package": "с/б",
       "description": "Напиток со вкусом клубники и мохито",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_juice_1_edit1.jpg",
       "ageRestricted": false
     },
     {
@@ -439,7 +439,7 @@
       "volume": "0,5 л",
       "package": "с/б",
       "description": "Минеральная вода",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mangali_mineral_water.jpg",
       "ageRestricted": false
     },
     {
@@ -450,7 +450,7 @@
       "volume": "0,95 л",
       "flavor": "мульти фрукт",
       "description": "Сок мультифрукт",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_juice_in_a_glass.jpg",
       "ageRestricted": false
     },
     {
@@ -461,7 +461,7 @@
       "volume": "1 л",
       "flavor": "апельсин-мандарин",
       "description": "Сок апельсин-мандарин",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Fresh_Orange_Juice.jpg",
       "ageRestricted": false
     },
     {
@@ -473,7 +473,7 @@
       "flavor": "барбарис",
       "package": "с/б",
       "description": "Напиток со вкусом барбариса",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_cola.jpg",
       "ageRestricted": false
     },
     {
@@ -484,7 +484,7 @@
       "volume": "0,5 л",
       "package": "ПЭТ",
       "description": "Черный чай с лимоном",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tea_in_glass_cup.jpg",
       "ageRestricted": false
     },
     {
@@ -495,7 +495,7 @@
       "volume": "0,45 л",
       "package": "жб",
       "description": "Энергетический напиток",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Speed_Can_Energy_Drink_250ml.jpg",
       "ageRestricted": true
     },
     {
@@ -506,7 +506,7 @@
       "volume": "0,449 л",
       "package": "жб",
       "description": "Энергетический напиток",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Energy_drink_can_art.jpg",
       "ageRestricted": true
     },
     {
@@ -517,7 +517,7 @@
       "volume": "0,5 л",
       "type": "газ",
       "description": "Вода питьевая газированная",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
       "ageRestricted": false
     },
     {
@@ -528,7 +528,7 @@
       "volume": "0,5 л",
       "type": "негаз",
       "description": "Вода питьевая негазированная",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
       "ageRestricted": false
     },
     {
@@ -539,7 +539,7 @@
       "volume": "1 л",
       "package": "ПЭТ",
       "description": "Coca-Cola",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Coca-Cola.jpg",
       "ageRestricted": false
     },
     {
@@ -551,7 +551,7 @@
       "package": "жб",
       "origin": "Афган",
       "description": "Pepsi",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Cola.jpg",
       "ageRestricted": false
     },
     {
@@ -562,7 +562,7 @@
       "volume": "1 л",
       "package": "ПЭТ",
       "description": "Pepsi",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Cola.jpg",
       "ageRestricted": false
     },
     {
@@ -573,7 +573,7 @@
       "volume": "0,45 л",
       "flavor": "груша",
       "description": "Напиток со вкусом груши",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Apple_juice_with_3apples.jpg",
       "ageRestricted": false
     },
     {
@@ -584,7 +584,7 @@
       "volume": "0,45 л",
       "flavor": "кола",
       "description": "Напиток со вкусом колы",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_cola.jpg",
       "ageRestricted": false
     },
     {
@@ -595,7 +595,7 @@
       "volume": "0,48 л",
       "type": "газ",
       "description": "Минеральная вода газированная",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
       "ageRestricted": false
     },
     {
@@ -606,7 +606,7 @@
       "volume": "0,48 л",
       "type": "негаз",
       "description": "Минеральная вода негазированная",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
       "ageRestricted": false
     }
   ],

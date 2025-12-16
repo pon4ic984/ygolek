@@ -1,666 +1,320 @@
 {
   "menu": [
     {
-      "id": 1,
-      "name": "СВИНАЯ ШЕЯ",
-      "category": "shashlik",
-      "price": 2500,
-      "weight": "1 КГ",
-      "description": "Нежное мясо свиной шеи, маринованное и приготовленное на мангале",
-      "image": "https://i.ibb.co/mCsqKky7/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 2,
-      "name": "СВИНАЯ КОРЕЙКА НА КОСТИ",
-      "category": "shashlik",
-      "price": 2500,
-      "weight": "1 КГ",
-      "description": "Сочная свиная корейка на кости с хрустящей корочкой",
-      "image": "https://i.ibb.co/JwkKRZgk/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 3,
-      "name": "КУРИНОЕ ФИЛЕ",
-      "category": "shashlik",
-      "price": 1500,
-      "weight": "1 КГ",
-      "description": "Нежное куриное филе в специальном маринаде",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Grilled_Chicken.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 4,
-      "name": "ГРИБЫ ШАМПИНЬОНЫ",
-      "category": "shashlik",
-      "price": 800,
-      "weight": "порция",
-      "description": "Ароматные грибы-шампиньоны на гриле",
-      "image": "https://i.ibb.co/tMdgbRVD/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 5,
-      "name": "БАРАНИНА МЯКОТЬ",
-      "category": "shashlik",
-      "price": 3500,
-      "weight": "1 КГ",
-      "description": "Отборная баранина с традиционными специями",
-      "image": "https://i.ibb.co/FL0ZVPJX/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 6,
-      "name": "ЛЮЛЯ КУРИНЫЕ",
-      "category": "shashlik",
-      "price": 1300,
-      "weight": "1 КГ",
-      "description": "Нежные куриные люля с зеленью и специями",
-      "image": "https://i.ibb.co/qMXQgZ1f/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 7,
-      "name": "ЛЮЛЯ ГОВЯЖЬИ",
-      "category": "shashlik",
-      "price": 1800,
-      "weight": "1 КГ",
-      "description": "Ароматные говяжьи люля с восточными специями",
-      "image": "https://i.ibb.co/FqhQyjwG/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 8,
-      "name": "КАРТОФЕЛЬ КОЛЬЦА НА МАНГАЛЕ",
-      "category": "shashlik",
-      "price": 400,
-      "weight": "порция",
-      "description": "Картофельные кольца с травами на мангале",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Potato_Wedges.jpeg",
-      "ageRestricted": false
-    },
-    {
-      "id": 9,
-      "name": "ЦЫПЛЁНОК ТАБАКА",
-      "category": "shashlik",
-      "price": 900,
-      "weight": "1 ШТ",
-      "description": "Цыпленок табака с чесночным соусом",
-      "image": "https://i.ibb.co/n8zgfhvC/image.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 10,
-      "name": "ЛАВАШ ТОНКИЙ",
-      "category": "shashlik",
-      "price": 100,
-      "weight": "1 ШТ",
-      "description": "Свежий тонкий лаваш",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lavash_Bread.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 11,
-      "name": "ЛАВАШ ПЫШНЫЙ",
-      "category": "shashlik",
-      "price": 100,
-      "weight": "1 ШТ",
-      "description": "Свежий пышный лаваш",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Baked_Bread_on_a_plate_02.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 12,
-      "name": "Крутая чика",
+      "id": 101,
+      "name": "Крутая Чика",
       "category": "burger",
       "price": 450,
-      "weight": "330г",
-      "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый",
-      "image": "https://i.ibb.co/9mS8r3pd/image.jpg",
+      "weight": "1 шт",
+      "description": "Фирменный бургер «Уголёк».",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 13,
+      "id": 102,
       "name": "Крутой Джентельмен",
       "category": "burger",
       "price": 500,
-      "weight": "380г",
-      "description": "булочка белая, куриная котлета, соус зернистый, соус ворчестер, томаты, огурец соленый, лук красный, сыр плавленый, яйцо куриное",
-      "image": "https://i.ibb.co/Hp4c6Nc0/image.jpg",
+      "weight": "1 шт",
+      "description": "Фирменный бургер «Уголёк».",
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 14,
-      "name": "Мистер бекон",
+      "id": 103,
+      "name": "Мистер Бекон",
       "category": "burger",
       "price": 450,
-      "weight": "350г",
-      "description": "белая булочка, соус красный, котлета свиная, сыр плавленый, майонез, огурец соленый, лук красный",
-      "image": "https://i.ibb.co/Zpmy7LKX/image.jpg",
+      "weight": "1 шт",
+      "description": "Бургер с акцентом на бекон и сочность.",
+      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 15,
-      "name": "Угольный блюз",
+      "id": 104,
+      "name": "Угольный Блюз",
       "category": "burger",
       "price": 550,
-      "weight": "400г",
-      "description": "булочка черная, говяжья котлета, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
-      "image": "https://i.ibb.co/XxNRPq9x/image.jpg",
+      "weight": "1 шт",
+      "description": "Фирменный бургер в стиле «Уголёк».",
+      "image": "https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 16,
-      "name": "Угольный блюз XXL",
+      "id": 105,
+      "name": "Угольный Блюз XXL",
       "category": "burger",
       "price": 800,
-      "weight": "650г",
-      "description": "булочка черная, говяжья котлета 2 шт, бекон, сыр плавленый, салат кол-слоу, соус красный, соус ворчестер",
-      "image": "https://i.ibb.co/rfNMChY1/image.jpg",
+      "weight": "1 шт",
+      "description": "Большой бургер XXL для максимального аппетита.",
+      "image": "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 17,
-      "name": "Крабс бургер",
+      "id": 106,
+      "name": "Крабс Бургер",
       "category": "burger",
       "price": 550,
-      "weight": "370г",
-      "description": "булочка черная, крабовая котлета, томаты, огурец свежий, лук красный, соус нежный, сыр плавленый",
-      "image": "https://i.ibb.co/LXPPQTpf/image.jpg",
+      "weight": "1 шт",
+      "description": "Фирменный бургер «Крабс».",
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 18,
-      "name": "Планета уголёк",
+      "id": 107,
+      "name": "Планета Уголёк",
       "category": "burger",
       "price": 300,
-      "weight": "280г",
-      "description": "булочка черная, котлета куриная, соус зернистый, соус ворчестер, огурец соленый, лук красный",
-      "image": "https://i.ibb.co/BHG8rz1F/image.jpg",
+      "weight": "1 шт",
+      "description": "Лёгкий бургер на каждый день.",
+      "image": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 19,
+      "id": 108,
+      "name": "Хрустящая Курочка",
+      "category": "burger",
+      "price": 350,
+      "weight": "1 шт",
+      "description": "Бургер с хрустящей курочкой.",
+      "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+
+    {
+      "id": 201,
+      "name": "Свиная шея",
+      "category": "shashlik",
+      "price": 200,
+      "weight": "100 г",
+      "description": "Шашлык. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 202,
+      "name": "Свиная корейка на кости",
+      "category": "shashlik",
+      "price": 200,
+      "weight": "100 г",
+      "description": "Шашлык. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 203,
+      "name": "Куриное филе",
+      "category": "shashlik",
+      "price": 150,
+      "weight": "100 г",
+      "description": "Шашлык. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 204,
+      "name": "Грибы шампиньоны",
+      "category": "shashlik",
+      "price": 80,
+      "weight": "100 г",
+      "description": "На мангале. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 205,
+      "name": "Баранина мякоть",
+      "category": "shashlik",
+      "price": 250,
+      "weight": "100 г",
+      "description": "Шашлык. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 206,
+      "name": "Люля куриные",
+      "category": "shashlik",
+      "price": 130,
+      "weight": "100 г",
+      "description": "Люля-кебаб. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1604908554027-8746f0d0a0d5?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 207,
+      "name": "Люля курино-сырные",
+      "category": "shashlik",
+      "price": 150,
+      "weight": "100 г",
+      "description": "Люля-кебаб. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1604908554027-8746f0d0a0d5?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 208,
+      "name": "Люля кебаб из свинины",
+      "category": "shashlik",
+      "price": 150,
+      "weight": "100 г",
+      "description": "Люля-кебаб. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1604908554027-8746f0d0a0d5?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 209,
+      "name": "Картофель на мангале",
+      "category": "shashlik",
+      "price": 400,
+      "weight": "1 порция",
+      "description": "Картофель на мангале.",
+      "image": "https://images.unsplash.com/photo-1523987355523-c7b5b74b03dd?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 210,
+      "name": "Цыплёнок табака",
+      "category": "shashlik",
+      "price": 900,
+      "weight": "1 шт",
+      "description": "Цыплёнок табака.",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 211,
+      "name": "Куриная голень",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "100 г",
+      "description": "На мангале. Цена указана за 100 г.",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 212,
+      "name": "Лаваш тонкий",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "1 шт",
+      "description": "Лаваш.",
+      "image": "https://images.unsplash.com/photo-1604908177063-2b6ed15c93d2?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+    {
+      "id": 213,
+      "name": "Лаваш пышный",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "1 шт",
+      "description": "Лаваш.",
+      "image": "https://images.unsplash.com/photo-1604908177063-2b6ed15c93d2?auto=format&fit=crop&w=900&q=80",
+      "ageRestricted": false
+    },
+
+    {
+      "id": 301,
       "name": "Картофель фри",
       "category": "fry",
       "price": 200,
-      "weight": "150 гр",
-      "description": "Хрустящий картофель фри",
-      "image": "https://i.ibb.co/nd5nYc8/image.jpg",
+      "weight": "150 г",
+      "description": "Хрустящий картофель фри.",
+      "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 20,
-      "name": "Картофель по деревенски",
+      "id": 302,
+      "name": "Картофель по-деревенски",
       "category": "fry",
       "price": 200,
-      "weight": "120 гр",
-      "description": "Ароматный картофель по-деревенски с травами",
-      "image": "https://i.ibb.co/14ywd5c/image.jpg",
+      "weight": "120 г",
+      "description": "Картофель по-деревенски.",
+      "image": "https://images.unsplash.com/photo-1550547660-0d4457d5e87d?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 21,
+      "id": 303,
       "name": "Сырные палочки",
       "category": "fry",
       "price": 300,
       "weight": "6 шт",
-      "description": "Хрустящие сырные палочки с моцареллой",
-      "image": "https://i.ibb.co/cV66JHY/image.jpg",
+      "description": "Сырные палочки (6 шт).",
+      "image": "https://images.unsplash.com/photo-1627308595181-cc9a1b5c4bfc?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 22,
-      "name": "Куриные трипсы",
+      "id": 304,
+      "name": "Куриные стрипсы",
       "category": "fry",
       "price": 350,
       "weight": "6 шт",
-      "description": "Хрустящие куриные полоски в панировке",
-      "image": "https://i.ibb.co/9kQhD65Y/image.jpg",
+      "description": "Куриные стрипсы (6 шт).",
+      "image": "https://images.unsplash.com/photo-1562967916-eb82221dfb46?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 23,
+      "id": 305,
       "name": "Куриные крылья острые",
       "category": "fry",
-      "price": 600,
+      "price": 450,
       "weight": "6 шт",
-      "description": "Острые куриные крылья в фирменном соусе",
-      "image": "https://i.ibb.co/zT6dfhwj/2.jpg",
+      "description": "Куриные крылья острые (6 шт).",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 24,
+      "id": 306,
       "name": "Куриные крылья терияки",
       "category": "fry",
-      "price": 600,
+      "price": 450,
       "weight": "6 шт",
-      "description": "Куриные крылья в соусе терияки",
-      "image": "https://i.ibb.co/nM4TB0NN/image.jpg",
+      "description": "Куриные крылья терияки (6 шт).",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
+
     {
-      "id": 25,
-      "name": "Креветки кольца фурай",
-      "category": "fry",
-      "price": 600,
-      "weight": "10 шт",
-      "description": "Хрустящие кольца из креветок",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried_shrimp_variations.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 26,
+      "id": 401,
       "name": "Курица в лаваше",
       "category": "lavash",
       "price": 350,
-      "weight": "320г",
-      "description": "лаваш, соус зернистый, соус красный, салат летний, курица жареная",
-      "image": "https://i.ibb.co/SXCQqcq7/image.jpg",
+      "weight": "1 шт",
+      "description": "Лаваш, соус зернистый, соус красный, салат летний, курица жареная.",
+      "image": "https://images.unsplash.com/photo-1604467707321-70d5ac45adda?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     },
     {
-      "id": 27,
+      "id": 402,
       "name": "Свинина в лаваше",
       "category": "lavash",
       "price": 350,
-      "weight": "330г",
-      "description": "лаваш, соус красный, соус зернистый, свинина жареная, салат летний",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_wrap_2.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 28,
-      "name": "Красный соус",
-      "category": "sauce",
-      "price": 80,
-      "weight": "50г",
-      "description": "Пикантный красный соус",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Fresh_Tomato_Sauce_(Unsplash).jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 29,
-      "name": "Белый соус",
-      "category": "sauce",
-      "price": 80,
-      "weight": "50г",
-      "description": "Нежный белый соус",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/White_Sauce_Pasta_served_in_an_Aluminium_foil_container.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 30,
-      "name": "Сырный соус",
-      "category": "sauce",
-      "price": 80,
-      "weight": "50г",
-      "description": "Ароматный сырный соус",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cheese_sauce_with_tuna_pasta_for_lunch.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 31,
-      "name": "Сладкий Чили соус",
-      "category": "sauce",
-      "price": 80,
-      "weight": "50г",
-      "description": "Сладко-острый соус Чили",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sweet_Chili_Sauce_(cropped).jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 32,
-      "name": "Томатный соус",
-      "category": "sauce",
-      "price": 80,
-      "weight": "50г",
-      "description": "Классический томатный соус",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/A_bunny_bread_bowl_with_meat_ball_and_tomato_sauce.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 33,
-      "name": "Адреналин Раш",
-      "category": "drinks",
-      "price": 208,
-      "volume": "0,449 л",
-      "package": "жб",
-      "description": "Энергетический напиток",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Adrenaline_Rush_berry_energy.png",
-      "ageRestricted": true
-    },
-    {
-      "id": 34,
-      "name": "Мартовский грушевый",
-      "category": "drinks",
-      "price": 114,
-      "volume": "0,5 л",
-      "package": "с/б",
-      "description": "Грушевый напиток",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Apple_juice.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 35,
-      "name": "Ипатовский грушёвый",
-      "category": "drinks",
-      "price": 184,
-      "volume": "1,25 л",
-      "package": "ПЭТ",
-      "description": "Грушевый напиток",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Russet_apple_juice.JPG",
-      "ageRestricted": false
-    },
-    {
-      "id": 36,
-      "name": "Кока-Кола",
-      "category": "drinks",
-      "price": 108,
-      "volume": "0,33 л",
-      "package": "жб",
-      "origin": "Ирак",
-      "description": "Классическая Coca-Cola",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Coca-Cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 37,
-      "name": "Крафт Роял тархун, дыня и фейхоа",
-      "category": "drinks",
-      "price": 124,
-      "volume": "0,41 л",
-      "package": "ст",
-      "description": "Крафтовый напиток с тархуном, дыней и фейхоа",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Orangejuice.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 38,
-      "name": "Крафт Роял фейхоа, ягоды асаи и орхидея",
-      "category": "drinks",
-      "price": 124,
-      "volume": "0,41 л",
-      "package": "ст",
-      "description": "Крафтовый напиток с фейхоа, ягодами асаи и орхидеей",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Fresh_Orange_Juice.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 39,
-      "name": "Напиток газ лемонарий с соком мохито",
-      "category": "drinks",
-      "price": 110,
-      "volume": "0,45 л",
-      "package": "жб",
-      "description": "Газированный напиток со вкусом мохито",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 40,
-      "name": "Напиток сокосод. Сочная долина",
-      "category": "drinks",
-      "price": 162,
-      "volume": "0,95 л",
-      "flavor": "яблоко",
-      "description": "Сокосодержащий напиток со вкусом яблока",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Apple_juice_glass.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 41,
-      "name": "Нарзан газ",
-      "category": "drinks",
-      "price": 130,
-      "volume": "0,45 л",
-      "package": "ст",
-      "description": "Лечебно-столовая минеральная вода",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 42,
-      "name": "От винта клубника/мохито",
-      "category": "drinks",
-      "price": 126,
-      "volume": "0,45 л",
-      "package": "с/б",
-      "description": "Напиток со вкусом клубники и мохито",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_juice_1_edit1.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 43,
-      "name": "Рычал Су",
-      "category": "drinks",
-      "price": 174,
-      "volume": "0,5 л",
-      "package": "с/б",
-      "description": "Минеральная вода",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mangali_mineral_water.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 44,
-      "name": "Сок вкусносок",
-      "category": "drinks",
-      "price": 102,
-      "volume": "0,95 л",
-      "flavor": "мульти фрукт",
-      "description": "Сок мультифрукт",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_juice_in_a_glass.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 45,
-      "name": "Сок добрый",
-      "category": "drinks",
-      "price": 220,
-      "volume": "1 л",
-      "flavor": "апельсин-мандарин",
-      "description": "Сок апельсин-мандарин",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Fresh_Orange_Juice.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 46,
-      "name": "Старые добрые традиции",
-      "category": "drinks",
-      "price": 104,
-      "volume": "0,5 л",
-      "flavor": "барбарис",
-      "package": "с/б",
-      "description": "Напиток со вкусом барбариса",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 47,
-      "name": "Чай фруктомания черный лимон",
-      "category": "drinks",
-      "price": 72,
-      "volume": "0,5 л",
-      "package": "ПЭТ",
-      "description": "Черный чай с лимоном",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tea_in_glass_cup.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 48,
-      "name": "Энергетик кайман ориджинал Энерджи",
-      "category": "drinks",
-      "price": 114,
-      "volume": "0,45 л",
-      "package": "жб",
-      "description": "Энергетический напиток",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Speed_Can_Energy_Drink_250ml.jpg",
-      "ageRestricted": true
-    },
-    {
-      "id": 49,
-      "name": "Энергетик бёрн",
-      "category": "drinks",
-      "price": 206,
-      "volume": "0,449 л",
-      "package": "жб",
-      "description": "Энергетический напиток",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Energy_drink_can_art.jpg",
-      "ageRestricted": true
-    },
-    {
-      "id": 50,
-      "name": "Горная вершина газ",
-      "category": "drinks",
-      "price": 54,
-      "volume": "0,5 л",
-      "type": "газ",
-      "description": "Вода питьевая газированная",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 51,
-      "name": "Горная вершина негаз",
-      "category": "drinks",
-      "price": 54,
-      "volume": "0,5 л",
-      "type": "негаз",
-      "description": "Вода питьевая негазированная",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 52,
-      "name": "Кока-кола Добрый",
-      "category": "drinks",
-      "price": 152,
-      "volume": "1 л",
-      "package": "ПЭТ",
-      "description": "Coca-Cola",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Coca-Cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 53,
-      "name": "Пепси",
-      "category": "drinks",
-      "price": 82,
-      "volume": "0,3 л",
-      "package": "жб",
-      "origin": "Афган",
-      "description": "Pepsi",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 54,
-      "name": "Пепси",
-      "category": "drinks",
-      "price": 178,
-      "volume": "1 л",
-      "package": "ПЭТ",
-      "description": "Pepsi",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 55,
-      "name": "Родник груша",
-      "category": "drinks",
-      "price": 44,
-      "volume": "0,45 л",
-      "flavor": "груша",
-      "description": "Напиток со вкусом груши",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Apple_juice_with_3apples.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 56,
-      "name": "Родник кола",
-      "category": "drinks",
-      "price": 44,
-      "volume": "0,45 л",
-      "flavor": "кола",
-      "description": "Напиток со вкусом колы",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_cola.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 57,
-      "name": "Родник мин вода газ",
-      "category": "drinks",
-      "price": 32,
-      "volume": "0,48 л",
-      "type": "газ",
-      "description": "Минеральная вода газированная",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
-      "ageRestricted": false
-    },
-    {
-      "id": 58,
-      "name": "Родник мин вода негаз",
-      "category": "drinks",
-      "price": 34,
-      "volume": "0,48 л",
-      "type": "негаз",
-      "description": "Минеральная вода негазированная",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bottle_of_Verna_Natural_Mineral_Water.jpg",
+      "weight": "1 шт",
+      "description": "Лаваш, соус красный, соус зернистый, свинина жареная, салат летний.",
+      "image": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=80",
       "ageRestricted": false
     }
   ],
   "combos": [
     {
       "id": 1,
-      "name": "Комбо для двоих",
-      "price": 850,
-      "savings": 150,
+      "name": "Комбо «Бургер + Фри»",
+      "price": 600,
+      "savings": 50,
       "items": [
-        "Шашлык из свинины (300г)",
-        "Классический бургер",
-        "Картофель фри (2 порции)",
-        "2 напитка на выбор"
+        "Любой бургер (кроме XXL)",
+        "Картофель фри 150 г"
       ],
       "ageRestricted": false
     },
     {
       "id": 2,
-      "name": "Мясной пир",
-      "price": 1200,
-      "savings": 200,
+      "name": "Комбо «Для двоих»",
+      "price": 1350,
+      "savings": 150,
       "items": [
-        "Шашлык из свинины (300г)",
-        "Шашлык из курицы (300г)",
-        "2 классических бургера",
-        "Картофель фри (2 порции)",
-        "4 напитка на выбор"
-      ],
-      "ageRestricted": false
-    },
-    {
-      "id": 3,
-      "name": "Бургер-ланч",
-      "price": 650,
-      "savings": 100,
-      "items": [
-        "Любой бургер",
-        "Картофель фри",
-        "Напиток на выбор"
-      ],
-      "ageRestricted": false
-    },
-    {
-      "id": 4,
-      "name": "Семейный ужин",
-      "price": 2200,
-      "savings": 300,
-      "items": [
-        "Свиная шея (500г)",
-        "Цыплёнок табака",
-        "2 лаваша с мясом",
-        "Картофель по-деревенски",
-        "4 напитка на выбор"
+        "2 бургера (кроме XXL)",
+        "Картофель фри 150 г",
+        "Картофель по-деревенски 120 г"
       ],
       "ageRestricted": false
     }
@@ -669,36 +323,25 @@
     "restaurant": {
       "name": "Уголёк",
       "address": "п. Орловский, Ростовская область",
+      "pickupAddress": "Транспортная, 45/1-а",
       "phone": "+7 (906) 428-46-30",
       "email": "aksenova.2590@mail.ru",
       "openingTime": "11:00",
-      "closingTime": "23:00",
-      "instagram": "",
-      "whatsapp": "+79064284630"
+      "closingTime": "23:00"
     },
     "delivery": {
       "minOrder": 500,
-      "freeDelivery": 1500,
+      "freeDelivery": 1000,
       "deliveryCost": 100,
-      "deliveryTime": "30-45 минут",
-      "deliveryZones": [
-        { "zone": "В пределах поселка", "cost": 100, "minOrder": 500 },
-        { "zone": "Пригород", "cost": 150, "minOrder": 800 }
-      ]
+      "deliveryTime": "30-45 минут"
     },
-    "payment": {
-      "cash": true,
-      "card": true,
-      "online": true,
-      "sberbank": false
-    },
-    "categories": [
-      { "id": "shashlik", "name": "Шашлык", "order": 1 },
-      { "id": "burger", "name": "Бургеры", "order": 2 },
-      { "id": "fry", "name": "Фритюр", "order": 3 },
-      { "id": "lavash", "name": "Блюда из лаваша", "order": 4 },
-      { "id": "sauce", "name": "Соусы", "order": 5 },
-      { "id": "drinks", "name": "Напитки", "order": 6 }
-    ]
+    "promos": {
+      "giftDishFrom": 1500,
+      "giftDrinkFrom": 2000,
+      "birthdayDiscountPercent": 20,
+      "loyaltyOrdersForPermanentDiscount": 10,
+      "permanentDiscountPercent": 5,
+      "drinksNote": "Напитки представлены в ассортименте — уточняйте у оператора."
+    }
   }
 }

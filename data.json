@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "id": 101,
+      "id": 1,
       "name": "Крутая Чика",
       "category": "burger",
       "price": 450,
@@ -11,7 +11,7 @@
       "ageRestricted": false
     },
     {
-      "id": 102,
+      "id": 2,
       "name": "Крутой Джентельмен",
       "category": "burger",
       "price": 500,
@@ -21,7 +21,7 @@
       "ageRestricted": false
     },
     {
-      "id": 103,
+      "id": 3,
       "name": "Мистер Бекон",
       "category": "burger",
       "price": 450,
@@ -31,7 +31,7 @@
       "ageRestricted": false
     },
     {
-      "id": 104,
+      "id": 4,
       "name": "Угольный Блюз",
       "category": "burger",
       "price": 550,
@@ -41,7 +41,7 @@
       "ageRestricted": false
     },
     {
-      "id": 105,
+      "id": 5,
       "name": "Угольный Блюз XXL",
       "category": "burger",
       "price": 800,
@@ -51,7 +51,7 @@
       "ageRestricted": false
     },
     {
-      "id": 106,
+      "id": 6,
       "name": "Крабс Бургер",
       "category": "burger",
       "price": 550,
@@ -61,7 +61,7 @@
       "ageRestricted": false
     },
     {
-      "id": 107,
+      "id": 7,
       "name": "Планета Уголёк",
       "category": "burger",
       "price": 300,
@@ -71,7 +71,7 @@
       "ageRestricted": false
     },
     {
-      "id": 108,
+      "id": 8,
       "name": "Хрустящая Курочка",
       "category": "burger",
       "price": 350,
@@ -81,211 +81,211 @@
       "ageRestricted": false
     },
     {
-      "id": 201,
+      "id": 9,
       "name": "Свиная шея",
       "category": "shashlik",
       "price": 200,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Шашлык. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 202,
+      "id": 10,
       "name": "Свиная корейка на кости",
       "category": "shashlik",
       "price": 200,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Шашлык. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 203,
+      "id": 11,
       "name": "Куриное филе",
       "category": "shashlik",
       "price": 150,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Шашлык. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 204,
+      "id": 12,
       "name": "Грибы шампиньоны",
       "category": "shashlik",
       "price": 80,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "На мангале. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 205,
+      "id": 13,
       "name": "Баранина мякоть",
       "category": "shashlik",
       "price": 250,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Шашлык. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 206,
+      "id": 14,
       "name": "Люля куриные",
       "category": "shashlik",
       "price": 130,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Люля-кебаб. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 207,
+      "id": 15,
       "name": "Люля курино-сырные",
       "category": "shashlik",
       "price": 150,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Люля-кебаб. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 208,
+      "id": 16,
       "name": "Люля кебаб из свинины",
       "category": "shashlik",
       "price": 150,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "Люля-кебаб. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 209,
+      "id": 17,
       "name": "Картофель на мангале",
       "category": "shashlik",
       "price": 400,
       "weight": "порция",
-      "description": "Картофель на мангале.",
+      "description": "Картофель, приготовленный на мангале.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 210,
+      "id": 18,
       "name": "Цыплёнок табака",
       "category": "shashlik",
       "price": 900,
       "weight": "1 шт",
-      "description": "1 штука.",
+      "description": "Цыплёнок табака. 1 штука.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 211,
+      "id": 19,
       "name": "Куриная голень",
       "category": "shashlik",
       "price": 100,
       "weight": "100 г",
-      "description": "Цена за 100 грамм.",
+      "description": "На мангале. Цена за 100 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 212,
+      "id": 20,
       "name": "Лаваш тонкий",
       "category": "shashlik",
       "price": 100,
       "weight": "1 шт",
-      "description": "1 штука.",
+      "description": "Лаваш тонкий. 1 штука.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 213,
+      "id": 21,
       "name": "Лаваш пышный",
       "category": "shashlik",
       "price": 100,
       "weight": "1 шт",
-      "description": "1 штука.",
+      "description": "Лаваш пышный. 1 штука.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 301,
+      "id": 22,
       "name": "Картофель фри",
       "category": "fry",
       "price": 200,
       "weight": "150 г",
-      "description": "Порция 150 г.",
+      "description": "Картофель фри. Порция 150 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 302,
+      "id": 23,
       "name": "Картофель по-деревенски",
       "category": "fry",
       "price": 200,
       "weight": "120 г",
-      "description": "Порция 120 г.",
+      "description": "Картофель по-деревенски. Порция 120 г.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 303,
+      "id": 24,
       "name": "Сырные палочки",
       "category": "fry",
       "price": 300,
       "weight": "6 шт",
-      "description": "6 штук.",
+      "description": "Сырные палочки. 6 штук.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 304,
+      "id": 25,
       "name": "Куриные стрипсы",
       "category": "fry",
       "price": 350,
       "weight": "6 шт",
-      "description": "6 штук.",
+      "description": "Куриные стрипсы. 6 штук.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 305,
+      "id": 26,
       "name": "Куриные крылья острые",
       "category": "fry",
       "price": 450,
       "weight": "6 шт",
-      "description": "6 штук.",
+      "description": "Куриные крылья (острые). 6 штук.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 306,
+      "id": 27,
       "name": "Куриные крылья терияки",
       "category": "fry",
       "price": 450,
       "weight": "6 шт",
-      "description": "6 штук.",
+      "description": "Куриные крылья (терияки). 6 штук.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 401,
+      "id": 28,
       "name": "Курица в лаваше",
       "category": "lavash",
       "price": 350,
-      "weight": "",
+      "weight": "шт",
       "description": "Лаваш, соус зернистый, соус красный, салат летний, курица жареная.",
       "image": "",
       "ageRestricted": false
     },
     {
-      "id": 402,
+      "id": 29,
       "name": "Свинина в лаваше",
       "category": "lavash",
       "price": 350,
-      "weight": "",
+      "weight": "шт",
       "description": "Лаваш, соус красный, соус зернистый, свинина жареная, салат летний.",
       "image": "",
       "ageRestricted": false
@@ -294,29 +294,18 @@
   "combos": [],
   "settings": {
     "restaurant": {
-      "name": "Доставка «Уголёк»",
+      "name": "Уголёк",
+      "address": "п. Орловский, Ростовская область",
       "phone": "8 906 428-46-30",
-      "email": "info@ugolek.online",
-      "address": "Транспортная, 45/1-а",
-      "openingTime": "10:00",
-      "closingTime": "22:00"
+      "email": "aksenova.2590@mail.ru",
+      "openingTime": "11:00",
+      "closingTime": "23:00"
     },
     "delivery": {
       "minOrder": 500,
-      "deliveryCost": 100,
       "freeDelivery": 1000,
-      "giftFoodFrom": 1500,
-      "giftDrinkFrom": 2000,
-      "birthdayDiscount": 20,
-      "loyaltyAfterOrders": 10,
-      "loyaltyDiscount": 5
-    },
-    "map": {
-      "center": [
-        46.871389,
-        42.059167
-      ],
-      "radiusMeters": 7000
+      "deliveryCost": 100,
+      "deliveryTime": "30-60 минут"
     }
   }
 }

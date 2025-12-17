@@ -1,347 +1,294 @@
 {
   "menu": [
     {
-      "id": 101,
-      "name": "Крутая Чика",
-      "category": "burger",
-      "price": 450,
-      "weight": "1 шт",
-      "description": "Фирменный бургер «Уголёк».",
-      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 102,
-      "name": "Крутой Джентельмен",
-      "category": "burger",
-      "price": 500,
-      "weight": "1 шт",
-      "description": "Фирменный бургер «Уголёк».",
-      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 103,
-      "name": "Мистер Бекон",
-      "category": "burger",
-      "price": 450,
-      "weight": "1 шт",
-      "description": "Бургер с акцентом на бекон и сочность.",
-      "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 104,
-      "name": "Угольный Блюз",
-      "category": "burger",
-      "price": 550,
-      "weight": "1 шт",
-      "description": "Фирменный бургер в стиле «Уголёк».",
-      "image": "https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 105,
-      "name": "Угольный Блюз XXL",
-      "category": "burger",
-      "price": 800,
-      "weight": "1 шт",
-      "description": "Большой бургер XXL для максимального аппетита.",
-      "image": "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 106,
-      "name": "Крабс Бургер",
-      "category": "burger",
-      "price": 550,
-      "weight": "1 шт",
-      "description": "Фирменный бургер «Крабс».",
-      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 107,
-      "name": "Планета Уголёк",
-      "category": "burger",
-      "price": 300,
-      "weight": "1 шт",
-      "description": "Лёгкий бургер на каждый день.",
-      "image": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 108,
-      "name": "Хрустящая Курочка",
-      "category": "burger",
-      "price": 350,
-      "weight": "1 шт",
-      "description": "Бургер с хрустящей курочкой.",
-      "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-
-    {
-      "id": 201,
-      "name": "Свиная шея",
-      "category": "shashlik",
-      "price": 200,
-      "weight": "100 г",
-      "description": "Шашлык. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 202,
-      "name": "Свиная корейка на кости",
-      "category": "shashlik",
-      "price": 200,
-      "weight": "100 г",
-      "description": "Шашлык. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 203,
-      "name": "Куриное филе",
-      "category": "shashlik",
-      "price": 150,
-      "weight": "100 г",
-      "description": "Шашлык. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 204,
-      "name": "Грибы шампиньоны",
-      "category": "shashlik",
-      "price": 80,
-      "weight": "100 г",
-      "description": "На мангале. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 205,
-      "name": "Баранина мякоть",
-      "category": "shashlik",
-      "price": 250,
-      "weight": "100 г",
-      "description": "Шашлык. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 206,
-      "name": "Люля куриные",
-      "category": "shashlik",
-      "price": 130,
-      "weight": "100 г",
-      "description": "Люля-кебаб. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1604908554027-8746f0d0a0d5?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 207,
-      "name": "Люля курино-сырные",
-      "category": "shashlik",
-      "price": 150,
-      "weight": "100 г",
-      "description": "Люля-кебаб. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1604908554027-8746f0d0a0d5?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 208,
-      "name": "Люля кебаб из свинины",
-      "category": "shashlik",
-      "price": 150,
-      "weight": "100 г",
-      "description": "Люля-кебаб. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1604908554027-8746f0d0a0d5?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 209,
-      "name": "Картофель на мангале",
-      "category": "shashlik",
-      "price": 400,
-      "weight": "1 порция",
-      "description": "Картофель на мангале.",
-      "image": "https://images.unsplash.com/photo-1523987355523-c7b5b74b03dd?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 210,
-      "name": "Цыплёнок табака",
-      "category": "shashlik",
-      "price": 900,
-      "weight": "1 шт",
-      "description": "Цыплёнок табака.",
-      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 211,
-      "name": "Куриная голень",
-      "category": "shashlik",
-      "price": 100,
-      "weight": "100 г",
-      "description": "На мангале. Цена указана за 100 г.",
-      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 212,
-      "name": "Лаваш тонкий",
-      "category": "shashlik",
-      "price": 100,
-      "weight": "1 шт",
-      "description": "Лаваш.",
-      "image": "https://images.unsplash.com/photo-1604908177063-2b6ed15c93d2?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 213,
-      "name": "Лаваш пышный",
-      "category": "shashlik",
-      "price": 100,
-      "weight": "1 шт",
-      "description": "Лаваш.",
-      "image": "https://images.unsplash.com/photo-1604908177063-2b6ed15c93d2?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-
-    {
-      "id": 301,
-      "name": "Картофель фри",
-      "category": "fry",
-      "price": 200,
-      "weight": "150 г",
-      "description": "Хрустящий картофель фри.",
-      "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 302,
-      "name": "Картофель по-деревенски",
-      "category": "fry",
-      "price": 200,
-      "weight": "120 г",
-      "description": "Картофель по-деревенски.",
-      "image": "https://images.unsplash.com/photo-1550547660-0d4457d5e87d?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 303,
-      "name": "Сырные палочки",
-      "category": "fry",
-      "price": 300,
-      "weight": "6 шт",
-      "description": "Сырные палочки (6 шт).",
-      "image": "https://images.unsplash.com/photo-1627308595181-cc9a1b5c4bfc?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 304,
-      "name": "Куриные стрипсы",
-      "category": "fry",
-      "price": 350,
-      "weight": "6 шт",
-      "description": "Куриные стрипсы (6 шт).",
-      "image": "https://images.unsplash.com/photo-1562967916-eb82221dfb46?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 305,
-      "name": "Куриные крылья острые",
-      "category": "fry",
-      "price": 450,
-      "weight": "6 шт",
-      "description": "Куриные крылья острые (6 шт).",
-      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 306,
-      "name": "Куриные крылья терияки",
-      "category": "fry",
-      "price": 450,
-      "weight": "6 шт",
-      "description": "Куриные крылья терияки (6 шт).",
-      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-
-    {
-      "id": 401,
-      "name": "Курица в лаваше",
-      "category": "lavash",
-      "price": 350,
-      "weight": "1 шт",
-      "description": "Лаваш, соус зернистый, соус красный, салат летний, курица жареная.",
-      "image": "https://images.unsplash.com/photo-1604467707321-70d5ac45adda?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    },
-    {
-      "id": 402,
-      "name": "Свинина в лаваше",
-      "category": "lavash",
-      "price": 350,
-      "weight": "1 шт",
-      "description": "Лаваш, соус красный, соус зернистый, свинина жареная, салат летний.",
-      "image": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=80",
-      "ageRestricted": false
-    }
-  ],
-  "combos": [
-    {
       "id": 1,
-      "name": "Комбо «Бургер + Фри»",
-      "price": 600,
-      "savings": 50,
-      "items": [
-        "Любой бургер (кроме XXL)",
-        "Картофель фри 150 г"
-      ],
+      "name": "КРУТАЯ ЧИКА",
+      "category": "burgers",
+      "price": 450,
+      "weight": "",
+      "description": "",
+      "image": "",
       "ageRestricted": false
     },
     {
       "id": 2,
-      "name": "Комбо «Для двоих»",
-      "price": 1350,
-      "savings": 150,
-      "items": [
-        "2 бургера (кроме XXL)",
-        "Картофель фри 150 г",
-        "Картофель по-деревенски 120 г"
-      ],
+      "name": "КРУТОЙ ДЖЕНТЕЛЬМЕН",
+      "category": "burgers",
+      "price": 500,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 3,
+      "name": "МИСТЕР БЕКОН",
+      "category": "burgers",
+      "price": 450,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 4,
+      "name": "УГОЛЬНЫЙ БЛЮЗ",
+      "category": "burgers",
+      "price": 550,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 5,
+      "name": "УГОЛЬНЫЙ БЛЮЗ XXL",
+      "category": "burgers",
+      "price": 800,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 6,
+      "name": "КРАБС БУРГЕР",
+      "category": "burgers",
+      "price": 550,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 7,
+      "name": "ПЛАНЕТА УГОЛЁК",
+      "category": "burgers",
+      "price": 300,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 8,
+      "name": "ХРУСТЯЩАЯ КУРОЧКА",
+      "category": "burgers",
+      "price": 350,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 101,
+      "name": "СВИНАЯ ШЕЯ",
+      "category": "shashlik",
+      "price": 200,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 102,
+      "name": "СВИНАЯ КОРЕЙКА НА КОСТИ",
+      "category": "shashlik",
+      "price": 200,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 103,
+      "name": "КУРИННОЕ ФИЛЕ",
+      "category": "shashlik",
+      "price": 150,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 104,
+      "name": "ГРИБЫ ШАМПИНЬОНЫ",
+      "category": "shashlik",
+      "price": 80,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 105,
+      "name": "БАРАНИНА МЯКОТЬ",
+      "category": "shashlik",
+      "price": 250,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 106,
+      "name": "ЛЮЛЯ КУРИНЫЕ",
+      "category": "shashlik",
+      "price": 130,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 107,
+      "name": "ЛЮЛЯ КУРИННО-СЫРНЫЕ",
+      "category": "shashlik",
+      "price": 150,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 108,
+      "name": "ЛЮЛЯ КЕБАБ ИЗ СВИНИНЫ",
+      "category": "shashlik",
+      "price": 150,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 109,
+      "name": "КАРТОФЕЛЬ НА МАНГАЛЕ",
+      "category": "shashlik",
+      "price": 400,
+      "weight": "",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 110,
+      "name": "ЦЫПЛЁНОК ТАБАКА",
+      "category": "shashlik",
+      "price": 900,
+      "weight": "1 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 111,
+      "name": "КУРИНАЯ ГОЛЕНЬ",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "100 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 112,
+      "name": "ЛАВАШ ТОНКИЙ",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "1 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 113,
+      "name": "ЛАВАШ ПЫШНЫЙ",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "1 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 201,
+      "name": "КАРТОФЕЛЬ ФРИ",
+      "category": "fry",
+      "price": 200,
+      "weight": "150 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 202,
+      "name": "КАРТОФЕЛЬ ПО-ДЕРЕВЕНСКИ",
+      "category": "fry",
+      "price": 200,
+      "weight": "120 г",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 203,
+      "name": "СЫРНЫЕ ПАЛОЧКИ",
+      "category": "fry",
+      "price": 300,
+      "weight": "6 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 204,
+      "name": "КУРИНЫЕ СТРИПСЫ",
+      "category": "fry",
+      "price": 350,
+      "weight": "6 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 205,
+      "name": "КУРИНЫЕ КРЫЛЬЯ ОСТРЫЕ",
+      "category": "fry",
+      "price": 450,
+      "weight": "6 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 206,
+      "name": "КУРИНЫЕ КРЫЛЬЯ ТЕРИЯКИ",
+      "category": "fry",
+      "price": 450,
+      "weight": "6 шт",
+      "description": "",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 301,
+      "name": "КУРИЦА В ЛАВАШЕ",
+      "category": "lavash",
+      "price": 350,
+      "weight": "",
+      "description": "Лаваш, соус зернистый, соус красный, салат летний, курица жареная",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 302,
+      "name": "СВИНИНА В ЛАВАШЕ",
+      "category": "lavash",
+      "price": 350,
+      "weight": "",
+      "description": "Лаваш, соус красный, соус зернистый, свинина жареная, салат летний",
+      "image": "",
       "ageRestricted": false
     }
-  ],
-  "settings": {
-    "restaurant": {
-      "name": "Уголёк",
-      "address": "п. Орловский, Ростовская область",
-      "pickupAddress": "Транспортная, 45/1-а",
-      "phone": "+7 (906) 428-46-30",
-      "email": "aksenova.2590@mail.ru",
-      "openingTime": "11:00",
-      "closingTime": "23:00"
-    },
-    "delivery": {
-      "minOrder": 500,
-      "freeDelivery": 1000,
-      "deliveryCost": 100,
-      "deliveryTime": "30-45 минут"
-    },
-    "promos": {
-      "giftDishFrom": 1500,
-      "giftDrinkFrom": 2000,
-      "birthdayDiscountPercent": 20,
-      "loyaltyOrdersForPermanentDiscount": 10,
-      "permanentDiscountPercent": 5,
-      "drinksNote": "Напитки представлены в ассортименте — уточняйте у оператора."
-    }
-  }
+  ]
 }

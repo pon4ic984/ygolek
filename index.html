@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=278ab797-344c-4f04-b6c5-a34ee1fe73bf&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=278ab797-344c-4f04-b6c5-a34ee1fe73bf&lang=ru_RU" type="text/javascript" defer></script>
     <style>
         :root {
             --primary-bg: #0D0D0D;
@@ -2374,7 +2374,7 @@
                     <p>Среднее время доставки: 30-45 минут</p>
                 </div>
                 <div class="about-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23333333'/%3E%3Cstop offset='100%25' stop-color='%23111111'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3Ctext x='50%25' y='52%25' font-family='Inter,Arial' font-size='54' fill='%23B26900' text-anchor='middle' dominant-baseline='middle'%3E%D0%A3%D0%B3%D0%BE%D0%BB%D1%91%D0%BA%3C/text%3E%3C/svg%3E" alt="Уголёк - доставка еды" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPumTgemHj+WbvuWDjzwvdGV4dD48L3N2Zz4='">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Уголёк - доставка еды" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPumTgemHj+WbvuWDjzwvdGV4dD48L3N2Zz4='">
                 </div>
             </div>
         </div>
@@ -2992,6 +2992,14 @@
         let combos = [];
         let settings = {};
 
+        // Быстрая локальная заглушка-картинка (без внешних запросов)
+        const DEFAULT_IMG = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">' +
+            '<rect width="100%" height="100%" fill="#1b1b1b"/>' +
+            '<text x="50%" y="50%" fill="#777" font-family="Arial" font-size="28" text-anchor="middle">Уголёк</text>' +
+            '</svg>'
+        );
+
         // Основные переменные
         let cart = JSON.parse(localStorage.getItem('ugalek_cart')) || [];
         let isAgeVerified = localStorage.getItem('ugalek_age_verified') === 'true';
@@ -3113,7 +3121,7 @@
                     price: 2500,
                     weight: "1 кг",
                     description: "Нежная свиная шея, маринованная в луке и специях",
-                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23333333'/%3E%3Cstop offset='100%25' stop-color='%23111111'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3Ctext x='50%25' y='52%25' font-family='Inter,Arial' font-size='54' fill='%23B26900' text-anchor='middle' dominant-baseline='middle'%3E%D0%A3%D0%B3%D0%BE%D0%BB%D1%91%D0%BA%3C/text%3E%3C/svg%3E",
+                    image: "",
                     ageRestricted: false
                 },
                 {
@@ -3123,7 +3131,7 @@
                     price: 2500,
                     weight: "1 кг",
                     description: "Сочная свиная корейка на кости с ароматными специями",
-                    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23333333'/%3E%3Cstop offset='100%25' stop-color='%23111111'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3Ctext x='50%25' y='52%25' font-family='Inter,Arial' font-size='54' fill='%23B26900' text-anchor='middle' dominant-baseline='middle'%3E%D0%A3%D0%B3%D0%BE%D0%BB%D1%91%D0%BA%3C/text%3E%3C/svg%3E",
+                    image: "",
                     ageRestricted: false
                 }
             ];
@@ -3878,7 +3886,7 @@
                 if (item) {
                     favoritesHtml += `
                         <div class="menu-item">
-                            <div class="menu-item-img" style="background-image: url('${item.image || 'data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23333333'/%3E%3Cstop offset='100%25' stop-color='%23111111'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3Ctext x='50%25' y='52%25' font-family='Inter,Arial' font-size='54' fill='%23B26900' text-anchor='middle' dominant-baseline='middle'%3E%D0%A3%D0%B3%D0%BE%D0%BB%D1%91%D0%BA%3C/text%3E%3C/svg%3E'}');"></div>
+                            <div class="menu-item-img" style="background-image: url('${item.image || DEFAULT_IMG}');"></div>
                             <div class="menu-item-content">
                                 <div class="menu-item-title">
                                     <h3>${item.name}</h3>
@@ -4453,7 +4461,7 @@
                 const favoriteIcon = isFavorite ? 'fas' : 'far';
 
                 // Используем изображение из данных или заглушку
-                const imageUrl = item.image || 'data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23333333'/%3E%3Cstop offset='100%25' stop-color='%23111111'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3Ctext x='50%25' y='52%25' font-family='Inter,Arial' font-size='54' fill='%23B26900' text-anchor='middle' dominant-baseline='middle'%3E%D0%A3%D0%B3%D0%BE%D0%BB%D1%91%D0%BA%3C/text%3E%3C/svg%3E';
+                const imageUrl = item.image || DEFAULT_IMG;
 
                 menuItemElement.innerHTML = `
                     ${ageBadge}
@@ -4664,6 +4672,9 @@
                     // Координаты поселка Орловский
                     const orlovskyCoords = [46.871389, 42.059167];
 
+                    // Радиус зоны доставки (метры)
+                    const deliveryRadiusM = 7000;
+
                     // Создаем карту
                     ymap = new ymaps.Map('yandexMap', {
                         center: orlovskyCoords,
@@ -4674,35 +4685,41 @@
                     });
 
                     
-                    // --- ЗОНА ДОСТАВКИ (Орловский) ---
-                    const deliveryRadius = 7000; // метры (можно менять)
-                    const deliveryCircle = new ymaps.Circle([orlovskyCoords, deliveryRadius], {}, {
-                        fillColor: "rgba(178, 105, 0, 0.10)",
-                        strokeColor: "rgba(178, 105, 0, 0.55)",
-                        strokeWidth: 2,
-                        interactivityModel: "default#transparent"
-                    });
+                    // Зона доставки (круг). ВАЖНО: круг не должен блокировать клики по карте
+                    const deliveryCircle = new ymaps.Circle(
+                        [orlovskyCoords, deliveryRadiusM],
+                        { hintContent: 'Зона доставки' },
+                        {
+                            fillColor: '#ffb00022',
+                            strokeColor: '#ffb000',
+                            strokeOpacity: 0.9,
+                            strokeWidth: 2,
+                            // прозрачная интерактивность — клики проходят на карту
+                            interactivityModel: 'default#transparent'
+                        }
+                    );
                     ymap.geoObjects.add(deliveryCircle);
 
-                    function isInsideDeliveryZone(coordsArr) {
+                    function isWithinDeliveryArea(checkCoords) {
                         try {
-                            const d = ymaps.coordSystem.geo.getDistance(orlovskyCoords, coordsArr);
-                            return d <= deliveryRadius;
+                            const dist = ymaps.coordSystem.geo.getDistance(orlovskyCoords, checkCoords);
+                            return dist <= deliveryRadiusM;
                         } catch (e) {
+                            // если что-то пошло не так — не блокируем
                             return true;
                         }
                     }
 // Добавляем обработчик клика на карту
                     ymap.events.add('click', function (e) {
                         const clickCoords = e.get('coords');
-                        selectedCoords = clickCoords;
 
-                        if (!isInsideDeliveryZone(clickCoords)) {
-                            showNotification('Доставка только в пределах посёлка Орловский. Выберите адрес внутри зоны.');
-                            selectedCoords = null;
+                        if (!isWithinDeliveryArea(clickCoords)) {
+                            showNotification('Адрес вне зоны доставки. Выберите адрес внутри круга.');
                             confirmAddressBtn.disabled = true;
                             return;
                         }
+
+                        selectedCoords = clickCoords;
 
                         // Удаляем предыдущую метку, если есть
                         if (selectedPlacemark) {
@@ -4720,13 +4737,24 @@
 
                         ymap.geoObjects.add(selectedPlacemark);
 
+                        // Если пользователь двигает метку — не даём выйти из зоны
+                        selectedPlacemark.events.add('dragend', function () {
+                            const dragCoords = selectedPlacemark.geometry.getCoordinates();
+                            if (!isWithinDeliveryArea(dragCoords)) {
+                                showNotification('Адрес вне зоны доставки. Переместите метку внутрь круга.');
+                                selectedPlacemark.geometry.setCoordinates(selectedCoords);
+                                return;
+                            }
+                            selectedCoords = dragCoords;
+                            getAddressByCoords(dragCoords);
+                        });
+
                         // Получаем адрес по координатам
                         getAddressByCoords(clickCoords);
 
                         // Активируем кнопку подтверждения
                         confirmAddressBtn.disabled = false;
                     });
-
                     // Добавляем поиск на карту
                     const searchControl = new ymaps.control.SearchControl({
                         options: {
@@ -4743,8 +4771,15 @@
                         const selectedResult = results[e.get('index')];
 
                         if (selectedResult) {
-                            const resultCoords = selectedResult.geometry.getCoordinates();
-                            selectedCoords = clickCoords;
+                            const foundCoords = selectedResult.geometry.getCoordinates();
+
+                            if (!isWithinDeliveryArea(foundCoords)) {
+                                showNotification('Адрес вне зоны доставки. Выберите адрес внутри круга.');
+                                confirmAddressBtn.disabled = true;
+                                return;
+                            }
+
+                            selectedCoords = foundCoords;
 
                             // Удаляем предыдущую метку
                             if (selectedPlacemark) {
@@ -4752,7 +4787,7 @@
                             }
 
                             // Добавляем новую метку
-                            selectedPlacemark = new ymaps.Placemark(clickCoords, {
+                            selectedPlacemark = new ymaps.Placemark(foundCoords, {
                                 hintContent: selectedResult.properties.get('name'),
                                 balloonContent: selectedResult.properties.get('text')
                             }, {
@@ -4761,7 +4796,19 @@
                             });
 
                             ymap.geoObjects.add(selectedPlacemark);
-                            ymap.setCenter(resultCoords, 16);
+                            ymap.setCenter(foundCoords, 16);
+
+                            // Если пользователь двигает метку — не даём выйти из зоны
+                            selectedPlacemark.events.add('dragend', function () {
+                                const dragCoords = selectedPlacemark.geometry.getCoordinates();
+                                if (!isWithinDeliveryArea(dragCoords)) {
+                                    showNotification('Адрес вне зоны доставки. Переместите метку внутрь круга.');
+                                    selectedPlacemark.geometry.setCoordinates(selectedCoords);
+                                    return;
+                                }
+                                selectedCoords = dragCoords;
+                                getAddressByCoords(dragCoords);
+                            });
 
                             // Обновляем выбранный адрес
                             const address = selectedResult.properties.get('name') + ', ' + selectedResult.properties.get('description');
@@ -4771,7 +4818,6 @@
                             confirmAddressBtn.disabled = false;
                         }
                     });
-
                     console.log('Яндекс.Карта успешно инициализирована');
                 } catch (error) {
                     console.error('Ошибка при инициализации карты:', error);
@@ -4781,6 +4827,11 @@
         }
 
         function getAddressByCoords(coords) {
+            if (typeof isWithinDeliveryArea === 'function' && !isWithinDeliveryArea(coords)) {
+                showNotification('Адрес вне зоны доставки. Выберите адрес внутри круга.');
+                confirmAddressBtn.disabled = true;
+                return;
+            }
             ymaps.geocode(coords).then(function (res) {
                 const firstGeoObject = res.geoObjects.get(0);
 

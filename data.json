@@ -1,345 +1,322 @@
 {
-  "categories": [
-    { "id": "burgers", "name": "БУРГЕРЫ" },
-    { "id": "shashlik", "name": "ШАШЛЫК" },
-    { "id": "friture", "name": "ФРИТЮР" },
-    { "id": "lavash", "name": "БЛЮДА ИЗ ЛАВАША" }
-  ],
-  "items": [
+  "menu": [
     {
-      "id": "b1",
-      "category": "burgers",
+      "id": 101,
       "name": "Крутая Чика",
+      "category": "burger",
       "price": 450,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b2",
-      "category": "burgers",
+      "id": 102,
       "name": "Крутой Джентельмен",
+      "category": "burger",
       "price": 500,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b3",
-      "category": "burgers",
+      "id": 103,
       "name": "Мистер Бекон",
+      "category": "burger",
       "price": 450,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b4",
-      "category": "burgers",
+      "id": 104,
       "name": "Угольный Блюз",
+      "category": "burger",
       "price": 550,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b5",
-      "category": "burgers",
+      "id": 105,
       "name": "Угольный Блюз XXL",
+      "category": "burger",
       "price": 800,
-      "unit": "шт",
       "weight": "",
       "description": "Большой бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b6",
-      "category": "burgers",
+      "id": 106,
       "name": "Крабс Бургер",
+      "category": "burger",
       "price": 550,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b7",
-      "category": "burgers",
+      "id": 107,
       "name": "Планета Уголёк",
+      "category": "burger",
       "price": 300,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "b8",
-      "category": "burgers",
+      "id": 108,
       "name": "Хрустящая Курочка",
+      "category": "burger",
       "price": 350,
-      "unit": "шт",
       "weight": "",
       "description": "Бургер. Состав уточняйте у оператора.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
-
     {
-      "id": "s1",
-      "category": "shashlik",
+      "id": 201,
       "name": "Свиная шея",
+      "category": "shashlik",
       "price": 200,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Шашлык. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s2",
-      "category": "shashlik",
+      "id": 202,
       "name": "Свиная корейка на кости",
+      "category": "shashlik",
       "price": 200,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Шашлык. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s3",
-      "category": "shashlik",
+      "id": 203,
       "name": "Куриное филе",
+      "category": "shashlik",
       "price": 150,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Шашлык. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s4",
-      "category": "shashlik",
+      "id": 204,
       "name": "Грибы шампиньоны",
+      "category": "shashlik",
       "price": 80,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "На мангале. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s5",
-      "category": "shashlik",
+      "id": 205,
       "name": "Баранина мякоть",
+      "category": "shashlik",
       "price": 250,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Шашлык. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s6",
-      "category": "shashlik",
+      "id": 206,
       "name": "Люля куриные",
+      "category": "shashlik",
       "price": 130,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Люля-кебаб. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s7",
-      "category": "shashlik",
+      "id": 207,
       "name": "Люля курино-сырные",
+      "category": "shashlik",
       "price": 150,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Люля-кебаб. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s8",
-      "category": "shashlik",
+      "id": 208,
       "name": "Люля кебаб из свинины",
+      "category": "shashlik",
       "price": 150,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "Люля-кебаб. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s9",
-      "category": "shashlik",
+      "id": 209,
       "name": "Картофель на мангале",
+      "category": "shashlik",
       "price": 400,
-      "unit": "порция",
-      "weight": "",
-      "description": "Картофель, приготовленный на мангале.",
+      "weight": "порция",
+      "description": "Картофель на мангале.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s10",
-      "category": "shashlik",
+      "id": 210,
       "name": "Цыплёнок табака",
+      "category": "shashlik",
       "price": 900,
-      "unit": "1 шт",
-      "weight": "",
-      "description": "Цыплёнок табака. 1 штука.",
+      "weight": "1 шт",
+      "description": "1 штука.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s11",
-      "category": "shashlik",
+      "id": 211,
       "name": "Куриная голень",
+      "category": "shashlik",
       "price": 100,
-      "unit": "100г",
       "weight": "100 г",
-      "description": "На мангале. Цена за 100 грамм.",
+      "description": "Цена за 100 грамм.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "s12",
-      "category": "shashlik",
+      "id": 212,
       "name": "Лаваш тонкий",
-      "price": 100,
-      "unit": "1 шт",
-      "weight": "",
-      "description": "Лаваш тонкий. 1 штука.",
-      "image": "",
-      "available": true
-    },
-    {
-      "id": "s13",
       "category": "shashlik",
-      "name": "Лаваш пышный",
       "price": 100,
-      "unit": "1 шт",
-      "weight": "",
-      "description": "Лаваш пышный. 1 штука.",
+      "weight": "1 шт",
+      "description": "1 штука.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
-
     {
-      "id": "f1",
-      "category": "friture",
+      "id": 213,
+      "name": "Лаваш пышный",
+      "category": "shashlik",
+      "price": 100,
+      "weight": "1 шт",
+      "description": "1 штука.",
+      "image": "",
+      "ageRestricted": false
+    },
+    {
+      "id": 301,
       "name": "Картофель фри",
+      "category": "fry",
       "price": 200,
-      "unit": "150г",
       "weight": "150 г",
-      "description": "Картофель фри. Порция 150 г.",
+      "description": "Порция 150 г.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "f2",
-      "category": "friture",
+      "id": 302,
       "name": "Картофель по-деревенски",
+      "category": "fry",
       "price": 200,
-      "unit": "120г",
       "weight": "120 г",
-      "description": "Картофель по-деревенски. Порция 120 г.",
+      "description": "Порция 120 г.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "f3",
-      "category": "friture",
+      "id": 303,
       "name": "Сырные палочки",
+      "category": "fry",
       "price": 300,
-      "unit": "6 шт",
-      "weight": "",
-      "description": "Сырные палочки. 6 штук.",
+      "weight": "6 шт",
+      "description": "6 штук.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "f4",
-      "category": "friture",
+      "id": 304,
       "name": "Куриные стрипсы",
+      "category": "fry",
       "price": 350,
-      "unit": "6 шт",
-      "weight": "",
-      "description": "Куриные стрипсы. 6 штук.",
+      "weight": "6 шт",
+      "description": "6 штук.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "f5",
-      "category": "friture",
+      "id": 305,
       "name": "Куриные крылья острые",
+      "category": "fry",
       "price": 450,
-      "unit": "6 шт",
-      "weight": "",
-      "description": "Крылья острые. 6 штук.",
+      "weight": "6 шт",
+      "description": "6 штук.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "f6",
-      "category": "friture",
+      "id": 306,
       "name": "Куриные крылья терияки",
+      "category": "fry",
       "price": 450,
-      "unit": "6 шт",
-      "weight": "",
-      "description": "Крылья терияки. 6 штук.",
+      "weight": "6 шт",
+      "description": "6 штук.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
-
     {
-      "id": "l1",
-      "category": "lavash",
+      "id": 401,
       "name": "Курица в лаваше",
+      "category": "lavash",
       "price": 350,
-      "unit": "шт",
       "weight": "",
       "description": "Лаваш, соус зернистый, соус красный, салат летний, курица жареная.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     },
     {
-      "id": "l2",
-      "category": "lavash",
+      "id": 402,
       "name": "Свинина в лаваше",
+      "category": "lavash",
       "price": 350,
-      "unit": "шт",
       "weight": "",
       "description": "Лаваш, соус красный, соус зернистый, свинина жареная, салат летний.",
       "image": "",
-      "available": true
+      "ageRestricted": false
     }
   ],
-
-  "promotions": [
-    { "id": "p1", "title": "Бесплатная доставка", "text": "При заказе от 1000₽" },
-    { "id": "p2", "title": "Подарок", "text": "От 1500₽ — блюдо в подарок" },
-    { "id": "p3", "title": "Подарок", "text": "От 2000₽ — напиток в подарок (ассортимент уточнять у оператора)" },
-    { "id": "p4", "title": "Скидка 20%", "text": "В день рождения" },
-    { "id": "p5", "title": "Скидка 5%", "text": "После 10 заказов — постоянная скидка" }
-  ],
-
-  "contacts": {
-    "phone": "8 906 428-46-30",
-    "pickup": "Транспортная, 45/1-а"
+  "combos": [],
+  "settings": {
+    "restaurant": {
+      "name": "Доставка «Уголёк»",
+      "phone": "8 906 428-46-30",
+      "email": "info@ugolek.online",
+      "address": "Транспортная, 45/1-а",
+      "openingTime": "10:00",
+      "closingTime": "22:00"
+    },
+    "delivery": {
+      "minOrder": 500,
+      "deliveryCost": 100,
+      "freeDelivery": 1000,
+      "giftFoodFrom": 1500,
+      "giftDrinkFrom": 2000,
+      "birthdayDiscount": 20,
+      "loyaltyAfterOrders": 10,
+      "loyaltyDiscount": 5
+    },
+    "map": {
+      "center": [
+        46.871389,
+        42.059167
+      ],
+      "radiusMeters": 7000
+    }
   }
 }

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=278ab797-344c-4f04-b6c5-a34ee1fe73bf&lang=ru_RU" type="text/javascript" defer></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=278ab797-344c-4f04-b6c5-a34ee1fe73bf&lang=ru_RU" type="text/javascript"></script>
     <style>
         :root {
             --primary-bg: #0D0D0D;
@@ -2286,7 +2286,25 @@
                 align-items: flex-start;
             }
         }
-    </style>
+    
+/* === Patch: hide user avatar/menu (customer requested) === */
+.user-menu, #userMenu { display: none !important; }
+
+/* === Patch: stronger responsive for phones/tablets without changing desktop design === */
+@media (max-width: 1024px) {
+  .container { padding-left: 16px !important; padding-right: 16px !important; }
+}
+@media (max-width: 640px) {
+  .modal { padding: 0 !important; }
+  .modal-content { max-width: none !important; width: 100% !important; max-height: 100vh !important; height: 100vh !important; border-radius: 0 !important; }
+  #yandexMap { height: 280px !important; }
+  .menu-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .header-container { flex-wrap: wrap !important; gap: 10px !important; }
+  .header-actions { gap: 10px !important; }
+  .hero { padding-top: 110px !important; }
+}
+
+</style>
 </head>
 <body>
     <div class="texture-overlay"></div>
@@ -2992,14 +3010,6 @@
         let combos = [];
         let settings = {};
 
-        // Быстрая локальная заглушка-картинка (без внешних запросов)
-        const DEFAULT_IMG = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">' +
-            '<rect width="100%" height="100%" fill="#1b1b1b"/>' +
-            '<text x="50%" y="50%" fill="#777" font-family="Arial" font-size="28" text-anchor="middle">Уголёк</text>' +
-            '</svg>'
-        );
-
         // Основные переменные
         let cart = JSON.parse(localStorage.getItem('ugalek_cart')) || [];
         let isAgeVerified = localStorage.getItem('ugalek_age_verified') === 'true';
@@ -3121,7 +3131,7 @@
                     price: 2500,
                     weight: "1 кг",
                     description: "Нежная свиная шея, маринованная в луке и специях",
-                    image: "",
+                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                     ageRestricted: false
                 },
                 {
@@ -3131,7 +3141,7 @@
                     price: 2500,
                     weight: "1 кг",
                     description: "Сочная свиная корейка на кости с ароматными специями",
-                    image: "",
+                    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                     ageRestricted: false
                 }
             ];
@@ -3204,6 +3214,36 @@
         document.addEventListener('DOMContentLoaded', async function () {
             // Загружаем данные первым делом
             await loadData();
+
+            // Если вернулись со страницы оплаты YooKassa — проверим статус платежа
+            try {
+                const p = new URLSearchParams(location.search);
+                if (p.get('pay') === 'return') {
+                    const orderIdClean = p.get('order');
+                    if (orderIdClean) {
+                        const orderId = `#${orderIdClean}`;
+                        const ord = (orders || []).find(o => o.id === orderId);
+                        if (ord?.paymentId && PAY_API_BASE && !PAY_API_BASE.includes('YOUR-VERCEL-DOMAIN')) {
+                            const rr = await fetch(`${PAY_API_BASE}/api/payment-status?payment_id=${encodeURIComponent(ord.paymentId)}`);
+                            const st = await rr.json().catch(() => ({}));
+                            if (rr.ok && (st.status === 'succeeded' || st.paid === true)) {
+                                ord.isPaid = true;
+                                ord.status = 'new';
+                                try { localStorage.setItem('ugalek_orders', JSON.stringify(orders)); } catch (e) {}
+                                showNotification(`Оплата успешна! Заказ #${orderIdClean} принят.`);
+                            } else if (rr.ok && st.status === 'canceled') {
+                                ord.isPaid = false;
+                                ord.status = 'cancelled';
+                                try { localStorage.setItem('ugalek_orders', JSON.stringify(orders)); } catch (e) {}
+                                showNotification(`Оплата отменена. Заказ #${orderIdClean} помечен как отменён.`);
+                            }
+                        }
+                    }
+                    // подчистим URL
+                    history.replaceState({}, document.title, location.pathname);
+                }
+            } catch (e) { console.error(e); }
+
             
             updateCartCount();
             createFloatingElements();
@@ -3886,7 +3926,7 @@
                 if (item) {
                     favoritesHtml += `
                         <div class="menu-item">
-                            <div class="menu-item-img" style="background-image: url('${item.image || DEFAULT_IMG}');"></div>
+                            <div class="menu-item-img" style="background-image: url('${item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}');"></div>
                             <div class="menu-item-content">
                                 <div class="menu-item-title">
                                     <h3>${item.name}</h3>
@@ -4357,12 +4397,53 @@
             }
         }
 
-        function processYooKassaPayment() {
-            // В реальном приложении здесь будет интеграция с API ЮКассы
-            // Для демонстрации просто создаем заказ с онлайн-оплатой
-            createOrder('online', true);
-            closeModal(yookassaModal);
-            showNotification('Оплата прошла успешно! Заказ подтвержден.');
+        async function processYooKassaPayment() {
+            // Реальная онлайн-оплата через YooKassa делается через БЭКЕНД (Vercel/VPS).
+            // Здесь мы создаём заказ со статусом ожидания оплаты и уходим на страницу оплаты YooKassa.
+            try {
+                if (!PAY_API_BASE || PAY_API_BASE.includes('YOUR-VERCEL-DOMAIN')) {
+                    showNotification('Онлайн-оплата не настроена: укажи PAY_API_BASE (домен Vercel) в конце index.html.');
+                    return;
+                }
+
+                const order = createOrder('online', false); // статус waiting_payment
+                closeModal(yookassaModal);
+
+                const orderIdClean = String(order.id || '').replace('#', '');
+                const amount = Number(order.total || 0);
+
+                showNotification('Перенаправляем на оплату...');
+
+                const r = await fetch(`${PAY_API_BASE}/api/create-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: amount,
+                        orderId: orderIdClean,
+                        description: `Заказ #${orderIdClean} Уголёк`
+                    })
+                });
+
+                const data = await r.json().catch(() => ({}));
+                if (!r.ok || !data.confirmation_url) {
+                    console.error('YooKassa create-payment error:', data);
+                    showNotification('Не удалось создать оплату. Проверь PAY_API_BASE и ключи на Vercel.');
+                    return;
+                }
+
+                // Переходим на страницу оплаты YooKassa (там пользователь выберет SberPay/карту и т.д.)
+                
+                // сохраним payment_id в заказ и localStorage (чтобы проверить статус после возврата)
+                if (data.payment_id) {
+                    order.paymentId = data.payment_id;
+                    try { localStorage.setItem('ugalek_orders', JSON.stringify(orders)); } catch (e) {}
+                }
+
+                window.location.href = data.confirmation_url;
+            } catch (e) {
+                console.error(e);
+                showNotification('Ошибка онлайн-оплаты. Проверь настройки.');
+            }
         }
 
         function createOrder(paymentMethod, isPaid) {
@@ -4386,7 +4467,7 @@
                 notes: orderNotes,
                 total: total,
                 timestamp: new Date().toISOString(),
-                status: 'new',
+                status: (paymentMethod === 'online' && !isPaid) ? 'waiting_payment' : 'new',
                 paymentMethod: paymentMethod,
                 isPaid: isPaid
             };
@@ -4435,6 +4516,8 @@
             showStep(1);
 
             showNotification(`Заказ ${orderId} успешно оформлен! ${isPaid ? 'Оплата прошла успешно.' : ''} Наш оператор свяжется с вами в ближайшее время. ${bonusPoints ? `Вам начислено ${bonusPoints} бонусных баллов!` : ''}`);
+
+            return order;
         }
 
         // Функции для работы с меню
@@ -4461,7 +4544,7 @@
                 const favoriteIcon = isFavorite ? 'fas' : 'far';
 
                 // Используем изображение из данных или заглушку
-                const imageUrl = item.image || DEFAULT_IMG;
+                const imageUrl = item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
 
                 menuItemElement.innerHTML = `
                     ${ageBadge}
@@ -4670,10 +4753,7 @@
                     yandexMap.style.display = 'block';
 
                     // Координаты поселка Орловский
-                    const orlovskyCoords = [46.871389, 42.059167];
-
-                    // Радиус зоны доставки (метры)
-                    const deliveryRadiusM = 7000;
+                    const orlovskyCoords = [46.8713889, 42.0591667];
 
                     // Создаем карту
                     ymap = new ymaps.Map('yandexMap', {
@@ -4685,41 +4765,40 @@
                     });
 
                     
-                    // Зона доставки (круг). ВАЖНО: круг не должен блокировать клики по карте
-                    const deliveryCircle = new ymaps.Circle(
-                        [orlovskyCoords, deliveryRadiusM],
-                        { hintContent: 'Зона доставки' },
-                        {
-                            fillColor: '#ffb00022',
-                            strokeColor: '#ffb000',
-                            strokeOpacity: 0.9,
-                            strokeWidth: 2,
-                            // прозрачная интерактивность — клики проходят на карту
-                            interactivityModel: 'default#transparent'
-                        }
-                    );
-                    ymap.geoObjects.add(deliveryCircle);
+// === Patch: delivery zone (Orlovskiy) ===
+const DELIVERY_RADIUS_M = 7000; // зона доставки (метры). Меняй при необходимости
 
-                    function isWithinDeliveryArea(checkCoords) {
-                        try {
-                            const dist = ymaps.coordSystem.geo.getDistance(orlovskyCoords, checkCoords);
-                            return dist <= deliveryRadiusM;
-                        } catch (e) {
-                            // если что-то пошло не так — не блокируем
-                            return true;
-                        }
-                    }
+function isInsideDeliveryZone(coords) {
+    try {
+        const dist = ymaps.coordSystem.geo.getDistance(orlovskyCoords, coords);
+        return dist <= DELIVERY_RADIUS_M;
+    } catch (e) {
+        return true;
+    }
+}
+
+// Рисуем круг зоны доставки (важно: прозрачный для кликов)
+const deliveryCircle = new ymaps.Circle(
+    [orlovskyCoords, DELIVERY_RADIUS_M],
+    {},
+    {
+        draggable: false,
+        fillColor: '#ff550022',
+        strokeColor: '#ff5500',
+        strokeWidth: 2,
+        interactivityModel: 'default#transparent' // <-- чтобы круг НЕ блокировал клики
+    }
+);
+ymap.geoObjects.add(deliveryCircle);
 // Добавляем обработчик клика на карту
                     ymap.events.add('click', function (e) {
-                        const clickCoords = e.get('coords');
-
-                        if (!isWithinDeliveryArea(clickCoords)) {
-                            showNotification('Адрес вне зоны доставки. Выберите адрес внутри круга.');
-                            confirmAddressBtn.disabled = true;
+                        const coords = e.get('coords');
+                        if (!isInsideDeliveryZone(coords)) {
+                            showNotification('Адрес вне зоны доставки (пос. Орловский).');
                             return;
                         }
 
-                        selectedCoords = clickCoords;
+                        selectedCoords = coords;
 
                         // Удаляем предыдущую метку, если есть
                         if (selectedPlacemark) {
@@ -4727,7 +4806,7 @@
                         }
 
                         // Добавляем новую метку
-                        selectedPlacemark = new ymaps.Placemark(clickCoords, {
+                        selectedPlacemark = new ymaps.Placemark(coords, {
                             hintContent: 'Выбранный адрес',
                             balloonContent: 'Загрузка адреса...'
                         }, {
@@ -4736,25 +4815,28 @@
                         });
 
                         ymap.geoObjects.add(selectedPlacemark);
+                            // Ограничиваем перетаскивание метки зоной доставки
+                            selectedPlacemark.events.add('dragend', function () {
+                                const c = selectedPlacemark.geometry.getCoordinates();
+                                if (!isInsideDeliveryZone(c)) {
+                                    showNotification('Точка вышла за зону доставки (пос. Орловский).');
+                                    selectedPlacemark.geometry.setCoordinates(orlovskyCoords);
+                                    selectedCoords = null;
+                                    confirmAddressBtn.disabled = true;
+                                    return;
+                                }
+                                selectedCoords = c;
+                                getAddressByCoords(c);
+                            });
 
-                        // Если пользователь двигает метку — не даём выйти из зоны
-                        selectedPlacemark.events.add('dragend', function () {
-                            const dragCoords = selectedPlacemark.geometry.getCoordinates();
-                            if (!isWithinDeliveryArea(dragCoords)) {
-                                showNotification('Адрес вне зоны доставки. Переместите метку внутрь круга.');
-                                selectedPlacemark.geometry.setCoordinates(selectedCoords);
-                                return;
-                            }
-                            selectedCoords = dragCoords;
-                            getAddressByCoords(dragCoords);
-                        });
 
                         // Получаем адрес по координатам
-                        getAddressByCoords(clickCoords);
+                        getAddressByCoords(coords);
 
                         // Активируем кнопку подтверждения
                         confirmAddressBtn.disabled = false;
                     });
+
                     // Добавляем поиск на карту
                     const searchControl = new ymaps.control.SearchControl({
                         options: {
@@ -4771,15 +4853,13 @@
                         const selectedResult = results[e.get('index')];
 
                         if (selectedResult) {
-                            const foundCoords = selectedResult.geometry.getCoordinates();
-
-                            if (!isWithinDeliveryArea(foundCoords)) {
-                                showNotification('Адрес вне зоны доставки. Выберите адрес внутри круга.');
-                                confirmAddressBtn.disabled = true;
+                            const coords = selectedResult.geometry.getCoordinates();
+                            if (!isInsideDeliveryZone(coords)) {
+                                showNotification('Адрес вне зоны доставки (пос. Орловский).');
                                 return;
                             }
 
-                            selectedCoords = foundCoords;
+                            selectedCoords = coords;
 
                             // Удаляем предыдущую метку
                             if (selectedPlacemark) {
@@ -4787,7 +4867,7 @@
                             }
 
                             // Добавляем новую метку
-                            selectedPlacemark = new ymaps.Placemark(foundCoords, {
+                            selectedPlacemark = new ymaps.Placemark(coords, {
                                 hintContent: selectedResult.properties.get('name'),
                                 balloonContent: selectedResult.properties.get('text')
                             }, {
@@ -4796,19 +4876,21 @@
                             });
 
                             ymap.geoObjects.add(selectedPlacemark);
-                            ymap.setCenter(foundCoords, 16);
-
-                            // Если пользователь двигает метку — не даём выйти из зоны
+                            // Ограничиваем перетаскивание метки зоной доставки
                             selectedPlacemark.events.add('dragend', function () {
-                                const dragCoords = selectedPlacemark.geometry.getCoordinates();
-                                if (!isWithinDeliveryArea(dragCoords)) {
-                                    showNotification('Адрес вне зоны доставки. Переместите метку внутрь круга.');
-                                    selectedPlacemark.geometry.setCoordinates(selectedCoords);
+                                const c = selectedPlacemark.geometry.getCoordinates();
+                                if (!isInsideDeliveryZone(c)) {
+                                    showNotification('Точка вышла за зону доставки (пос. Орловский).');
+                                    selectedPlacemark.geometry.setCoordinates(orlovskyCoords);
+                                    selectedCoords = null;
+                                    confirmAddressBtn.disabled = true;
                                     return;
                                 }
-                                selectedCoords = dragCoords;
-                                getAddressByCoords(dragCoords);
+                                selectedCoords = c;
+                                getAddressByCoords(c);
                             });
+
+                            ymap.setCenter(coords, 16);
 
                             // Обновляем выбранный адрес
                             const address = selectedResult.properties.get('name') + ', ' + selectedResult.properties.get('description');
@@ -4818,6 +4900,7 @@
                             confirmAddressBtn.disabled = false;
                         }
                     });
+
                     console.log('Яндекс.Карта успешно инициализирована');
                 } catch (error) {
                     console.error('Ошибка при инициализации карты:', error);
@@ -4827,11 +4910,6 @@
         }
 
         function getAddressByCoords(coords) {
-            if (typeof isWithinDeliveryArea === 'function' && !isWithinDeliveryArea(coords)) {
-                showNotification('Адрес вне зоны доставки. Выберите адрес внутри круга.');
-                confirmAddressBtn.disabled = true;
-                return;
-            }
             ymaps.geocode(coords).then(function (res) {
                 const firstGeoObject = res.geoObjects.get(0);
 
@@ -5075,5 +5153,6 @@
             });
         }
     </script>
+<script>const PAY_API_BASE='https://YOUR-VERCEL-DOMAIN';</script>
 </body>
 </html>

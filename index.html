@@ -3004,12 +3004,122 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script>
         // Переменные для данных
         let menuItems = [];
         let combos = [];
         let settings = {};
 
+
+const DEFAULT_SETTINGS = {
+            restaurant: {
+                name: "Уголёк",
+                address: "п. Орловский, Ростовская область",
+                phone: "+7 (906) 428-46-30",
+                email: "aksenova.2590@mail.ru",
+                openingTime: "11:00",
+                closingTime: "23:00"
+            },
+            delivery: {
+                minOrder: 500,
+                freeDelivery: 1500,
+                deliveryCost: 100,
+                deliveryTime: "30-45 минут"
+            }
+        };
+
+        function deepMerge_(base, extra) {
+            const out = Array.isArray(base) ? base.slice() : { ...base };
+            if (!extra || typeof extra !== 'object') return out;
+            Object.keys(extra).forEach((k) => {
+                const v = extra[k];
+                if (v && typeof v === 'object' && !Array.isArray(v) && base && typeof base[k] === 'object' && !Array.isArray(base[k])) {
+                    out[k] = deepMerge_(base[k], v);
+                } else {
+                    out[k] = v;
+                }
+            });
+            return out;
+        }
+
+        // Поддержка разных названий ключей из Google Sheets
+        function normalizeSettings_(s) {
+            s = s || {};
+            s.restaurant = s.restaurant || {};
+            s.delivery = s.delivery || {};
+
+            // restaurant: openTime/closeTime -> openingTime/closingTime
+            if (!s.restaurant.openingTime && s.restaurant.openTime) s.restaurant.openingTime = s.restaurant.openTime;
+            if (!s.restaurant.closingTime && s.restaurant.closeTime) s.restaurant.closingTime = s.restaurant.closeTime;
+
+            // на случай кривых/укороченных ключей
+            if (!s.restaurant.openingTime && s.restaurant.openi) s.restaurant.openingTime = s.restaurant.openi;
+            if (!s.restaurant.closingTime && s.restaurant.closin) s.restaurant.closingTime = s.restaurant.closin;
+
+            // delivery: freeDeliveryFrom -> freeDelivery
+            if (!s.delivery.freeDelivery && s.delivery.freeDeliveryFrom) s.delivery.freeDelivery = s.delivery.freeDeliveryFrom;
+            if (!s.delivery.freeDelivery && s.delivery.freeDeli) s.delivery.freeDelivery = s.delivery.freeDeli;
+
+            // delivery: fee/eta -> deliveryCost/deliveryTime
+            if (!s.delivery.deliveryCost && s.delivery.fee) s.delivery.deliveryCost = s.delivery.fee;
+            if (!s.delivery.deliveryTime && s.delivery.eta) s.delivery.deliveryTime = s.delivery.eta;
+
+            // delivery: minOrde -> minOrder
+            if (!s.delivery.minOrder && s.delivery.minOrde) s.delivery.minOrder = s.delivery.minOrde;
+
+            // delivery: legacy "delivery" key (у тебя было два одинаковых ключа)
+            if (s.delivery.delivery !== undefined) {
+                if (typeof s.delivery.delivery === 'number' && !s.delivery.deliveryCost) s.delivery.deliveryCost = s.delivery.delivery;
+                if (typeof s.delivery.delivery === 'string' && !s.delivery.deliveryTime) s.delivery.deliveryTime = s.delivery.delivery;
+            }
+
+            // Приводим числа
+            const toNum = (v) => (typeof v === 'string' && v.trim() !== '' && !isNaN(Number(v.replace(',', '.')))) ? Number(v.replace(',', '.')) : v;
+            s.delivery.minOrder = toNum(s.delivery.minOrder);
+            s.delivery.freeDelivery = toNum(s.delivery.freeDelivery);
+            s.delivery.deliveryCost = toNum(s.delivery.deliveryCost);
+
+            return s;
+        }
+
+        // Умная загрузка JSON: сначала fetch, если CORS/ошибка — JSONP (для Apps Script)
+        async function fetchJsonSmart_(url) {
+            const isAppsScript = /script\.google\.com\/macros\/s\//.test(url);
+            try {
+                const res = await fetch(url, { cache: "no-store" });
+                if (!res.ok) throw new Error("HTTP " + res.status);
+                return await res.json();
+            } catch (e) {
+                // Часто CORS выглядит как TypeError: Failed to fetch
+                if (isAppsScript) {
+                    return await jsonpLoad_(url);
+                }
+                throw e;
+            }
+        }
+
+        function jsonpLoad_(url) {
+            return new Promise((resolve, reject) => {
+                const cb = "UGOLEK_JSONP_" + Math.random().toString(36).slice(2);
+                const sep = url.includes("?") ? "&" : "?";
+                const src = url + sep + "callback=" + encodeURIComponent(cb);
+
+                const script = document.createElement("script");
+                script.src = src;
+                script.async = true;
+
+                const cleanup = () => {
+                    delete window[cb];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                };
+
+                window[cb] = (data) => { cleanup(); resolve(data); };
+                script.onerror = () => { cleanup(); reject(new Error("JSONP load failed")); };
+
+                document.head.appendChild(script);
+            });
+        }
         // Основные переменные
         let cart = JSON.parse(localStorage.getItem('ugalek_cart')) || [];
         let isAgeVerified = localStorage.getItem('ugalek_age_verified') === 'true';
@@ -3095,27 +3205,29 @@
 
         // Функция загрузки данных из JSON
         async function loadData() {
+            const url = (window.UGOLEK_DATA_URL && String(window.UGOLEK_DATA_URL).trim())
+                ? String(window.UGOLEK_DATA_URL).trim()
+                : 'data.json';
+
             try {
-                const response = await fetch('data.json');
-                if (!response.ok) {
-                    throw new Error('Ошибка загрузки данных');
-                }
-                const data = await response.json();
-                
-                menuItems = data.menu;
-                combos = data.combos;
-                settings = data.settings;
-                
+                const data = await fetchJsonSmart_(url);
+
+                menuItems = Array.isArray(data.menu) ? data.menu : [];
+                combos = Array.isArray(data.combos) ? data.combos : [];
+
+                const loadedSettings = (data.settings && typeof data.settings === 'object') ? data.settings : {};
+                settings = normalizeSettings_(deepMerge_(DEFAULT_SETTINGS, loadedSettings));
+
                 // После загрузки данных обновляем интерфейс
                 updateRestaurantInfo();
                 loadMenuItems();
                 loadCombos();
-                
-                console.log('Данные успешно загружены');
+
+                console.log('Данные успешно загружены из:', url);
             } catch (error) {
                 console.error('Ошибка загрузки данных:', error);
                 showNotification('Ошибка загрузки меню. Пожалуйста, обновите страницу.');
-                
+
                 // Загружаем демо-данные в случае ошибки
                 loadDemoData();
             }
@@ -5153,7 +5265,6 @@ ymap.geoObjects.add(deliveryCircle);
             });
         }
     </script>
-<script>const PAY_API_BASE='https://ps-nlvj.vercel.app';</script>
+<script>const PAY_API_BASE='https://YOUR-VERCEL-DOMAIN';</script>
 </body>
 </html>
-

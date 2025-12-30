@@ -3007,7 +3007,36 @@
     
     
     <script src="config.js"></script>
+    
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        const CLIENT_ID = '308863625048-sbi6ap5kb4ujujhha0bblivrdr1i7hue.apps.googleusercontent.com';
+
+        function onGoogleLogin() {
+            gapi.auth2.getAuthInstance().signIn().then(function (googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log("Google ID: " + profile.getId());
+                console.log("Name: " + profile.getName());
+                console.log("Email: " + profile.getEmail());
+                alert("Вы вошли через Google!");
+            }).catch(function (error) {
+                console.log("Ошибка входа через Google: " + error);
+            });
+        }
+
+        function initGoogleLogin() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init({
+                    client_id: CLIENT_ID
+                }).then(function () {
+                    document.getElementById('google-login').onclick = onGoogleLogin;
+                });
+            });
+        }
+
+        initGoogleLogin();  // Initialize Google login
+    </script>
+    
     <script>
         const CLIENT_ID = '308863625048-sbi6ap5kb4ujujhha0bblivrdr1i7hue.apps.googleusercontent.com';
         const UGOLEK_DATA_URL = window.UGOLEK_DATA_URL;
@@ -3058,7 +3087,36 @@
         initGoogleLogin();  // Initialize Google login
     </script>
     
+    
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        const CLIENT_ID = '308863625048-sbi6ap5kb4ujujhha0bblivrdr1i7hue.apps.googleusercontent.com';
+
+        function onGoogleLogin() {
+            gapi.auth2.getAuthInstance().signIn().then(function (googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log("Google ID: " + profile.getId());
+                console.log("Name: " + profile.getName());
+                console.log("Email: " + profile.getEmail());
+                alert("Вы вошли через Google!");
+            }).catch(function (error) {
+                console.log("Ошибка входа через Google: " + error);
+            });
+        }
+
+        function initGoogleLogin() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init({
+                    client_id: CLIENT_ID
+                }).then(function () {
+                    document.getElementById('google-login').onclick = onGoogleLogin;
+                });
+            });
+        }
+
+        initGoogleLogin();  // Initialize Google login
+    </script>
+    
     <script>
         // Google OAuth client setup
         const CLIENT_ID = '308863625048-sbi6ap5kb4ujujhha0bblivrdr1i7hue.apps.googleusercontent.com';
